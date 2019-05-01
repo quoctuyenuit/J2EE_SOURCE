@@ -15,8 +15,8 @@ public class User {
 	 @GeneratedValue(strategy = GenerationType.IDENTITY)
 	 @Column(name = "id", nullable = false)
 	 private String id;
-	 
-	 @NotEmpty 
+
+	 @NotEmpty
 	 @Column(name = "type_id", nullable = false)
 	 private Integer type_id;
 
@@ -27,14 +27,14 @@ public class User {
 	 @Email
 	 @Column(name = "email")
 	 private String email;
-	 
+
 	 @NotEmpty
 	 @Column(name = "password", nullable = false)
 	 private String password;
-	 
+
 	 @Column(name = "address")
 	 private String address;
-	 
+
 	 @Column(name = "created")
 	 private Date created;
 

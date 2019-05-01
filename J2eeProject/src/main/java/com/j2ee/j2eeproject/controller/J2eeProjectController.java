@@ -8,7 +8,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.j2ee.j2eeproject.entity.User;
 
 
 @Controller
@@ -17,7 +16,7 @@ public class J2eeProjectController {
 	public String login() {
 		return "login-ver2";
 	}
-	
+
 	@RequestMapping(value = "/auth/google")
 	public String loginSucessfully(OAuth2Authentication authentication, Model model) {
 		@SuppressWarnings("unchecked")
