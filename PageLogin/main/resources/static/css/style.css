@@ -1,0 +1,161 @@
+body {
+	font-family: 'Hind', sans-serif;
+}
+
+h1 {
+	color: #ff4a52;
+	text-align: center;
+	padding: 50px;
+}
+
+.login-box-layout {
+	background-color: #f2f2f2;
+	padding: 5rem 5rem 4.5rem;
+	margin-bottom: 3rem;
+}
+
+.section-heading {
+	margin-bottom: 30px;
+	padding-bottom: 25px;
+	position: relative;
+	border-bottom: 1px solid #d7d7d7;
+}
+
+.section-heading::before {
+	position: absolute;
+	content: "";
+	bottom: -2px;
+	left: 0;
+	background-color: #ff4a52;
+	height: 3px;
+	width: 50px;
+}
+
+.item-heading {
+	margin-bottom: 0;
+	font-family: 'Hind', sans-serif;
+	font-size: 24px;
+	font-weight: 600;
+}
+
+label {
+	color: #646464;
+	font-size: 16px;
+	font-weight: 400;
+	line-height: 1.6;
+	display: inline-block;
+}
+
+.text-holder {
+	height: 50px;
+	border: none;
+	margin-bottom: 20px;
+}
+
+.checkbox {
+	display: inline-block;
+	position: relative;
+	padding-left: 5px;
+	margin-bottom: 10px;
+}
+
+.lost-password a {
+	color: #ff4a52;
+	position: absolute;
+}
+
+.btn-area {
+	margin-top: 10px;
+	margin-bottom: 30px;
+}
+
+.btn-fill {
+	margin-right: 5px;
+	text-align: center;
+	margin-bottom: 5px;
+	cursor: pointer;
+	padding: 13px 30px;
+	font-weight: 500;
+	font-size: 18px;
+	border: none;
+	margin-bottom: 5px;
+	cursor: pointer;
+}
+
+.btn-primary {
+	background: #ff4a52;
+}
+
+.btn-dark {
+	background: #111111;
+}
+
+i.flaticon-next::before {
+	margin-left: 8px;
+	font-size: 12px;
+	font-weight: 600;
+}
+
+ul {
+
+    list-style: outside none none;
+    margin: 0;
+    padding: 0;
+
+}
+
+li {
+
+    display: inline-block;
+    margin-right: 1px;
+    margin-bottom: 4px;
+    font-size: 18px;
+
+}
+a.facebook {
+	background-color:#445099 ;
+    border-color:#445099 ;
+	color: #ffffff;
+	align-items: center;
+	justify-content: center;
+	width: 54px;
+	height: 50px;
+	display: flex;
+	border-radius: 2px;
+}
+
+a.twitter {
+	background-color:#40c4ff ;
+    border-color:#40c4ff ;
+	color: #ffffff;
+	align-items: center;
+	justify-content: center;
+	width: 54px;
+	height: 50px;
+	display: flex;
+	border-radius: 2px;
+}
+
+a.linkedin {
+	background-color:#175ac2 ;
+    border-color:#175ac2 ;
+	color: #ffffff;
+	align-items: center;
+	justify-content: center;
+	width: 54px;
+	height: 50px;
+	display: flex;
+	border-radius: 2px;
+}
+
+a.google {
+	background-color:#d50000 ;
+    border-color:#d50000 ;
+	color: #ffffff;
+	align-items: center;
+	justify-content: center;
+	width: 54px;
+	height: 50px;
+	display: flex;
+	border-radius: 2px;
+}
