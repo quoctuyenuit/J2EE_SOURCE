@@ -1,0 +1,108 @@
+USE J2EE
+DROP TABLE IF EXISTS `J2EE`.`Transaction`;
+DROP TABLE IF EXISTS `J2EE`.`Order`;
+DROP TABLE IF EXISTS `J2EE`.`User`;
+DROP TABLE IF EXISTS `J2EE`.`UserType`;
+DROP TABLE IF EXISTS `J2EE`.`ImageSample`;
+DROP TABLE IF EXISTS `J2EE`.`Product`;
+DROP TABLE IF EXISTS `J2EE`.`Catalog`;
+DROP TABLE IF EXISTS `J2EE`.`CatalogGroup`;
+DROP TABLE IF EXISTS `J2EE`.`Payment`;
+DROP TABLE IF EXISTS `J2EE`.`TakenOrder`;
+
+CREATE TABLE `UserType`(
+    `id` INT(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    `name` VARCHAR(100) NOT NULL
+);
+
+CREATE TABLE `User`(
+    `id` INT(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    `typeId` INT(11) NOT NULL,
+    `name` NVARCHAR(50) NOT NULL,
+    `email` CHAR(50) NOT NULL,
+    `password` VARCHAR(255) NOT NULL,
+    `address` NVARCHAR(255) DEFAULT NULL,
+    `created` DATE
+);
+
+ALTER TABLE `User`
+ADD CONSTRAINT `FK_USER_USERTYPE`
+FOREIGN KEY(`typeId`) REFERENCES `UserType`(`id`);
+
+CREATE TABLE `ImageSample`(
+    `id` INT(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    `link` VARCHAR(255) NOT NULL,
+    `productId` INT(11)
+);
+
+CREATE TABLE `Product`(
+    `id` INT(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    `name` NVARCHAR(255) NOT NULL,
+    `price` FLOAT,
+    `discount` FLOAT
+);
+
+ALTER TABLE `ImageSample`
+ADD CONSTRAINT `FK_PRODUCT_IMAGE`
+FOREIGN KEY (`productId`) REFERENCES `Product`(`id`);
+
+CREATE TABLE `Catalog`(
+    `id` INT(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    `name` NVARCHAR(255),
+    `parentId` INT(11) DEFAULT NULL
+);
+
+ALTER TABLE `Catalog`
+ADD CONSTRAINT `FK_CATALOG_CATALOG`
+FOREIGN KEY (`parentId`) REFERENCES `Catalog`(`id`);
+
+CREATE TABLE `CatalogGroup`(
+    `catalogId` INT(11) NOT NULL,
+    `productId` INT(11) NOT NULL
+);
+
+ALTER TABLE `CatalogGroup`
+ADD CONSTRAINT `PK_CATALOG_GROUP`
+PRIMARY KEY (`catalogId`, `productId`);
+
+CREATE TABLE `Order`(
+    `id` INT(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    `userId` INT(11) NOT NULL,
+    `created` DATE
+);
+
+ALTER TABLE `Order`
+ADD CONSTRAINT `FK_ORDER_USER`
+FOREIGN KEY (`userId`) REFERENCES `User`(`id`);
+
+CREATE TABLE `Transaction`(
+    `id` INT(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    `status` INT(1) NOT NULL,
+    `amount` FLOAT NOT NULL,
+    `message` NVARCHAR(255),
+    `created` DATE,
+    `paymentId` INT(11) NOT NULL,
+    `orderId` INT(11) NOT NULL
+);
+
+CREATE TABLE `Payment`(
+    `id` INT(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    `paymentInfor` NVARCHAR(255) NOT NULL
+);
+
+ALTER TABLE `Transaction`
+ADD CONSTRAINT `FK_TRANSACTION_PAYMENT`
+FOREIGN KEY (`paymentId`) REFERENCES `PAYMENT`(`id`);
+
+ALTER TABLE `Transaction`
+ADD CONSTRAINT `FK_TRANSACTION_ORDER`
+FOREIGN KEY (`orderId`) REFERENCES `ORDER`(`id`);
+
+CREATE TABLE `TakenOrder`(
+    `productId` INT(11) NOT NULL,
+    `orderId` INT(11) NOT NULL
+);
+
+ALTER TABLE `TakenOrder`
+ADD CONSTRAINT `PK_TAKEN_ORDER`
+PRIMARY KEY(`productId`, `orderId`);
