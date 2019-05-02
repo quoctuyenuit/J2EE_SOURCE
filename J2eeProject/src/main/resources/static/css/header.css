@@ -1,0 +1,89 @@
+body {
+     width: 100%;
+     font-family: 'Lora', serif;
+}
+
+.main-menu {
+     background: #111;
+     width: 100%;
+     font-weight: 400;
+}
+
+.main-menu .main__menu-list a {
+     color: #fff;
+     text-decoration: none;
+     padding: 16px;
+     display: block;
+}
+
+.main-menu .main-menu__item {
+     color: #fff;
+     font-size: 16px;
+}
+
+.main-menu a:hover {
+     color: #FF4A52;
+}
+
+.main-menu .main-menu__item i {
+     font-size: 20px;
+}
+
+.main-menu .main-menu__item a {
+     color: #fff;
+     text-decoration: none;
+     padding: 16px;
+     display: block;
+}
+
+.header-bottom {
+     margin-top: 35px;
+     margin-bottom: 35px;
+}
+
+.header-bottom .nav-action-elements .nav-social a {
+     padding-right: 20px;
+     font-size: 16px;
+     color: #646464
+}
+
+.header-bottom .socredo-header__information-list--item span {
+     position: absolute;
+     display: inline-block;
+     background-color: rgb(255, 51, 51);
+     color: rgb(255, 255, 255);
+     height: 18px;
+     line-height: 20px;
+     font-size: 11px;
+     font-style: normal;
+     border-radius: 3px;
+     padding: 0px 3px;
+}
+
+.fa-search::before {
+     content: #646464
+}
+
+.header-bottom .socredo-input-group {
+     position: relative;
+     max-width: 300px;
+     margin-left: auto;
+}
+
+.header-bottom .socredo-input-group .input-group__input-item {
+     font-size: 11px;
+}
+
+.header-bottom .socredo-input-group .input-group__input-icon {
+     position: absolute;
+     right: 0;
+     top: 0;
+     left: 0;
+     padding: 4px 10px 0px 270px;
+}
+
+.socredo-header__information-list--item a {
+     color: #646464;
+     text-decoration: none;
+     padding: 16px;
+}
