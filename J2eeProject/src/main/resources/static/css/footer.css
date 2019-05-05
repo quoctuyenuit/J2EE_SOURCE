@@ -1,0 +1,9 @@
+.footer-social-list  .footer-social-list-item a{
+     padding-right: 30px; 
+     text-decoration: none; 
+     color: #989898
+}
+
+.footer-social-list  .footer-social-list-item a:hover{
+     color: #ff4a52;
+}

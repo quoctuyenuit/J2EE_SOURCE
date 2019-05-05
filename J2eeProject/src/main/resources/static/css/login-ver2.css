@@ -1,0 +1,122 @@
+.limiter {
+     width: 100%;
+     margin: auto;
+}
+
+.container-login {
+     width: 100%;
+     padding: 15px;
+     background-repeat: no-repeat;
+     background-position: center;
+     background-size: cover;
+}
+
+.login-form {
+     width: 500px;
+     background: #fff;
+     border-radius: 10px;
+     overflow: hidden;
+}
+
+.login-form .login-form-title {
+     display: block;
+     font-size: 39px;
+     color: #333333;
+     line-height: 1.2;
+}
+
+.login-form .login-form-input {
+     position: relative;
+     border-bottom: 2px solid #d9d9d9;
+}
+
+.login-form .login-form-input .label-input {
+     font-size: 14px;
+     color: #333333;
+     line-height: 1.5;
+     padding-left: 7px;
+}
+
+.login-form .login-form-input .input-item{
+     font-size: 16px;
+    color: #333333;
+    line-height: 1.2;
+    display: block;
+    width: 100%;
+    height: 55px;
+    background: transparent;
+    padding: 0 7px 0 43px;
+}
+
+input{
+     outline: none;
+    border: none;
+}
+
+.login-form-btn{
+     width: 100%;
+     display: block;
+     position: relative;
+     z-index: 1;
+     border-radius: 25px;
+     margin: 0 auto;
+}
+
+
+.login-form-btn button{
+    flex: 1 1 auto;
+    width: 100%;
+    height: 50px;
+    margin: 10px;
+    text-align: center;
+    text-transform: uppercase;
+    transition: 0.5s;
+    background-size: 200% auto;
+    color: white;
+    border: none;
+    outline: none !important;
+   /* text-shadow: 0px 0px 10px rgba(0,0,0,0.2);*/
+    box-shadow: 0 0 20px #eee;
+    border-radius: 50px;
+    background-image: linear-gradient(to right, #00dbde 0%, #fc00ff 50%, #00dbde 100%, #fc00ff);
+
+    
+}
+button:hover {
+     background-position: right center;
+}  
+
+
+.social-list-item{
+     font-size: 25px;
+    color: #fff;
+    justify-content: center;
+    display: flex;
+    align-items: center;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin: 5px;
+}
+
+.txt1{
+     font-size: 14px;
+     line-height: 1.5;
+     color: #666666;
+}
+
+.limiter a {
+     text-decoration: none;
+     color: #666666
+}
+.limiter a:hover{
+     color: #ff4a52;
+}
+
+.social-list .social-list-item i{
+     color: #fff
+}
+
+.social-list .social-list-item a:hover{
+     background-color: #a64bf4
+}
