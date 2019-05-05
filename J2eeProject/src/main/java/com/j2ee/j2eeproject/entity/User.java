@@ -1,47 +1,57 @@
 package com.j2ee.j2eeproject.entity;
 
+import java.sql.Date;
+
 import javax.persistence.Column;
-import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Table;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 
-@Entity
-@Table(name = "User")
-public class User {
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "id", nullable = false)
-	private Integer id;
-	
-	@NotEmpty
-	@Column(name = "name", nullable = false)
-	private String name;
-	
-	@Email
-	@Column(name = "email")
-	private String email;
-	
-	@Column(name = "phone")
-	private String phone;
 
-	@NotEmpty
-	@Column(name = "username", nullable = false)
-	private String username;
-	
-	@NotEmpty
-	@Column(name = "passowrd", nullable = false)
-	private String password;
-	
+public class User {
+	 @Id
+	 @GeneratedValue(strategy = GenerationType.IDENTITY)
+	 @Column(name = "id", nullable = false)
+	 private Integer id;
+	 
+	 @NotEmpty 
+	 @Column(name = "type_id", nullable = false)
+	 private Integer type_id;
+
+	 @NotEmpty
+	 @Column(name = "name", nullable = false)
+	 private String name;
+
+	 @Email
+	 @Column(name = "email")
+	 private String email;
+	 
+	 @NotEmpty
+	 @Column(name = "password", nullable = false)
+	 private String password;
+	 
+	 @Column(name = "address")
+	 private String address;
+	 
+	 @Column(name = "created")
+	 private Date created;
+
 	public Integer getId() {
 		return id;
 	}
 
 	public void setId(Integer id) {
 		this.id = id;
+	}
+
+	public Integer getType_id() {
+		return type_id;
+	}
+
+	public void setType_id(Integer type_id) {
+		this.type_id = type_id;
 	}
 
 	public String getName() {
@@ -60,23 +70,6 @@ public class User {
 		this.email = email;
 	}
 
-	public String getPhone() {
-		return phone;
-	}
-
-	public void setPhone(String phone) {
-		this.phone = phone;
-	}
-	
-
-	public String getUsername() {
-		return username;
-	}
-
-	public void setUsername(String username) {
-		this.username = username;
-	}
-
 	public String getPassword() {
 		return password;
 	}
@@ -84,18 +77,35 @@ public class User {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	
-	public User(@NotEmpty String name, @Email String email, String phone, @NotEmpty String username,
-			@NotEmpty String password) {
+
+	public String getAddress() {
+		return address;
+	}
+
+	public void setAddress(String address) {
+		this.address = address;
+	}
+
+	public Date getCreated() {
+		return created;
+	}
+
+	public void setCreated(Date created) {
+		this.created = created;
+	}
+
+	public User(@NotEmpty Integer type_id, @NotEmpty String name, @Email String email,
+			@NotEmpty String password, String address, Date created) {
 		super();
+		this.type_id = type_id;
 		this.name = name;
 		this.email = email;
-		this.phone = phone;
-		this.username = username;
 		this.password = password;
+		this.address = address;
+		this.created = created;
 	}
 
 	public User() {
-		// TODO Auto-generated constructor stub
+		super();
 	}
 }

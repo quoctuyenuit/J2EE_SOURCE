@@ -1,28 +1,40 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" >
+<html xmlns:th="http://www.thymeleaf.org">
 <head th:replace="layout :: head"></head>
 
 <body>
 	<nav th:replace="layout :: header"></nav>
-	
+
 	<div class="container" id="main-content">
-	
+
 		<div class="row d-flex justify-content-center">
-			<form style="min-width: 300px;" action="#" th:action="@{/login}" th:object="${user}" method="post" novalidate="novalidate">
+			<form style="min-width: 300px;" action="#" th:action="@{/login}"
+				th:object="${user}" method="post" novalidate="novalidate">
 				<h5 class="text-center">Login</h5>
-				
+
 				<input type="hidden" th:field="*{id}" />
-				
+
 				<div class="form-group">
-					<input class="form-control" type="text" placeholder="User name" th:field="*{username}" th:errorclass="field-error"/>
-					<em th:if="${#fields.hasErrors('username')}" th:errors = "*{username}"></em>
+					<input class="form-control" type="text" placeholder="User name"
+						th:field="*{email}" th:errorclass="field-error" /> <em
+						th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></em>
 				</div>
-				
+
 				<div class="form-group">
-					<input class="form-control" type="password" placeholder="Password" th:field="*{password}" th:errorclass="field-error"/>
-					<em th:if="${#fields.hasErrors('password')}" th:errors = "*{password}"></em>
+					<input class="form-control" type="password" placeholder="Password"
+						th:field="*{password}" th:errorclass="field-error" /> <em
+						th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></em>
 				</div>
-				
+
+				<div class="form-group">
+					<button type="submit" class="btn btn-block btn-primary">
+						<i class="fa fa-save"></i> Login
+					</button>
+				</div>
+			</form>
+
+			<br>
+			<form action="#" th:action="@{/auth/google}" method="post">
 				<div class="form-group">
 					<button type="submit" class="btn btn-block btn-primary">
 						<i class="fa fa-save"></i> Login
@@ -30,8 +42,9 @@
 				</div>
 			</form>
 		</div>
-		
-	</div><!-- /.container -->
+
+	</div>
+	<!-- /.container -->
 
 	<footer th:replace="layout :: footer"></footer>
 </body>
