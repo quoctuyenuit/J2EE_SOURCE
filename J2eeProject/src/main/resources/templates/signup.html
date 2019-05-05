@@ -15,7 +15,7 @@
 	<link integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous" />
 	<link href="https://fonts.googleapis.com/css?family=Lora" rel="stylesheet">
 	<link rel="stylesheet" href="css/login-ver2.css" />
-	
+
 	<!-- Icon -->
 	 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
      <link rel='stylesheet' href='https://use.fontawesome.com/releases/v5.7.0/css/all.css' integrity='sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ' crossorigin='anonymous'>
@@ -25,11 +25,11 @@
 
 <body>
 	<div class="limiter">
-          <div class="container-login d-flex justify-content-center align-items-center" 
+          <div class="container-login d-flex justify-content-center align-items-center"
                style="background-image: url('asset/J2EE/bg-01.png'); width: 100%">
                <div class="login-form px-55 pt-65 pb-55" style="padding: 65px 55px 55px 55px;">
                     <form class="w-100" action="#" th:action="@{/signup}" th:object="${user}" method="post">
-                    	
+
                          <span class="pb-49 login-form-title text-center font-weight-bold" style="padding-bottom: 49px">Sign In</span>
                          <input type="hidden" th:field="*{id}" />
                          <input type="hidden" th:field="*{type_id}" />
@@ -38,21 +38,21 @@
                               <span class="label-input">Full Name</span>
                               <input type="text" class="input-item" placeholder="Type your full name" th:field="*{name}" th:errorclass="field-error"/>
                               <em th:if="${#fields.hasErrors('name')}" th:errores="*{name}"></em>
-							  <i class="far fa-user-circle" style="position: absolute; top: 44px; left: 15px; font-size: 20px;"></i>  
+							  <i class="far fa-user-circle" style="position: absolute; top: 44px; left: 15px; font-size: 20px;"></i>
                          </div>
-                         
+
                          <div class="login-form-input mb-23" style="margin-bottom: 23px">
                               <span class="label-input">Address</span>
                               <input type="text" class="input-item" placeholder="Type your address" th:field="*{address}" th:errorclass="field-error"/>
                               <em th:if="${#fields.hasErrors('address')}" th:errores="*{address}"></em>
                               <i class="material-icons" style="position: absolute; top: 44px; left: 15px; font-size: 20px">lock_outline</i>
                          </div>
-                         
+
                          <div class="login-form-input mb-23"  data-validate="Name is required" style="margin-bottom: 23px">
                               <span class="label-input">Password</span>
                               <input type="password" class="input-item" placeholder="Type your password" th:field="*{password}" th:errorclass="field-error"/>
                               <em th:if="${#fields.hasErrors('password')}" th:errores="*{password}"></em>
-							  <i class="material-icons" style="position: absolute; top: 44px; left: 15px; font-size: 20px;"></i>  
+							  <i class="material-icons" style="position: absolute; top: 44px; left: 15px; font-size: 20px;"></i>
                          </div>
 
                          <div class=" justify-content-center">
@@ -61,7 +61,7 @@
                                    <button>Sign up</button>
                               </div>
                          </div>
-                         
+
                          <div class="d-flex column text-center pt-155" style="padding-top: 155px; flex-direction: column">
                               <span class="txt1 pb-15" style="padding-bottom: 15px;">
                                    Already have an account ?
