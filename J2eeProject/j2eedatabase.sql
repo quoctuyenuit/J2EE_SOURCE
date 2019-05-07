@@ -16,11 +16,12 @@ CREATE TABLE `UserType`(
 );
 
 CREATE TABLE `User`(
-    `id` INT(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    `id` VARCHAR(255) NOT NULL PRIMARY KEY,
     `typeId` INT(11) NOT NULL,
     `name` NVARCHAR(50) NOT NULL,
-    `email` CHAR(50) NOT NULL,
-    `password` VARCHAR(255) NOT NULL,
+    `email` CHAR(50) NOT NULL UNIQUE,
+    `dayOfBirth` DATE,
+    `password` VARCHAR(255),
     `address` NVARCHAR(255) DEFAULT NULL,
     `created` DATE
 );
@@ -67,7 +68,7 @@ PRIMARY KEY (`catalogId`, `productId`);
 
 CREATE TABLE `Order`(
     `id` INT(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    `userId` INT(11) NOT NULL,
+    `userId` VARCHAR(255) NOT NULL,
     `created` DATE
 );
 

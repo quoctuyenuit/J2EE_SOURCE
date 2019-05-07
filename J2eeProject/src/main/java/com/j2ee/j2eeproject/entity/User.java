@@ -14,7 +14,7 @@ public class User {
 	 @Id
 	 @GeneratedValue(strategy = GenerationType.IDENTITY)
 	 @Column(name = "id", nullable = false)
-	 private Integer id;
+	 private String id;
 	 
 	 @NotEmpty 
 	 @Column(name = "type_id", nullable = false)
@@ -38,11 +38,11 @@ public class User {
 	 @Column(name = "created")
 	 private Date created;
 
-	public Integer getId() {
+	public String getId() {
 		return id;
 	}
 
-	public void setId(Integer id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 
