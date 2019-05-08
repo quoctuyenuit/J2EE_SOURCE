@@ -1,39 +1,41 @@
-USE J2EE
+DROP DATABASE IF EXISTS `J2EE`;
+CREATE DATABASE `J2EE`;
+USE J2EE;
 DROP TABLE IF EXISTS `J2EE`.`Transaction`;
 DROP TABLE IF EXISTS `J2EE`.`Order`;
 DROP TABLE IF EXISTS `J2EE`.`User`;
-DROP TABLE IF EXISTS `J2EE`.`UserType`;
-DROP TABLE IF EXISTS `J2EE`.`ImageSample`;
+DROP TABLE IF EXISTS `J2EE`.`User_Type`;
+DROP TABLE IF EXISTS `J2EE`.`Image_Sample`;
 DROP TABLE IF EXISTS `J2EE`.`Product`;
 DROP TABLE IF EXISTS `J2EE`.`Catalog`;
-DROP TABLE IF EXISTS `J2EE`.`CatalogGroup`;
+DROP TABLE IF EXISTS `J2EE`.`Catalog_Group`;
 DROP TABLE IF EXISTS `J2EE`.`Payment`;
-DROP TABLE IF EXISTS `J2EE`.`TakenOrder`;
+DROP TABLE IF EXISTS `J2EE`.`Taken_Order`;
 
-CREATE TABLE `UserType`(
+CREATE TABLE `User_Type`(
     `id` INT(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    `name` VARCHAR(100) NOT NULL
+    `name` VARCHAR(100) NOT NULL UNIQUE
 );
 
 CREATE TABLE `User`(
     `id` VARCHAR(255) NOT NULL PRIMARY KEY,
-    `typeId` INT(11) NOT NULL,
+    `type_id` INT(11) NOT NULL,
     `name` NVARCHAR(50) NOT NULL,
     `email` CHAR(50) NOT NULL UNIQUE,
-    `dayOfBirth` DATE,
-    `password` VARCHAR(255),
+    `day_of_birth` DATE,
+    `password` VARCHAR(255) NOT NULL,
     `address` NVARCHAR(255) DEFAULT NULL,
     `created` DATE
 );
 
 ALTER TABLE `User`
 ADD CONSTRAINT `FK_USER_USERTYPE`
-FOREIGN KEY(`typeId`) REFERENCES `UserType`(`id`);
+FOREIGN KEY(`type_id`) REFERENCES `User_Type`(`id`);
 
-CREATE TABLE `ImageSample`(
+CREATE TABLE `Image_Sample`(
     `id` INT(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
     `link` VARCHAR(255) NOT NULL,
-    `productId` INT(11)
+    `product_id` INT(11)
 );
 
 CREATE TABLE `Product`(
@@ -43,38 +45,38 @@ CREATE TABLE `Product`(
     `discount` FLOAT
 );
 
-ALTER TABLE `ImageSample`
+ALTER TABLE `Image_Sample`
 ADD CONSTRAINT `FK_PRODUCT_IMAGE`
-FOREIGN KEY (`productId`) REFERENCES `Product`(`id`);
+FOREIGN KEY (`product_id`) REFERENCES `Product`(`id`);
 
 CREATE TABLE `Catalog`(
     `id` INT(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
     `name` NVARCHAR(255),
-    `parentId` INT(11) DEFAULT NULL
+    `parent_id` INT(11) DEFAULT NULL
 );
 
 ALTER TABLE `Catalog`
 ADD CONSTRAINT `FK_CATALOG_CATALOG`
-FOREIGN KEY (`parentId`) REFERENCES `Catalog`(`id`);
+FOREIGN KEY (`parent_id`) REFERENCES `Catalog`(`id`);
 
-CREATE TABLE `CatalogGroup`(
-    `catalogId` INT(11) NOT NULL,
-    `productId` INT(11) NOT NULL
+CREATE TABLE `Catalog_Group`(
+    `catalog_id` INT(11) NOT NULL,
+    `product_id` INT(11) NOT NULL
 );
 
-ALTER TABLE `CatalogGroup`
+ALTER TABLE `Catalog_Group`
 ADD CONSTRAINT `PK_CATALOG_GROUP`
-PRIMARY KEY (`catalogId`, `productId`);
+PRIMARY KEY (`catalog_id`, `product_id`);
 
 CREATE TABLE `Order`(
     `id` INT(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    `userId` VARCHAR(255) NOT NULL,
+    `user_id` VARCHAR(255) NOT NULL,
     `created` DATE
 );
 
 ALTER TABLE `Order`
 ADD CONSTRAINT `FK_ORDER_USER`
-FOREIGN KEY (`userId`) REFERENCES `User`(`id`);
+FOREIGN KEY (`user_id`) REFERENCES `User`(`id`);
 
 CREATE TABLE `Transaction`(
     `id` INT(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
@@ -82,28 +84,34 @@ CREATE TABLE `Transaction`(
     `amount` FLOAT NOT NULL,
     `message` NVARCHAR(255),
     `created` DATE,
-    `paymentId` INT(11) NOT NULL,
-    `orderId` INT(11) NOT NULL
+    `payment_id` INT(11) NOT NULL,
+    `order_id` INT(11) NOT NULL
 );
 
 CREATE TABLE `Payment`(
     `id` INT(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    `paymentInfor` NVARCHAR(255) NOT NULL
+    `payment_infor` NVARCHAR(255) NOT NULL
 );
 
 ALTER TABLE `Transaction`
 ADD CONSTRAINT `FK_TRANSACTION_PAYMENT`
-FOREIGN KEY (`paymentId`) REFERENCES `PAYMENT`(`id`);
+FOREIGN KEY (`payment_id`) REFERENCES `PAYMENT`(`id`);
 
 ALTER TABLE `Transaction`
 ADD CONSTRAINT `FK_TRANSACTION_ORDER`
-FOREIGN KEY (`orderId`) REFERENCES `ORDER`(`id`);
+FOREIGN KEY (`order_id`) REFERENCES `ORDER`(`id`);
 
-CREATE TABLE `TakenOrder`(
-    `productId` INT(11) NOT NULL,
-    `orderId` INT(11) NOT NULL
+CREATE TABLE `Taken_Order`(
+    `product_id` INT(11) NOT NULL,
+    `order_id` INT(11) NOT NULL
 );
 
-ALTER TABLE `TakenOrder`
+ALTER TABLE `Taken_Order`
 ADD CONSTRAINT `PK_TAKEN_ORDER`
-PRIMARY KEY(`productId`, `orderId`);
+PRIMARY KEY(`product_id`, `order_id`);
+
+LOCK TABLE `User_Type` WRITE;
+DELETE FROM `User_Type`;
+INSERT INTO `J2EE`.`User_Type`(`name`) VALUE('ADMIN');
+INSERT INTO `J2EE`.`User_Type`(`name`) VALUE('USER');
+UNLOCK TABLES;
