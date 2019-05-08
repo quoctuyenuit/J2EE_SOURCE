@@ -1,42 +1,18 @@
 package com.j2ee.j2eeproject.service;
 
 import java.util.List;
-
-import org.springframework.stereotype.Service;
+import java.util.Optional;
 
 import com.j2ee.j2eeproject.entity.User;
 
-@Service
-public class UserService implements UserServiceInterface {
+public interface UserService {
+	Iterable<User> findAll();
 
-	@Override
-	public Iterable<User> findAll() {
-		// TODO Auto-generated method stub
-		return null;
-	}
+    List<User> search(String term);
 
-	@Override
-	public List<User> search(String term) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+    Optional<User> findOne(String id);
 
-	@Override
-	public User findOne(Integer id) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+    void save(User user);
 
-	@Override
-	public void save(User contact) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void delete(Integer id) {
-		// TODO Auto-generated method stub
-		
-	}
-
+    void delete(String id);
 }

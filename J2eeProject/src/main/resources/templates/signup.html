@@ -31,7 +31,9 @@
                     <form class="w-100" action="#" th:action="@{/signup}" th:object="${user}" method="post">
                     	
                          <span class="pb-49 login-form-title text-center font-weight-bold" style="padding-bottom: 49px">Sign In</span>
-                         
+                         <input type="hidden" th:field="*{id}" />
+                         <input type="hidden" th:field="*{type_id}" />
+                         <input type="hidden" th:field="*{email}" />
                          <div class="login-form-input mb-23"  data-validate="Name is required" style="margin-bottom: 23px">
                               <span class="label-input">Full Name</span>
                               <input type="text" class="input-item" placeholder="Type your full name" th:field="*{name}" th:errorclass="field-error"/>
