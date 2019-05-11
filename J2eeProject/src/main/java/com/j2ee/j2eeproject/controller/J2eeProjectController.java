@@ -1,17 +1,11 @@
 package com.j2ee.j2eeproject.controller;
 
 import java.io.IOException;
-import java.security.Principal;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
 import org.apache.http.client.ClientProtocolException;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -20,17 +14,15 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.j2ee.j2eeproject.entity.GooglePojo;
 import com.j2ee.j2eeproject.entity.User;
-import com.j2ee.j2eeproject.service.UserService;
-import com.j2ee.j2eeproject.untils.GoogleUtils;
+import com.j2ee.j2eeproject.service.J2eeService;
+import com.j2ee.j2eeproject.validation.EmailExistsException;
+import com.j2ee.j2eeproject.validation.LoginException;
 
 @Controller
 public class J2eeProjectController {
 	@Autowired
-	private UserService userService;
-	@Autowired
-	private GoogleUtils googleUtils;
+	private J2eeService j2eeService;
 
 	@RequestMapping(value = { "/", "/login" })
 	public String login() {
@@ -44,26 +36,15 @@ public class J2eeProjectController {
 		if (code == null || code.isEmpty()) {
 			return "redirect:/login?google=error";
 		}
-		String accessToken = googleUtils.getToken(code);
-
-		GooglePojo googlePojo = googleUtils.getUserInfo(accessToken);
-
-		User user = new User();
-
-		user.setEmail(googlePojo.getEmail());
-		user.setName(googlePojo.getName());
-		user.setId(googlePojo.getId());
-		model.addAttribute("user", user);
 		
-		if (userService.search(user.getEmail()).size() == 0)
-		{
+		try {
+			User user = this.j2eeService.loginWithGoogle(code);
 			model.addAttribute("user", user);
 			return "signup";
+		} catch (EmailExistsException e) {
+			return "redirect:/home";
 		}
-		
-		return "redirect:/home";
 	}
-
 
 	@GetMapping("/home")
 	public String home() {
@@ -76,14 +57,26 @@ public class J2eeProjectController {
 			return "signup";
 		}
 
-		userService.save(user);
+		j2eeService.saveUser(user);
 		model.addAttribute("user", user);
 		return "redirect:/home";
 	}
+
+	@PostMapping(value = "/login-manually")
+	public String loginManually(@Valid User user, BindingResult result, RedirectAttributes redirect, Model model) {
+		try {
+			User validUser = j2eeService.login(user);
+			model.addAttribute("user", validUser);
+			return "home";
+		} catch (LoginException e) {
+			//Add error message
+			redirect.addFlashAttribute("Error", e.getMessage());
+			return "redirect:/login";
+		}
+	}
 	
 	@PostMapping("/testurl")
-	public String testUrl()
-	{
+	public String testUrl() {
 		return "user";
 	}
 }

@@ -1,7 +1,5 @@
 package com.j2ee.j2eeproject.entity;
 
-import java.sql.Date;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -31,24 +29,16 @@ public class User {
 	 @Column(name = "email", nullable = false)
 	 private String email;
 	 
-	 @Column(name = "day_of_birth")
-	 private String day_of_birth;
-	 
 	 @NotEmpty
 	 @Column(name = "password", nullable = false)
 	 private String password;
 
 	 @Column(name = "address")
 	 private String address;
-
-	 @Column(name = "created")
-	 private Date created;
-
 	
 	public String getId() {
 		return id;
 	}
-
 
 	public void setId(String id) {
 		this.id = id;
@@ -83,17 +73,7 @@ public class User {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-
-
-	public String getDay_of_birth() {
-		return day_of_birth;
-	}
-
-
-	public void setDay_of_birth(String day_of_birth) {
-		this.day_of_birth = day_of_birth;
-	}
-
+	
 
 	public String getPassword() {
 		return password;
@@ -113,32 +93,25 @@ public class User {
 	public void setAddress(String address) {
 		this.address = address;
 	}
-
-
-	public Date getCreated() {
-		return created;
-	}
-
-
-	public void setCreated(Date created) {
-		this.created = created;
-	}
-
-
-	public User(@NotEmpty Integer type_id, @NotEmpty String name, @NotEmpty @Email String email, String day_of_birth,
-			@NotEmpty String password, String address, Date created) {
+	
+	
+	public User(@NotNull Integer type_id, @NotEmpty String name, @NotEmpty @Email String email,
+			@NotEmpty String password, String address) {
 		super();
 		this.type_id = type_id;
 		this.name = name;
 		this.email = email;
-		this.day_of_birth = day_of_birth;
 		this.password = password;
 		this.address = address;
-		this.created = created;
 	}
 
-	public User() {
+
+	public User(String id, @NotNull Integer type_id) {
 		super();
-		this.type_id = 1;
+		this.id = id;
+		this.type_id = type_id;
 	}
+	
+	
+	public User() {}
 }

@@ -2,23 +2,23 @@ package com.j2ee.j2eeproject.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
 
-@Entity
-@Table(name = "UserType")
-public class UserType {
-	@Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id", nullable = false)
-    private Integer id;
+import org.hibernate.validator.constraints.UniqueElements;
 
+@Entity
+@Table(name = "User_Type")
+public class User_Type {
+	@Id
+	@Column(name = "id", nullable = false)
+	private Integer id;
+	
 	@NotEmpty
-    @Column(name = "name", nullable = false)
-    private String name;
+	@UniqueElements
+	@Column(name = "name", nullable = false)
+	private String name;
 
 	public Integer getId() {
 		return id;
@@ -36,12 +36,12 @@ public class UserType {
 		this.name = name;
 	}
 
-	public UserType(@NotEmpty String name) {
+	public User_Type() {
 		super();
-		this.name = name;
 	}
 
-	public UserType() {
+	public User_Type(@NotEmpty @UniqueElements String name) {
 		super();
+		this.name = name;
 	}
 }
