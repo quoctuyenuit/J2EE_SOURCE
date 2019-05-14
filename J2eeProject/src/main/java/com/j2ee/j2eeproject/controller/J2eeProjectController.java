@@ -26,7 +26,7 @@ public class J2eeProjectController {
 
 	@RequestMapping(value = { "/", "/login" })
 	public String login() {
-		return "login-ver2";
+		return "food-list";
 	}
 
 	@RequestMapping("/login-google")
