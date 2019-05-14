@@ -1,6 +1,8 @@
 package com.j2ee.j2eeproject.controller;
 
 import java.io.IOException;
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
@@ -14,6 +16,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.j2ee.j2eeproject.entity.ImageSample;
+import com.j2ee.j2eeproject.entity.Product;
 import com.j2ee.j2eeproject.entity.User;
 import com.j2ee.j2eeproject.service.J2eeService;
 import com.j2ee.j2eeproject.validation.EmailExistsException;
@@ -26,7 +30,7 @@ public class J2eeProjectController {
 
 	@RequestMapping(value = { "/", "/login" })
 	public String login() {
-		return "food-list";
+		return "login-ver2";
 	}
 
 	@RequestMapping("/login-google")
@@ -47,8 +51,13 @@ public class J2eeProjectController {
 	}
 
 	@GetMapping("/home")
-	public String home() {
-		return "home";
+	public String home(Model model) {
+		Iterable<Product> products = this.j2eeService.getAllProduct();
+		
+		//List<ImageSample> listSamples = this.j2eeService.searchImageFromProductId(productId)
+		model.addAttribute("products", products);
+		
+		return "food-list";
 	}
 
 	@PostMapping(value = "/signup")

@@ -26,8 +26,6 @@ public class Product {
 
 	@Column(name = "discount")
 	private Float discount;
-	
-	private String imageSampleName;
 
 	public Integer getId() {
 		return id;
@@ -59,14 +57,6 @@ public class Product {
 
 	public void setDiscount(Float discount) {
 		this.discount = discount;
-	}
-	
-	public String getImageSampleName() {
-		return imageSampleName;
-	}
-
-	public void setImageSampleName(String imageSampleName) {
-		this.imageSampleName = imageSampleName;
 	}
 
 	public Product(@NotEmpty String name, @NotEmpty Float price, Float discount) {

@@ -76,16 +76,7 @@ public class J2eeServiceImpl implements J2eeService {
 	
 	@Override
 	public Iterable<Product> getAllProduct() {
-		Iterable<Product> productList = productRepository.findAll();
-		productList.forEach((product) -> {
-			
-			List<ImageSample> listImageSamples = this.searchImageFromProductId(product.getId());
-			if (listImageSamples.size() > 0) {
-				product.setImageSampleName(listImageSamples.get(0).getName());
-			}
-			
-		});
-		return productList;
+		return productRepository.findAll();
 	}
 
 	// ----------------------------------------------------------------
