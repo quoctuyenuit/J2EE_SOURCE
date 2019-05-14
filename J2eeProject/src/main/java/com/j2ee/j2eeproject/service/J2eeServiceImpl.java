@@ -3,6 +3,7 @@ package com.j2ee.j2eeproject.service;
 import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
+import java.util.Random;
 
 import org.apache.http.client.ClientProtocolException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +19,7 @@ import com.j2ee.j2eeproject.repository.UserTypeRepository;
 import com.j2ee.j2eeproject.untils.GoogleUtils;
 import com.j2ee.j2eeproject.validation.EmailExistsException;
 import com.j2ee.j2eeproject.validation.LoginException;
+import com.sun.mail.handlers.image_gif;
 
 @Service
 public class J2eeServiceImpl implements J2eeService {
@@ -27,10 +29,16 @@ public class J2eeServiceImpl implements J2eeService {
 
 	@Autowired
 	private UserTypeRepository userTypeRepository;
+	
+	@Autowired
+	private EmailService emailService;
 
 	@Autowired
 	private GoogleUtils googleUtils;
 
+	private static class Constaints {
+		public static String CharacterCollection = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
+	}
 	// ----------------------------------------------------------------
 	// User
 	// ----------------------------------------------------------------
@@ -93,5 +101,20 @@ public class J2eeServiceImpl implements J2eeService {
 				return user;
 		}
 		throw new LoginException(LocalizeStrings.account_or_password_is_incorrect);
+	}
+
+	@Override
+	public String sendVerificationCode() throws Throwable {
+		Random rand = new Random();
+		String code = "";
+		for (int i = 0; i < 5; i++) {
+			if (i % 2 == 0)
+				code += (char)(rand.nextInt('Z' - 'A') + 'A');
+			else 
+				code += rand.nextInt(9);
+		}
+		String msg = "Your verification code is " + code;
+		emailService.sendEmail("quoctuyen.uit@gmail.com", "quoctuyen9aht@gmail.com", "J2ee Verification", msg);
+		return code;
 	}
 }

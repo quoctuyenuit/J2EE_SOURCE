@@ -24,4 +24,6 @@ public interface J2eeService {
     User loginWithGoogle(String code) throws EmailExistsException, ClientProtocolException, IOException;
 
     User login(User user) throws LoginException;
+    
+    String sendVerificationCode() throws Throwable;
 }

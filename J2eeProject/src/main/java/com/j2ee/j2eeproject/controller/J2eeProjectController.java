@@ -67,7 +67,7 @@ public class J2eeProjectController {
 		try {
 			User validUser = j2eeService.login(user);
 			model.addAttribute("user", validUser);
-			return "home";
+			return "redirect:/home";
 		} catch (LoginException e) {
 			//Add error message
 			redirect.addFlashAttribute("Error", e.getMessage());
