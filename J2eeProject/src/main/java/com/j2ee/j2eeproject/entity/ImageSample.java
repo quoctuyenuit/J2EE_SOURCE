@@ -17,8 +17,8 @@ public class ImageSample {
 	private Integer id;
 	
 	@NotEmpty
-	@Column(name = "link", nullable = false)
-	private String link;
+	@Column(name = "name", nullable = false)
+	private String name;
 	
 	@Column(name = "productId")
 	private Integer productId;
@@ -31,25 +31,25 @@ public class ImageSample {
 		this.id = id;
 	}
 
-	public String getLink() {
-		return link;
+	public String getName() {
+		return name;
 	}
 
-	public void setLink(String link) {
-		this.link = link;
+	public void setName(String name) {
+		this.name = name;
 	}
 
-	public Integer getProductId() {
+	public Integer getProduct_id() {
 		return productId;
 	}
 
 	public void setProductId(Integer productId) {
 		this.productId = productId;
 	}
-
-	public ImageSample(@NotEmpty String link, Integer productId) {
+	
+	public ImageSample(@NotEmpty String name, Integer productId) {
 		super();
-		this.link = link;
+		this.name = name;
 		this.productId = productId;
 	}
 

@@ -5,9 +5,9 @@ import java.util.List;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
-import com.j2ee.j2eeproject.entity.User_Type;
+import com.j2ee.j2eeproject.entity.UserType;
 
 @Repository
-public interface UserTypeRepository extends CrudRepository<User_Type, Integer>{
-	List<User_Type> findByNameContaining(String term);
+public interface UserTypeRepository extends CrudRepository<UserType, Integer>{
+	List<UserType> findByNameContaining(String term);
 }

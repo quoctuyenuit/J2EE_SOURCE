@@ -11,21 +11,23 @@ import javax.validation.constraints.NotEmpty;
 @Entity
 @Table(name = "Product")
 public class Product {
-	 @Id
-	 @GeneratedValue(strategy = GenerationType.IDENTITY)
-	 @Column(name = "id", nullable = false)
-	 private Integer id;
-	 
-	 @NotEmpty
-	 @Column(name = "name", nullable = false)
-	 private String name;
-	 
-	 @NotEmpty
-	 @Column(name = "price", nullable = false)
-	 private Float price;
-	 
-	 @Column(name = "discount")
-	 private Float discount;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "id", nullable = false)
+	private Integer id;
+
+	@NotEmpty
+	@Column(name = "name", nullable = false)
+	private String name;
+
+	@NotEmpty
+	@Column(name = "price", nullable = false)
+	private Float price;
+
+	@Column(name = "discount")
+	private Float discount;
+	
+	private String imageSampleName;
 
 	public Integer getId() {
 		return id;
@@ -57,6 +59,14 @@ public class Product {
 
 	public void setDiscount(Float discount) {
 		this.discount = discount;
+	}
+	
+	public String getImageSampleName() {
+		return imageSampleName;
+	}
+
+	public void setImageSampleName(String imageSampleName) {
+		this.imageSampleName = imageSampleName;
 	}
 
 	public Product(@NotEmpty String name, @NotEmpty Float price, Float discount) {

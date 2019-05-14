@@ -12,14 +12,17 @@ import org.springframework.stereotype.Service;
 import com.j2ee.j2eeproject.common.Common;
 import com.j2ee.j2eeproject.common.LocalizeStrings;
 import com.j2ee.j2eeproject.entity.GooglePojo;
+import com.j2ee.j2eeproject.entity.ImageSample;
+import com.j2ee.j2eeproject.entity.Product;
 import com.j2ee.j2eeproject.entity.User;
-import com.j2ee.j2eeproject.entity.User_Type;
+import com.j2ee.j2eeproject.entity.UserType;
+import com.j2ee.j2eeproject.repository.ImageSampleRepository;
+import com.j2ee.j2eeproject.repository.ProductRepository;
 import com.j2ee.j2eeproject.repository.UserRepository;
 import com.j2ee.j2eeproject.repository.UserTypeRepository;
 import com.j2ee.j2eeproject.untils.GoogleUtils;
 import com.j2ee.j2eeproject.validation.EmailExistsException;
 import com.j2ee.j2eeproject.validation.LoginException;
-import com.sun.mail.handlers.image_gif;
 
 @Service
 public class J2eeServiceImpl implements J2eeService {
@@ -32,16 +35,16 @@ public class J2eeServiceImpl implements J2eeService {
 	
 	@Autowired
 	private EmailService emailService;
+	
+	@Autowired
+	private ImageSampleRepository imageSampleRepository;
+	
+	@Autowired
+	private ProductRepository productRepository;
 
 	@Autowired
 	private GoogleUtils googleUtils;
 
-	private static class Constaints {
-		public static String CharacterCollection = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
-	}
-	// ----------------------------------------------------------------
-	// User
-	// ----------------------------------------------------------------
 	@Override
 	public List<User> searchUsers(String email) {
 		return userRepository.findByEmailContaining(email);
@@ -58,16 +61,31 @@ public class J2eeServiceImpl implements J2eeService {
 		return userRepository.findById(id);
 	}
 
-	// ----------------------------------------------------------------
-	// User Type
-	// ----------------------------------------------------------------
-
 	@Override
-	public User_Type searchUser_Types(String name) {
-		List<User_Type> listResult = userTypeRepository.findByNameContaining(name);
+	public UserType searchUserTypes(String name) {
+		List<UserType> listResult = userTypeRepository.findByNameContaining(name);
 		if (listResult.size() > 0)
 			return listResult.get(0);
 		return null;
+	}
+	
+	@Override
+	public List<ImageSample> searchImageFromProductId(Integer productId) {
+		return imageSampleRepository.findByProductIdContaining(productId);
+	}
+	
+	@Override
+	public Iterable<Product> getAllProduct() {
+		Iterable<Product> productList = productRepository.findAll();
+		productList.forEach((product) -> {
+			
+			List<ImageSample> listImageSamples = this.searchImageFromProductId(product.getId());
+			if (listImageSamples.size() > 0) {
+				product.setImageSampleName(listImageSamples.get(0).getName());
+			}
+			
+		});
+		return productList;
 	}
 
 	// ----------------------------------------------------------------
@@ -83,7 +101,7 @@ public class J2eeServiceImpl implements J2eeService {
 			throw new EmailExistsException("There is an account with that email adress:" + googlePojo.getEmail());
 		}
 
-		User_Type userType = this.searchUser_Types(Common.Constaints.USER_PERMISSION);
+		UserType userType = this.searchUserTypes(Common.Constaints.USER_PERMISSION);
 		User user = new User(googlePojo.getId(), userType.getId());
 		user.setEmail(googlePojo.getEmail());
 		user.setName(googlePojo.getName());
@@ -117,4 +135,8 @@ public class J2eeServiceImpl implements J2eeService {
 		emailService.sendEmail("quoctuyen.uit@gmail.com", "quoctuyen9aht@gmail.com", "J2ee Verification", msg);
 		return code;
 	}
+	
+	
+
+	
 }

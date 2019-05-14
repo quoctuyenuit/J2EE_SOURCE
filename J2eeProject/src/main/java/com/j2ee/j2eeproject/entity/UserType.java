@@ -9,8 +9,8 @@ import javax.validation.constraints.NotEmpty;
 import org.hibernate.validator.constraints.UniqueElements;
 
 @Entity
-@Table(name = "User_Type")
-public class User_Type {
+@Table(name = "UserType")
+public class UserType {
 	@Id
 	@Column(name = "id", nullable = false)
 	private Integer id;
@@ -36,11 +36,11 @@ public class User_Type {
 		this.name = name;
 	}
 
-	public User_Type() {
+	public UserType() {
 		super();
 	}
 
-	public User_Type(@NotEmpty @UniqueElements String name) {
+	public UserType(@NotEmpty @UniqueElements String name) {
 		super();
 		this.name = name;
 	}

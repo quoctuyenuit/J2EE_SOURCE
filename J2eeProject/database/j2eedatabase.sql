@@ -32,15 +32,15 @@ FOREIGN KEY(`type_id`) REFERENCES `user_type`(`id`);
 
 CREATE TABLE `image_sample`(
     `id` INT(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    `link` VARCHAR(255) NOT NULL,
+    `name` VARCHAR(255) NOT NULL,
     `product_id` INT(11)
 );
 
 CREATE TABLE `product`(
     `id` INT(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    `name` NVARCHAR(255) NOT NULL,
+    `name` NVARCHAR(255) NOT NULL UNIQUE,
     `price` FLOAT,
-    `discount` FLOAT
+    `discount` FLOAT DEFAULT 0
 );
 
 ALTER TABLE `image_sample`
