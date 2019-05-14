@@ -1,0 +1,250 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+	<!-- Required meta tags -->
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+
+	<!-- Bootstrap CSS -->
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+	<link integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css">
+	<link integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous" />
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css"
+          integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
+	<link href="https://fonts.googleapis.com/css?family=Lora" rel="stylesheet">
+	<link rel="stylesheet" href="css/header.css" />
+      <link rel="stylesheet" href="css/shopping-cart.css"/>
+      <link rel="stylesheet" href="css/food-list.css"/>
+	<title>Shopping cart</title>
+</head>
+
+<body>
+     <header>
+          <div class="main-menu">
+               <div class="container">
+                    <div class="row align-items-center">
+                         <div class="col-lg-8 col-md-3 col-sm-4 col-4">
+                              <div class="row main__menu-list">
+                                   <a href="#">Home</a>
+                                   <a href="#">Category </a>
+                                   <a href="#">Recipes </a>
+                                   <a href="#">Pages </a>
+                                   <a href="#">Blog </a>
+                                   <a href="#">Shop </a>
+                                   <a href="#">Contact </a></div>
+                         </div>
+                         <div class="col-lg-4 col-md-9 col-sm-8 col-8">
+                              <div class="main-menu__item">
+                                   <div class="row main-menu__item-circle  justify-content-end align-items-center">
+                                        <i class="far fa-user"></i>
+                                        <a class="Login" href="#">Login / Sign up</a>
+                                   </div>
+                              </div>
+                         </div>
+                    </div>
+               </div>
+          </div>
+          <div class="header-bottom">
+               <div class="container">
+                    <div class="row">
+                         <div class="col-lg-4 d-none d-lg-block m-auto">
+                              <div class="nav-action-elements pl-20">
+                                   <div class="row nav-social pl-3">
+                                        <a href="#" title="facebook"><i class="fab fa-facebook-f"></i></a>
+                                        <a href="#" title="twitter"><i class="fab fa-twitter"></i></a>
+                                        <a href="#" title="linkedin"><i class="fab fa-linkedin-in"></i></a>
+                                        <a href="#" title="pinterest"><i class="fab fa-pinterest-p"></i></a>
+                                        <a href="#" title="skype"><i class="fab fa-skype"></i></a>
+                                        <a href="#" title="rss"><i class="fas fa-rss"></i></a>
+                                        <a href="#" title="google-plus"><i class="fab fa-google-plus-g"></i></a>
+
+                                   </div>
+                              </div>
+                         </div>
+                         <div class="col-lg-4 d-none d-lg-block text-center">
+                              <div class="header-bottom__logo">
+                                   <img src="asset/logo-dark.png" alt=""></div>
+                         </div>
+                         <div class="col-lg-4 header__middlebar--right m-auto" , style="left: 10%">
+                              <div class="col-lg-4 socredo-header__information m-auto">
+                                   <div class="row jutify-content-end socredo-header__information-list text-center" ,
+                                        style="font-size: 24px;">
+                                        <div class="row">
+                                             <div class="socredo-header__information-list--item", style="height: 0px; width: 45px">
+                                                  <a href="#" title="Search ">
+                                                       <i class="fas fa-search""></i>
+                                                  </a>
+                                             </div>
+                                             <hr style=" width:30px; color:black; transform: rotate(90deg)">
+                                        </div>
+                                             <!-- <hr style="width:20px; transform: rotate(90deg)" color="red" > -->
+                                             <div class="socredo-header__information-list--item">
+                                                  <a href="#" title="Card">
+                                                       <i class="fa fa-shopping-basket", style="position: relative;"></i>
+                                                       <span>10</span>
+                                                  </a>
+                                             </div>
+                                        </div>
+                                   </div>
+                              </div>
+                         </div>
+                    </div>
+               </div>
+          </div>
+     </header>
+<div class="inner-banner bg-common">
+     <div class="container">
+          <!-- Banner-->
+          <div class="row ">
+               <div class="col-12">
+                    <div class="breadcrumbs-area">
+                         <h1>Search your recipes</h1>
+                         <ul>
+                              <li>
+                                   <a href="#">Home</a>
+                              </li>
+                              <li>All Recipes</li>
+                         </ul>
+                    </div>
+               </div>
+          </div>
+     </div>
+</div>
+
+<!--List item in cart and payment-->
+<div class="container">
+     <div class="row">
+          <div class="cart-form">
+               <table>
+                    <thead>
+                         <tr>
+                              <th class="product-remove">&nbsp;</th>
+                              <th class="product-thumbnail">&nbsp;</th>
+                              <th class="product-name">Product</th>
+                              <th class="product-price">Price</th>
+                              <th class="product-quantity">Quantity</th>
+                              <th class="product-subtotal">Total</th>
+                         </tr>
+                    </thead>
+                    <tbody>
+                         <tr class="cart-form__item">
+                              <td class="product-remove">
+                                   <a href="#">x</a>
+                              </td>
+                              <td class="product-image">
+                                   <a href="#">
+                                        <img src="./asset/J2EE/food-list/product43.jpg" alt="">
+                                   </a>
+                              </td>
+                              <td class="product-name">
+                                   <a href="#">Tomatoes Stuffed</a>
+                              </td>
+                              <td class="product-price">
+                                   <span>$15.99</span>
+                              </td>
+                              <td class="product-quantity">
+                                   <div class="quantity sh-increase-numbers">
+                                        <span class="sh-increase-numbers--down">
+                                             <i class="fas fa-arrow-down"></i>
+                                        </span>
+                                        <input type="text" id="quantity_5cda77810d1d3" class="sh-quantity-number"
+                                             step="1" min="0" max="" placeholder="1">
+                                        <span class="sh-increase-numbers--up">
+                                             <i class="fas fa-arrow-up"></i>
+                                        </span>
+                                   </div>
+                              </td>
+                              <td class="product-total">
+                                   <span>$15.99</span>
+                              </td>
+                         </tr>
+
+                         <tr class="cart-form__item">
+                              <td class="product-remove">
+                                   <a href="#">x</a>
+                              </td>
+                              <td class="product-image">
+                                   <a href="#">
+                                        <img src="./asset/J2EE/food-list/product43.jpg" alt="">
+                                   </a>
+                              </td>
+                              <td class="product-name">
+                                   <a href="#">Tomatoes Stuffed</a>
+                              </td>
+                              <td class="product-price">
+                                   <span>$15.99</span>
+                              </td>
+                              <td class="product-quantity">
+                                   <div class="quantity sh-increase-numbers">
+                                        <span class="sh-increase-numbers--down">
+                                             <i class="fas fa-arrow-down"></i>
+                                        </span>
+                                        <input type="text" id="quantity_5cda77810d1d3" class="sh-quantity-number"
+                                             step="1" min="0" max="" placeholder="1">
+                                        <span class="sh-increase-numbers--up">
+                                             <i class="fas fa-arrow-up"></i>
+                                        </span>
+                                   </div>
+                              </td>
+                              <td class="product-total">
+                                   <span>$15.99</span>
+                              </td>
+                         </tr>
+                    </tbody>
+               </table>
+          </div>
+
+          <div class="cart-collaterals">
+               <div class="cart_totals ">
+                    <h2>Cart totals</h2>
+                    <table cellspacing="0" class="shop_table shop_table_responsive">
+                         <tbody>
+                              <tr class="cart-subtotal">
+                                   <th>Subtotal</th>
+                                   <td data-title="Subtotal"><span class="woocommerce-Price-amount amount"><span
+                                                  class="woocommerce-Price-currencySymbol">$</span>33.97</span>
+                                   </td>
+                              </tr>
+                              <tr class="order-total">
+                                   <th>Total</th>
+                                   <td data-title="Total"><strong><span
+                                                  class="woocommerce-Price-amount amount"><span
+                                                       class="woocommerce-Price-currencySymbol">$</span>33.97</span></strong>
+                                   </td>
+                              </tr>
+                         </tbody>
+                    </table>
+                    <div class="wc-proceed-to-checkout">
+                         <a href="https://jevelin.shufflehound.com/shop/checkout/"
+                              class="checkout-button button alt wc-forward">
+                              Checkout</a>
+                    </div>
+               </div>
+          </div>
+     </div>
+</div>
+
+	<!-- Optional JavaScript -->
+	<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+		integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
+	</script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+		integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
+	</script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+		integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
+	</script>
+	<script src="js/popper.min.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+	<script src="js/vue/vue.js"></script>
+	<script src="js/vue/component.js"></script>
+	<script src="js/data.js"></script>
+	<script src="js/wow.min.js"></script>
+</body>
+
+</html>

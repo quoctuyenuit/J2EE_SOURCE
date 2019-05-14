@@ -1,0 +1,129 @@
+body{
+     font-family: 'Lora', serif;
+     color: #646464;
+}
+
+table, tr{
+     border: 1px solid rgba(0,0,0,.1);
+     width: 100%;
+}
+.cart-form{
+     width: 100%;
+     float: left;
+     margin-bottom: 100px;
+     text-align: center;
+     margin-top: 100px
+}
+
+.cart-form table tbody .product-remove a{
+     font-size: 16px;
+     display: inline-block;
+     text-decoration: none;
+     color: #111;
+}
+
+.cart-form table tbody .product-remove a:hover{
+     color: red;
+}
+
+.cart-form table tbody .product-quantity .quantity span:hover{
+     color: red;
+}
+
+.cart-form table tbody .product-name a{
+     text-decoration: none;
+     color: #111;
+     font-weight: bold
+}
+
+.cart-form .cart-form__item .product-image a img{
+     max-width: 150px;
+}
+
+.cart-form tbody tr td{
+     padding: 50px
+}
+
+.cart-form table th{
+     padding: 15px 20px;
+}
+
+.cart-form .cart-form__item .product-quantity .sh-increase-numbers span {
+     cursor: pointer;
+     font-size: 16px;
+     background-color: #f2f2f2;
+     border-radius: 50px;
+     float: left;
+    display: block!important;
+    width: 50px!important;
+    height: 50px;
+    text-align: center;
+    position: relative;
+ }
+
+ .cart-form .cart-form__item .product-quantity .sh-increase-numbers span i{
+     position: absolute;
+     top: 16px;
+     right: 18px;
+ }
+
+ .cart-form .cart-form__item .product-quantity .sh-increase-numbers input{
+     border-width: 0px;
+     font-size: 16px!important;
+     font-weight: bold;
+     padding: 0!important;
+     background-color: transparent;   
+      float: left;
+     display: block!important;
+     width: 50px!important;
+     height: 50px;
+     text-align: center;
+ }
+
+ .cart-collaterals{
+      width: 100%
+ }
+
+.cart-collaterals .cart_totals{
+     width: 50%;
+     float: right;
+}
+
+.cart-collaterals .cart_totals table {
+     width: 100%;
+     border: 2px solid #e5e5e5!important;
+ }
+
+ .cart-collaterals .cart_totals table th{
+      width: 35%;
+ }
+
+ .cart-collaterals .cart_totals table tr{
+     padding: 20px;
+}
+
+.cart-collaterals .wc-proceed-to-checkout{
+     border-radius: 100px!important;
+    font-size: 13px;
+    text-transform: uppercase;
+    border-width: 0;
+    text-align: center;
+    background-color: #f94951!important;
+    margin: 30px 425px 30px 0px;
+    height: 45px;
+    color: #ffffff !important;
+    position: relative
+}
+
+.cart-collaterals .wc-proceed-to-checkout a{
+     color: #fff;
+     text-decoration: none;
+     position: absolute;
+     top: 12px;
+     right: 35px;
+     font-weight: 600
+}
+
+th{
+     padding: 20px
+}
