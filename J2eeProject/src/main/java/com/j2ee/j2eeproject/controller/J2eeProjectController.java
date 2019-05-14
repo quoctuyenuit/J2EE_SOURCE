@@ -36,7 +36,7 @@ public class J2eeProjectController {
 		if (code == null || code.isEmpty()) {
 			return "redirect:/login?google=error";
 		}
-		
+
 		try {
 			User user = this.j2eeService.loginWithGoogle(code);
 			model.addAttribute("user", user);
@@ -74,7 +74,7 @@ public class J2eeProjectController {
 			return "redirect:/login";
 		}
 	}
-	
+
 	@PostMapping("/testurl")
 	public String testUrl() {
 		return "user";
