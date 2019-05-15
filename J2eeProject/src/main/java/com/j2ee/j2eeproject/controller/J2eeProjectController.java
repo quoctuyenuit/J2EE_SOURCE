@@ -1,8 +1,6 @@
 package com.j2ee.j2eeproject.controller;
 
 import java.io.IOException;
-import java.util.List;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
@@ -14,9 +12,9 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.j2ee.j2eeproject.entity.ImageSample;
 import com.j2ee.j2eeproject.entity.Product;
 import com.j2ee.j2eeproject.entity.User;
 import com.j2ee.j2eeproject.service.J2eeService;
@@ -83,7 +81,17 @@ public class J2eeProjectController {
 			return "redirect:/login";
 		}
 	}
+	
+	@RequestMapping(value = "/login/forgot-password") 
+	public String forgotPassword() {
+		return "forgot-password";
+	}
 
+	@RequestMapping(value = "/login/resetpassword", method = RequestMethod.POST) 
+	public String resetPassword(Model model) {
+		return "reset-password";
+	}
+	
 	@PostMapping("/testurl")
 	public String testUrl() {
 		return "user";
