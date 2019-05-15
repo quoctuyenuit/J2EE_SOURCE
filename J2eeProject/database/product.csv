@@ -1,7 +1,8 @@
-﻿name,price,discount
-Bánh tráng me,50000,0
-Bánh tráng tè le,50000,0
-Bánh trang nào đó,50000,0
-Bánh tráng khô,100000,0
-Bánh tráng ướt,100000,0
-Bánh tráng tây ninh,100000,0
+﻿name,price,discount,image_sample
+Bánh tráng me,50000,0,banh1.jpeg
+Bánh tráng tè le,50000,0,banh2.jpg
+Bánh trang nào đó,50000,0,banh3.jpeg
+Bánh tráng khô,100000,0,banh4.jpg
+Bánh tráng ướt,100000,0,banh5.jpg
+Bánh tráng tây ninh,100000,0,banh6.jpg
+Bánh tráng cuốn,60000,0,product44.jpg

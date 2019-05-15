@@ -26,6 +26,17 @@ public class Product {
 
 	@Column(name = "discount")
 	private Float discount;
+	
+	@Column(name = "image_sample")
+	private String imageSample;
+
+	public String getImageSample() {
+		return imageSample;
+	}
+
+	public void setImageSample(String imageSample) {
+		this.imageSample = imageSample;
+	}
 
 	public Integer getId() {
 		return id;

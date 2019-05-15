@@ -32,19 +32,20 @@ FOREIGN KEY(`type_id`) REFERENCES `user_type`(`id`);
 
 CREATE TABLE `image_sample`(
     `id` INT(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    `name` VARCHAR(255) NOT NULL,
-    `product_id` INT(11)
+    `name` VARCHAR(255) NOT NULL UNIQUE,
+    `product_id` INT(11) NOT NULL UNIQUE
 );
 
 CREATE TABLE `product`(
     `id` INT(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
     `name` NVARCHAR(255) NOT NULL UNIQUE,
     `price` FLOAT,
-    `discount` FLOAT DEFAULT 0
+    `discount` FLOAT DEFAULT 0,
+    `image_sample` VARCHAR(255)
 );
 
 ALTER TABLE `image_sample`
-ADD CONSTRAINT `FK_PRODUCT_IMAGE`
+ADD CONSTRAINT `FK_IMAGE_PRODUCT`
 FOREIGN KEY (`product_id`) REFERENCES `product`(`id`);
 
 CREATE TABLE `catalog`(
