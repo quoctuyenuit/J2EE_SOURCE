@@ -159,23 +159,26 @@
 
 				<th:block th:unless="${#lists.isEmpty(products)}">
 
-					<tr th:each="product, iterStat : ${products}">
-						<div class="col-4">
-							<li class="product-item"><a class="product-item--image"
-								href="#"> <img src="images/food-list/product44.jpg" alt="">
-							</a>
-								<div class="product-item--content">
-									<div style="padding-top: 20px">
-										<a href="#">
-											<h2 th:text="${product.name}"></h2>
-										</a> <span class="item-price" th:text="${product.price + ' VND'}"></span>
-										<a href="#" class="item-basket"> <i
-											class="fas fa-shopping-cart"></i>
-										</a>
-									</div>
-								</div></li>
-						</div>
-					</tr>
+
+					<div class="col-4" th:each="product, iterStat : ${products}">
+						<li class="product-item"><a class="product-item--image"
+							href="#"> <img
+								th:src="@{${'images/food-list/' + product.imageSample}}" />
+						</a>
+							<div class="product-item--content">
+								<div style="padding-top: 20px">
+									<a href="#">
+										<h2 th:text="${product.name}"></h2>
+										<div class="item-type">Lorem ipsum</div>
+									</a> <span class="item-price" th:text="${product.price + ' VND'}"></span>
+									<a href="#" class="item-basket"> <i
+										class="fas fa-shopping-cart"></i>
+									</a>
+								</div>
+							</div></li>
+					</div>
+
+
 
 				</th:block>
 
@@ -188,18 +191,19 @@
 	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
 		integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
 		crossorigin="anonymous">
+		
 	</script>
 	<script
 		src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
 		integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
 		crossorigin="anonymous">
-
+		
 	</script>
 	<script
 		src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
 		integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
 		crossorigin="anonymous">
-
+		
 	</script>
 	<script src="js/popper.min.js"></script>
 	<script src="js/bootstrap.min.js"></script>
