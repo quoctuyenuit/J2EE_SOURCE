@@ -193,7 +193,7 @@ a.google {
 	z-index: 1;
 }
 
-/* page Food-detail */
+	/* page Food-detail */
 
 .padding-top-74 {
     padding-top: 7.4rem;
@@ -219,7 +219,7 @@ a.google {
 }
 .single-recipe-layout1 .entry-meta .single-meta {
   display: inline-block;
-  margin-right: 15px;
+  margin-right: 20px;
   margin-bottom: 5px;
 }
 .single-recipe-layout1 .entry-meta .single-meta:last-child {
@@ -244,6 +244,7 @@ a.google {
 }
 .single-recipe-layout1 .entry-meta .single-meta .item-rating {
   margin-bottom: 10px;
+  padding-left: 150px;
 }
 .single-recipe-layout1 .entry-meta .single-meta .item-rating li {
   display: inline-block;
@@ -296,6 +297,7 @@ a.google {
 .single-recipe-layout1 .action-item li button:hover {
   color: #bc3a1a;
 }
+/*
 .single-recipe-layout1 .action-item li.action-share-hover {
   position: relative;
 }
@@ -388,7 +390,7 @@ i.action-share-hover .action-share-wrap a:nth-child(5n) {
 .action-share-hover:hover .action-share-wrap a:nth-child(6n) {
   transition-delay: 0.6s;
 }
-
+*/
 img {
   max-width: 100%;
   height: auto;
@@ -460,7 +462,7 @@ img {
 .direction-box-layout1 .item-figure {
   position: relative;
 }
-/* .item-figure:after {
+/*.item-figure:after {
   position: absolute;
   width: 5px;
   content: "";
@@ -470,7 +472,7 @@ img {
   left: 0;
   right: 0;
   margin: 0 auto;
-} */
+}*/
 
 .direction-box-layout1 .item-figure img {
   border-radius: 50%;
@@ -566,14 +568,14 @@ img {
   font-size: 16px;
   color: #646464 
 }
-.item-rating {
+.recipe-reviews ul li.reviews-single-item .item-rating {
   margin-bottom: 10px;
   position: absolute;
   top: 0;
   right: 0;
   z-index: 1;
 }
-.item-rating li.single-item {
+.reviews-single-item .item-rating li.single-item {
   display: inline-block;
 }
 .single-item i {
