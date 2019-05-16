@@ -11,6 +11,7 @@ import org.apache.http.client.ClientProtocolException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.j2ee.j2eeproject.common.AccountExists;
 import com.j2ee.j2eeproject.common.Common;
 import com.j2ee.j2eeproject.common.LocalizeStrings;
 import com.j2ee.j2eeproject.entity.GooglePojo;
@@ -92,13 +93,14 @@ public class J2eeServiceImpl implements J2eeService {
 	// ----------------------------------------------------------------
 
 	@Override
-	public User loginWithGoogle(String code) throws EmailExistsException, ClientProtocolException, IOException {
+	public org.javatuples.Pair<User, AccountExists> loginWithGoogle(String code) throws ClientProtocolException, IOException {
 
 		String accessToken = googleUtils.getToken(code);
 		GooglePojo googlePojo = googleUtils.getUserInfo(accessToken);
-		
+
+		AccountExists accountExists = AccountExists.NotExists;
 		if (this.searchUsers(googlePojo.getEmail()) != null) {
-			throw new EmailExistsException("There is an account with that email adress:" + googlePojo.getEmail());
+			accountExists = AccountExists.Exists;
 		}
 
 		UserType userType = this.searchUserTypes(Common.Constaints.USER_PERMISSION);
@@ -106,7 +108,7 @@ public class J2eeServiceImpl implements J2eeService {
 		user.setEmail(googlePojo.getEmail());
 		user.setName(googlePojo.getName());
 
-		return user;
+		return new org.javatuples.Pair<User, AccountExists>(user, accountExists);
 
 	}
 
@@ -115,7 +117,7 @@ public class J2eeServiceImpl implements J2eeService {
 		User dataUser = this.searchUsers(user.getEmail());
 		if (dataUser != null) {
 			if (user.getPassword().equals(dataUser.getPassword()))
-				return user;
+				return dataUser;
 		}
 		throw new LoginException(LocalizeStrings.getInstance().account_or_password_is_incorrect);
 	}

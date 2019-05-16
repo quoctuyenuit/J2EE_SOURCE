@@ -41,10 +41,11 @@
 					</div>
 					<div class="col-lg-4 col-md-9 col-sm-8 col-8">
 						<div class="main-menu__item">
-							<div
-								class="row main-menu__item-circle justify-content-end align-items-center">
-								<i class="far fa-user"></i> <a class="Login" href="#">Login
-									/ Sign up</a>
+							<div class="row main-menu__item-circle justify-content-end align-items-center">
+								<i class="far fa-user"></i>
+								 
+								<a th:if="${user.id}" class="Login" href="#" th:text="${'Hi ' + user.name}"></a>
+								<a th:unless="${user.id}" class="Login" href="/login">Login</a>
 							</div>
 						</div>
 					</div>

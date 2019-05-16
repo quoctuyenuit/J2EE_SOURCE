@@ -6,6 +6,7 @@ import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.apache.http.client.ClientProtocolException;
+import org.javatuples.Pair;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,11 +18,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.j2ee.j2eeproject.common.LocalizeStrings;
+import com.j2ee.j2eeproject.common.AccountExists;
 import com.j2ee.j2eeproject.entity.Product;
 import com.j2ee.j2eeproject.entity.User;
 import com.j2ee.j2eeproject.service.J2eeService;
-import com.j2ee.j2eeproject.validation.EmailExistsException;
 import com.j2ee.j2eeproject.validation.LoginException;
 import com.j2ee.j2eeproject.validation.ResetPasswordException;
 
@@ -31,52 +31,70 @@ public class J2eeProjectController {
 	private J2eeService j2eeService;
 
 	@RequestMapping(value = { "/", "/login" })
-	public String login() {
-		return "login-ver2";
+	public String login(HttpServletRequest request) {
+		HttpSession session = request.getSession();
+		User user = (User) session.getAttribute("user");
+		if (user != null) {
+			return "redirect:/home";
+		} else {
+			return "login-ver2";
+		}
 	}
 
 	@RequestMapping("/login-google")
 	public String loginGoogle(HttpServletRequest request, Model model) throws ClientProtocolException, IOException {
 		String code = request.getParameter("code");
-
+		
 		if (code == null || code.isEmpty()) {
 			return "redirect:/login?google=error";
 		}
 
-		try {
-			User user = this.j2eeService.loginWithGoogle(code);
-			model.addAttribute("user", user);
+		Pair<User, AccountExists> loginResult = this.j2eeService.loginWithGoogle(code);
+		model.addAttribute("user", loginResult.getValue0());
+
+		if (loginResult.getValue1() == AccountExists.NotExists) {
 			return "signup";
-		} catch (EmailExistsException e) {
+		} else {
+			HttpSession session = request.getSession();
+			User user = this.j2eeService.searchUsers(loginResult.getValue0().getEmail());
+			session.setAttribute("user", user);
 			return "redirect:/home";
 		}
 	}
 
 	@GetMapping("/home")
-	public String home(Model model) {
+	public String home(HttpServletRequest request, Model model) {
 		Iterable<Product> products = this.j2eeService.getAllProduct();
+		HttpSession session = request.getSession();
+		User user = (User) session.getAttribute("user");
+		if (user == null) {
+			user = new User();
+		}
 
+		model.addAttribute("user", user);
 		model.addAttribute("products", products);
 
 		return "food-list";
 	}
 
 	@PostMapping(value = "/signup")
-	public String signup(@Valid User user, BindingResult result, RedirectAttributes redirect, Model model) {
+	public String signup(HttpServletRequest request, @Valid User user, BindingResult result, RedirectAttributes redirect, Model model) {
 		if (result.hasErrors()) {
 			return "signup";
 		}
 
 		j2eeService.saveUser(user);
 		model.addAttribute("user", user);
+		HttpSession session = request.getSession();
+		session.setAttribute("user", user);
 		return "redirect:/home";
 	}
 
 	@PostMapping(value = "/login-manually")
-	public String loginManually(@Valid User user, BindingResult result, RedirectAttributes redirect, Model model) {
+	public String loginManually(HttpServletRequest request, @Valid User user, BindingResult result, RedirectAttributes redirect, Model model) {
 		try {
 			User validUser = j2eeService.login(user);
-			model.addAttribute("user", validUser);
+			request.getSession().setAttribute("user", validUser);
 			return "redirect:/home";
 		} catch (LoginException e) {
 			// Add error message
@@ -104,8 +122,8 @@ public class J2eeProjectController {
 			return "redirect:/login/forgot-password?message=could-not-send-verifycode";
 		}
 	}
-	
-	@GetMapping("/login/resetpassword") 
+
+	@GetMapping("/login/resetpassword")
 	public String resetPasswordPage() {
 		return "reset-password";
 	}

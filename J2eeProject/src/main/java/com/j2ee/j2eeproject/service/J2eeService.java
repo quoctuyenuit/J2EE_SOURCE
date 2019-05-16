@@ -7,7 +7,9 @@ import java.util.Optional;
 import javax.validation.constraints.Email;
 
 import org.apache.http.client.ClientProtocolException;
+import org.javatuples.Pair;
 
+import com.j2ee.j2eeproject.common.AccountExists;
 import com.j2ee.j2eeproject.entity.ImageSample;
 import com.j2ee.j2eeproject.entity.Product;
 import com.j2ee.j2eeproject.entity.User;
@@ -30,7 +32,7 @@ public interface J2eeService {
     
     Iterable<Product> getAllProduct();
 
-    User loginWithGoogle(String code) throws EmailExistsException, ClientProtocolException, IOException;
+    Pair<User, AccountExists> loginWithGoogle(String code) throws ClientProtocolException, IOException;
 
     User login(User user) throws LoginException;
 
