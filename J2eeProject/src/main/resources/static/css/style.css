@@ -460,7 +460,7 @@ img {
 .direction-box-layout1 .item-figure {
   position: relative;
 }
-.item-figure:after {
+/* .item-figure:after {
   position: absolute;
   width: 5px;
   content: "";
@@ -470,7 +470,7 @@ img {
   left: 0;
   right: 0;
   margin: 0 auto;
-}
+} */
 
 .direction-box-layout1 .item-figure img {
   border-radius: 50%;
