@@ -5,5 +5,5 @@ import javax.mail.internet.AddressException;
 import javax.validation.constraints.Email;
 
 public interface EmailService {
-	void sendEmail(@Email String from, @Email String to, String subject, String content) throws AddressException, MessagingException;
+	void sendEmail(@Email String to, String subject, String content) throws AddressException, MessagingException;
 }

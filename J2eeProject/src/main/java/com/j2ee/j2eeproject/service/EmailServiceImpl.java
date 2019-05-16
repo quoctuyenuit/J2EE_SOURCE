@@ -13,17 +13,25 @@ import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 import javax.validation.constraints.Email;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Service;
 
 @Service
 public class EmailServiceImpl implements EmailService {
 
+	@Autowired
+	private Environment env;
+	
 	public Session getSession() {
 		Properties props = new Properties();
 		props.put("mail.smtp.auth", "true");
 		props.put("mail.smtp.starttls.enable", "true");
 		props.put("mail.smtp.host", "smtp.gmail.com");
 		props.put("mail.smtp.port", "587");
+		String email = env.getProperty("google.verification.email");
+		String password = env.getProperty("google.verification.password");
+		
 		return Session.getInstance(props, new javax.mail.Authenticator() {
 			protected PasswordAuthentication getPasswordAuthentication() {
 				return new PasswordAuthentication("quoctuyen.uit@gmail.com", "fbi11023007");
@@ -32,11 +40,12 @@ public class EmailServiceImpl implements EmailService {
 	}
 
 	@Override
-	public void sendEmail(@Email String from, @Email String to, String subject, String content) throws AddressException, MessagingException {
+	public void sendEmail(@Email String to, String subject, String content) throws AddressException, MessagingException {
 		Session session = this.getSession();
+		String emailFrom = env.getProperty("google.verification.email");
 		
 		Message msg = new MimeMessage(session);
-		msg.setFrom(new InternetAddress(from, false));
+		msg.setFrom(new InternetAddress(emailFrom, false));
 
 		msg.setRecipients(Message.RecipientType.TO, InternetAddress.parse(to));
 		msg.setSubject(subject);

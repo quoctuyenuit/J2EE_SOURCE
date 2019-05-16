@@ -5,6 +5,8 @@ import java.util.List;
 import java.util.Optional;
 import java.util.Random;
 
+import javax.validation.constraints.Email;
+
 import org.apache.http.client.ClientProtocolException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -23,6 +25,7 @@ import com.j2ee.j2eeproject.repository.UserTypeRepository;
 import com.j2ee.j2eeproject.untils.GoogleUtils;
 import com.j2ee.j2eeproject.validation.EmailExistsException;
 import com.j2ee.j2eeproject.validation.LoginException;
+import com.j2ee.j2eeproject.validation.ResetPasswordException;
 
 @Service
 public class J2eeServiceImpl implements J2eeService {
@@ -32,13 +35,13 @@ public class J2eeServiceImpl implements J2eeService {
 
 	@Autowired
 	private UserTypeRepository userTypeRepository;
-	
+
 	@Autowired
 	private EmailService emailService;
-	
+
 	@Autowired
 	private ImageSampleRepository imageSampleRepository;
-	
+
 	@Autowired
 	private ProductRepository productRepository;
 
@@ -46,8 +49,13 @@ public class J2eeServiceImpl implements J2eeService {
 	private GoogleUtils googleUtils;
 
 	@Override
-	public List<User> searchUsers(String email) {
-		return userRepository.findByEmailContaining(email);
+	public User searchUsers(String email) {
+		List<User> listUsers = userRepository.findByEmailContaining(email);
+		if (listUsers.size() == 0) {
+			return null;
+		} else {
+			return listUsers.get(0);
+		}
 	}
 
 	@Override
@@ -68,12 +76,12 @@ public class J2eeServiceImpl implements J2eeService {
 			return listResult.get(0);
 		return null;
 	}
-	
+
 	@Override
 	public List<ImageSample> searchImageFromProductId(Integer productId) {
 		return imageSampleRepository.findByProductIdContaining(productId);
 	}
-	
+
 	@Override
 	public Iterable<Product> getAllProduct() {
 		return productRepository.findAll();
@@ -88,7 +96,8 @@ public class J2eeServiceImpl implements J2eeService {
 
 		String accessToken = googleUtils.getToken(code);
 		GooglePojo googlePojo = googleUtils.getUserInfo(accessToken);
-		if (this.searchUsers(googlePojo.getEmail()).size() > 0) {
+		
+		if (this.searchUsers(googlePojo.getEmail()) != null) {
 			throw new EmailExistsException("There is an account with that email adress:" + googlePojo.getEmail());
 		}
 
@@ -103,31 +112,53 @@ public class J2eeServiceImpl implements J2eeService {
 
 	@Override
 	public User login(User user) throws LoginException {
-		List<User> listUser = this.searchUsers(user.getEmail());
-		if (listUser.size() > 0) {
-			User dataUser = listUser.get(0);
+		User dataUser = this.searchUsers(user.getEmail());
+		if (dataUser != null) {
 			if (user.getPassword().equals(dataUser.getPassword()))
 				return user;
 		}
-		throw new LoginException(LocalizeStrings.account_or_password_is_incorrect);
+		throw new LoginException(LocalizeStrings.getInstance().account_or_password_is_incorrect);
 	}
 
 	@Override
-	public String sendVerificationCode() throws Throwable {
+	public String sendVerificationCode(@Email String email) throws Throwable {
+		User currentUser = this.searchUsers(email);
+		if (currentUser == null) {
+			throw new EmailExistsException(LocalizeStrings.getInstance().email_is_not_exists);
+		}
 		Random rand = new Random();
 		String code = "";
 		for (int i = 0; i < 5; i++) {
 			if (i % 2 == 0)
-				code += (char)(rand.nextInt('Z' - 'A') + 'A');
-			else 
+				code += (char) (rand.nextInt('Z' - 'A') + 'A');
+			else
 				code += rand.nextInt(9);
 		}
 		String msg = "Your verification code is " + code;
-		emailService.sendEmail("quoctuyen.uit@gmail.com", "quoctuyen9aht@gmail.com", "J2ee Verification", msg);
+		emailService.sendEmail(email, "J2ee Verification", msg);
 		return code;
 	}
-	
-	
 
-	
+	@Override
+	public String resetPassword(String email, String verifyCodeSent, String verifyCode, String password,
+			String passwordAgain) throws ResetPasswordException {
+		if (!verifyCodeSent.equals(verifyCode)) {
+			throw new ResetPasswordException(LocalizeStrings.getInstance().wrong_verifcation_code);
+		}
+
+		if (!password.equals(passwordAgain)) {
+			throw new ResetPasswordException(LocalizeStrings.getInstance().confirm_password_is_not_match);
+		}
+
+		User currentUser = this.searchUsers(email);
+		if (currentUser != null) {
+			
+			currentUser.setPassword(password);
+			this.saveUser(currentUser);
+			return LocalizeStrings.getInstance().reset_password_successful;
+		}
+
+		throw new ResetPasswordException(LocalizeStrings.getInstance().email_is_not_exists);
+	}
+
 }

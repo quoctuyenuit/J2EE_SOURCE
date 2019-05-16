@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
 
+import javax.validation.constraints.Email;
+
 import org.apache.http.client.ClientProtocolException;
 
 import com.j2ee.j2eeproject.entity.ImageSample;
@@ -12,10 +14,11 @@ import com.j2ee.j2eeproject.entity.User;
 import com.j2ee.j2eeproject.entity.UserType;
 import com.j2ee.j2eeproject.validation.EmailExistsException;
 import com.j2ee.j2eeproject.validation.LoginException;
+import com.j2ee.j2eeproject.validation.ResetPasswordException;
 
 public interface J2eeService {
 
-    List<User> searchUsers(String email);
+	User searchUsers(String email);
 
     void saveUser(User user);
     
@@ -30,8 +33,9 @@ public interface J2eeService {
     User loginWithGoogle(String code) throws EmailExistsException, ClientProtocolException, IOException;
 
     User login(User user) throws LoginException;
-    
-    String sendVerificationCode() throws Throwable;
-    
-    
+
+	String sendVerificationCode(@Email String email) throws Throwable;
+
+	String resetPassword(String email, String verifyCodeSent, String verifyCode, String password, String passwordAgain)
+			throws ResetPasswordException; 
 }
