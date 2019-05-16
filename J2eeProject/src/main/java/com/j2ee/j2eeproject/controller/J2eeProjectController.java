@@ -95,7 +95,7 @@ public class J2eeProjectController {
 		try {
 			User validUser = j2eeService.login(user);
 			request.getSession().setAttribute("user", validUser);
-			return "redirect:/home";
+			return "contact";
 		} catch (LoginException e) {
 			// Add error message
 			redirect.addFlashAttribute("error", e.getMessage());
