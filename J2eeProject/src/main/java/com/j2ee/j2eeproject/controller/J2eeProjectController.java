@@ -16,8 +16,12 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.j2ee.j2eeproject.common.AccountExists;
 import com.j2ee.j2eeproject.entity.Product;
 import com.j2ee.j2eeproject.entity.User;
@@ -30,7 +34,7 @@ public class J2eeProjectController {
 	@Autowired
 	private J2eeService j2eeService;
 
-	@RequestMapping(value = { "/", "/login" })
+	@RequestMapping(value = {"/login" })
 	public String login(HttpServletRequest request) {
 		HttpSession session = request.getSession();
 		User user = (User) session.getAttribute("user");
@@ -147,8 +151,17 @@ public class J2eeProjectController {
 		}
 	}
 
-	@PostMapping("/testurl")
-	public String testUrl() {
-		return "user";
+	@RequestMapping(value = "home/add-product-to-cart", method = RequestMethod.GET) 
+	public @ResponseBody String addCart(HttpServletRequest request) {
+		int number = 10;
+		ObjectMapper mapper = new ObjectMapper();
+		String ajaxResponse = "";
+		try {
+			ajaxResponse = mapper.writeValueAsString(number);
+		} catch (JsonProcessingException e) {
+			e.printStackTrace();
+		}
+
+		return ajaxResponse;
 	}
 }

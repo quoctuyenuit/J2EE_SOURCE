@@ -10,7 +10,7 @@ DROP TABLE IF EXISTS `j2ee`.`product`;
 DROP TABLE IF EXISTS `j2ee`.`catalog`;
 DROP TABLE IF EXISTS `j2ee`.`catalog_group`;
 DROP TABLE IF EXISTS `j2ee`.`payment`;
-DROP TABLE IF EXISTS `j2ee`.`taken_order`;
+DROP TABLE IF EXISTS `j2ee`.`order_detail`;
 
 CREATE TABLE `user_type`(
     `id` INT(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
@@ -100,13 +100,13 @@ ALTER TABLE `transaction`
 ADD CONSTRAINT `FK_TRANSACTION_ORDER`
 FOREIGN KEY (`order_id`) REFERENCES `order`(`id`);
 
-CREATE TABLE `taken_order`(
+CREATE TABLE `order_detail`(
     `product_id` INT(11) NOT NULL,
     `order_id` INT(11) NOT NULL
 );
 
-ALTER TABLE `taken_order`
-ADD CONSTRAINT `PK_TAKEN_ORDER`
+ALTER TABLE `order_detail`
+ADD CONSTRAINT `PK_ORDER_DETAIL`
 PRIMARY KEY(`product_id`, `order_id`);
 
 LOCK TABLE `user_type` WRITE;

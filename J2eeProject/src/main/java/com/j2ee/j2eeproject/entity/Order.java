@@ -19,8 +19,8 @@ public class Order {
     private Integer id;
     
     @NotEmpty
-    @Column(name = "userId")
-    private Integer userId;
+    @Column(name = "user_id")
+    private String userId;
     
     @Column(name = "created")
     private Date created;
@@ -33,11 +33,11 @@ public class Order {
 		this.id = id;
 	}
 
-	public Integer getUserId() {
+	public String getUserId() {
 		return userId;
 	}
 
-	public void setUserId(Integer userId) {
+	public void setUserId(String userId) {
 		this.userId = userId;
 	}
 
@@ -49,7 +49,7 @@ public class Order {
 		this.created = created;
 	}
 
-	public Order(@NotEmpty Integer userId, Date created) {
+	public Order(@NotEmpty String userId, Date created) {
 		super();
 		this.userId = userId;
 		this.created = created;
