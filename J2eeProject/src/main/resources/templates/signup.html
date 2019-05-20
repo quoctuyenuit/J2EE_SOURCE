@@ -36,21 +36,21 @@
                          <input type="hidden" th:field="*{email}" />
                          <div class="login-form-input mb-23"  data-validate="Name is required" style="margin-bottom: 23px">
                               <span class="label-input">Full Name</span>
-                              <input type="text" class="input-item" placeholder="Type your full name" th:field="*{name}" th:errorclass="field-error"/>
+                              <input type="text" class="input-item" placeholder="Type your full name" th:field="*{name}" th:errorclass="field-error" required/>
                               <em th:if="${#fields.hasErrors('name')}" th:errores="*{name}"></em>
 							  <i class="far fa-user-circle" style="position: absolute; top: 44px; left: 15px; font-size: 20px;"></i>
                          </div>
 
                          <div class="login-form-input mb-23" style="margin-bottom: 23px">
                               <span class="label-input">Address</span>
-                              <input type="text" class="input-item" placeholder="Type your address" th:field="*{address}" th:errorclass="field-error"/>
+                              <input type="text" class="input-item" placeholder="Type your address" th:field="*{address}" th:errorclass="field-error" required/>
                               <em th:if="${#fields.hasErrors('address')}" th:errores="*{address}"></em>
                               <i class="material-icons" style="position: absolute; top: 44px; left: 15px; font-size: 20px">lock_outline</i>
                          </div>
 
                          <div class="login-form-input mb-23"  data-validate="Name is required" style="margin-bottom: 23px">
                               <span class="label-input">Password</span>
-                              <input type="password" class="input-item" placeholder="Type your password" th:field="*{password}" th:errorclass="field-error"/>
+                              <input type="password" class="input-item" placeholder="Type your password" th:field="*{password}" th:errorclass="field-error" required/>
                               <em th:if="${#fields.hasErrors('password')}" th:errores="*{password}"></em>
 							  <i class="material-icons" style="position: absolute; top: 44px; left: 15px; font-size: 20px;"></i>
                          </div>
