@@ -16,23 +16,24 @@
      <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Oswald">
      <link rel="stylesheet" href="css/animate.css">
      <link rel="stylesheet" href="css/ihover.css">
-     <link rel="stylesheet" href="css/home-page.css">
-     <link rel="stylesheet" href="css/header.css">
-     <link rel="stylesheet" href="css/food-list.css">
-     <link rel="stylesheet" href="css/footer.css">
+     <link rel="stylesheet" href="css/test-home-page.css">
+     <link rel="stylesheet" href="css/test.css">
+     <link rel="stylesheet" href="css/test-list-page.css">
+     <link rel="stylesheet" href="css/test-footer.css">
       <!-- Owl Carousel CSS -->
-    <link rel="stylesheet" href="css/owl.carousel.min.css">
-    <link rel="stylesheet" href="css/owl.theme.default.min.css">
+    <link rel="stylesheet" href="js/owl.carousel.min.css">
+    <link rel="stylesheet" href="js/owl.theme.default.min.css">
 
 
      <!--ICON-->
      <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css"
           integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
 
-     <script src="https://unpkg.com/gijgo@1.9.11/js/gijgo.min.js" type="text/javascript"></script>
      <link href="https://unpkg.com/gijgo@1.9.11/css/gijgo.min.css" rel="stylesheet" type="text/css" />
      <link href="https://fonts.googleapis.com/css?family=Lora" rel="stylesheet">
-
+     <script src="js/jquery-3.3.1.min.js"></script>
+     <script src="https://unpkg.com/gijgo@1.9.11/js/gijgo.min.js" type="text/javascript"></script>
+     <script src="js/owl.carousel.min.js"></script>
      <script src="js/popper.min.js"></script>
      <script src="js/bootstrap.min.js"></script>
      <script src="js/vue/vue.js"></script>
@@ -41,243 +42,110 @@
      <script src="js/wow.min.js"></script>
      <script src="js/main.js"></script>
       <!-- Owl Carousel Js -->
-    <script src="js/owl.carousel.min.js"></script>
 
 </head>
 
 <body>
      <nav th:replace="layout :: header"></nav>
      <section class="ranna-slider-area">
-          <div class="container">
-               <div class="rc-carousel nav-control-layout2 owl-carousel owl-loaded owl-drag" data-loop="true"
-                    data-items="30" data-margin="5" data-autoplay="false" data-autoplay-timeout="5000"
-                    data-smart-speed="700" data-dots="false" data-nav="true" data-nav-speed="false" data-r-x-small="1"
-                    data-r-x-small-nav="true" data-r-x-small-dots="false" data-r-x-medium="1" data-r-x-medium-nav="true"
-                    data-r-x-medium-dots="false" data-r-small="1" data-r-small-nav="true" data-r-small-dots="false"
-                    data-r-medium="1" data-r-medium-nav="true" data-r-medium-dots="false" data-r-large="1"
-                    data-r-large-nav="true" data-r-large-dots="false" data-r-extra-large="1"
-                    data-r-extra-large-nav="true" data-r-extra-large-dots="false">
-                    <div class="owl-stage-outer">
-                         <div class="owl-stage"
-                              style="transform: translate3d(-2350px, 0px, 0px); transition: all 0s ease 0s; width: 8225px;">
-                              <div class="owl-item cloned" style="width: 1170px; margin-right: 5px;">
-                                   <div class="ranna-slider-content-layout1">
-                                        <figure class="item-figure">
-                                             <a href="single-recipe1.html">
-                                             <img src="images/home-page/slide1-2.jpg" alt="Product">
-                                        </a>
-                                   </figure>
-                                        <div class="item-content">
-                                             <span class="sub-title">SALAD</span>
-                                             <h2 class="item-title"><a href="single-recipe1.html">Italiano Salad
-                                                       Mixed</a></h2>
-                                             <ul class="item-rating">
-                                                  <li class="star-fill"><i class="fas fa-star"></i></li>
-                                                  <li class="star-fill"><i class="fas fa-star"></i></li>
-                                                  <li class="star-fill"><i class="fas fa-star"></i></li>
-                                                  <li class="star-fill"><i class="fas fa-star"></i></li>
-                                                  <li class="star-empty"><i class="fas fa-star"></i></li>
-                                                  <li><span>9<span> / 10</span></span> </li>
-                                             </ul>
-                                             <p>More off this less hello salamander lied porpoise much over tightly
-                                                  circa
-                                                  outside crud mightily rigorouse. </p>
-                                             <ul class="entry-meta">
-                                                  <li><a href="#"><i class="fas fa-clock"></i>15 Mins</a></li>
-                                                  <li><a href="#"><i class="fas fa-user"></i>by <span>John
-                                                                 Martin</span></a></li>
-                                                  <li><a href="#"><i class="fas fa-heart"></i><span>02</span> Likes</a>
-                                                  </li>
-                                             </ul>
-                                        </div>
-                                   </div>
-                              </div>
-                              <div class="owl-item cloned" style="width: 1170px; margin-right: 5px;">
-                                   <div class="ranna-slider-content-layout1">
-                                        <figure class="item-figure"><a href="single-recipe1.html"><img
-                                                       src="images/home-page/slide1-3.jpg" alt="Product"></a></figure>
-                                        <div class="item-content">
-                                             <span class="sub-title">SALAD</span>
-                                             <h2 class="item-title"><a href="single-recipe1.html">Italiano Salad
-                                                       Mixed</a></h2>
-                                             <ul class="item-rating">
-                                                  <li class="star-fill"><i class="fas fa-star"></i></li>
-                                                  <li class="star-fill"><i class="fas fa-star"></i></li>
-                                                  <li class="star-fill"><i class="fas fa-star"></i></li>
-                                                  <li class="star-fill"><i class="fas fa-star"></i></li>
-                                                  <li class="star-empty"><i class="fas fa-star"></i></li>
-                                                  <li><span>9<span> / 10</span></span> </li>
-                                             </ul>
-                                             <p>More off this less hello salamander lied porpoise much over tightly
-                                                  circa
-                                                  outside crud mightily rigorouse. </p>
-                                             <ul class="entry-meta">
-                                                  <li><a href="#"><i class="fas fa-clock"></i>15 Mins</a></li>
-                                                  <li><a href="#"><i class="fas fa-user"></i>by <span>John
-                                                                 Martin</span></a></li>
-                                                  <li><a href="#"><i class="fas fa-heart"></i><span>02</span> Likes</a>
-                                                  </li>
-                                             </ul>
-                                        </div>
-                                   </div>
-                              </div>
-                              <div class="owl-item active" style="width: 1170px; margin-right: 5px;">
-                                   <div class="ranna-slider-content-layout1">
-                                        <figure class="item-figure"><a href="single-recipe1.html"><img
-                                                       src="images/home-page/slide1-1.jpg" alt="Product"></a></figure>
-                                        <div class="item-content">
-                                             <span class="sub-title">SALAD</span>
-                                             <h2 class="item-title"><a href="single-recipe1.html">Italiano Salad
-                                                       Mixed</a></h2>
-                                             <ul class="item-rating">
-                                                  <li class="star-fill"><i class="fas fa-star"></i></li>
-                                                  <li class="star-fill"><i class="fas fa-star"></i></li>
-                                                  <li class="star-fill"><i class="fas fa-star"></i></li>
-                                                  <li class="star-fill"><i class="fas fa-star"></i></li>
-                                                  <li class="star-empty"><i class="fas fa-star"></i></li>
-                                                  <li><span>9<span> / 10</span></span> </li>
-                                             </ul>
-                                             <p>More off this less hello salamander lied porpoise much over tightly
-                                                  circa
-                                                  outside crud mightily rigorouse. </p>
-                                             <ul class="entry-meta">
-                                                  <li><a href="#"><i class="fas fa-clock"></i>15 Mins</a></li>
-                                                  <li><a href="#"><i class="fas fa-user"></i>by <span>John
-                                                                 Martin</span></a></li>
-                                                  <li><a href="#"><i class="fas fa-heart"></i><span>02</span> Likes</a>
-                                                  </li>
-                                             </ul>
-                                        </div>
-                                   </div>
-                              </div>
-                              <div class="owl-item" style="width: 1170px; margin-right: 5px;">
-                                   <div class="ranna-slider-content-layout1">
-                                        <figure class="item-figure"><a href="single-recipe1.html"><img
-                                                       src="images/home-page/slide1-2.jpg" alt="Product"></a></figure>
-                                        <div class="item-content">
-                                             <span class="sub-title">SALAD</span>
-                                             <h2 class="item-title"><a href="single-recipe1.html">Italiano Salad
-                                                       Mixed</a></h2>
-                                             <ul class="item-rating">
-                                                  <li class="star-fill"><i class="fas fa-star"></i></li>
-                                                  <li class="star-fill"><i class="fas fa-star"></i></li>
-                                                  <li class="star-fill"><i class="fas fa-star"></i></li>
-                                                  <li class="star-fill"><i class="fas fa-star"></i></li>
-                                                  <li class="star-empty"><i class="fas fa-star"></i></li>
-                                                  <li><span>9<span> / 10</span></span> </li>
-                                             </ul>
-                                             <p>More off this less hello salamander lied porpoise much over tightly
-                                                  circa
-                                                  outside crud mightily rigorouse. </p>
-                                             <ul class="entry-meta">
-                                                  <li><a href="#"><i class="fas fa-clock"></i>15 Mins</a></li>
-                                                  <li><a href="#"><i class="fas fa-user"></i>by <span>John
-                                                                 Martin</span></a></li>
-                                                  <li><a href="#"><i class="fas fa-heart"></i><span>02</span> Likes</a>
-                                                  </li>
-                                             </ul>
-                                        </div>
-                                   </div>
-                              </div>
-                              <div class="owl-item" style="width: 1170px; margin-right: 5px;">
-                                   <div class="ranna-slider-content-layout1">
-                                        <figure class="item-figure"><a href="single-recipe1.html"><img
-                                                       src="images/home-page/slide1-3.jpg" alt="Product"></a></figure>
-                                        <div class="item-content">
-                                             <span class="sub-title">SALAD</span>
-                                             <h2 class="item-title"><a href="single-recipe1.html">Italiano Salad
-                                                       Mixed</a></h2>
-                                             <ul class="item-rating">
-                                                  <li class="star-fill"><i class="fas fa-star"></i></li>
-                                                  <li class="star-fill"><i class="fas fa-star"></i></li>
-                                                  <li class="star-fill"><i class="fas fa-star"></i></li>
-                                                  <li class="star-fill"><i class="fas fa-star"></i></li>
-                                                  <li class="star-empty"><i class="fas fa-star"></i></li>
-                                                  <li><span>9<span> / 10</span></span> </li>
-                                             </ul>
-                                             <p>More off this less hello salamander lied porpoise much over tightly
-                                                  circa
-                                                  outside crud mightily rigorouse. </p>
-                                             <ul class="entry-meta">
-                                                  <li><a href="#"><i class="fas fa-clock"></i>15 Mins</a></li>
-                                                  <li><a href="#"><i class="fas fa-user"></i>by <span>John
-                                                                 Martin</span></a></li>
-                                                  <li><a href="#"><i class="fas fa-heart"></i><span>02</span> Likes</a>
-                                                  </li>
-                                             </ul>
-                                        </div>
-                                   </div>
-                              </div>
-                              <div class="owl-item cloned" style="width: 1170px; margin-right: 5px;">
-                                   <div class="ranna-slider-content-layout1">
-                                        <figure class="item-figure"><a href="single-recipe1.html"><img
-                                                       src="images/home-page/slide1-1.jpg" alt="Product"></a></figure>
-                                        <div class="item-content">
-                                             <span class="sub-title">SALAD</span>
-                                             <h2 class="item-title"><a href="single-recipe1.html">Italiano Salad
-                                                       Mixed</a></h2>
-                                             <ul class="item-rating">
-                                                  <li class="star-fill"><i class="fas fa-star"></i></li>
-                                                  <li class="star-fill"><i class="fas fa-star"></i></li>
-                                                  <li class="star-fill"><i class="fas fa-star"></i></li>
-                                                  <li class="star-fill"><i class="fas fa-star"></i></li>
-                                                  <li class="star-empty"><i class="fas fa-star"></i></li>
-                                                  <li><span>9<span> / 10</span></span> </li>
-                                             </ul>
-                                             <p>More off this less hello salamander lied porpoise much over tightly
-                                                  circa
-                                                  outside crud mightily rigorouse. </p>
-                                             <ul class="entry-meta">
-                                                  <li><a href="#"><i class="fas fa-clock"></i>15 Mins</a></li>
-                                                  <li><a href="#"><i class="fas fa-user"></i>by <span>John
-                                                                 Martin</span></a></li>
-                                                  <li><a href="#"><i class="fas fa-heart"></i><span>02</span> Likes</a>
-                                                  </li>
-                                             </ul>
-                                        </div>
-                                   </div>
-                              </div>
-                              <div class="owl-item cloned" style="width: 1170px; margin-right: 5px;">
-                                   <div class="ranna-slider-content-layout1">
-                                        <figure class="item-figure"><a href="single-recipe1.html"><img
-                                                       src="images/home-page/slide1-2.jpg" alt="Product"></a></figure>
-                                        <div class="item-content">
-                                             <span class="sub-title">SALAD</span>
-                                             <h2 class="item-title"><a href="single-recipe1.html">Italiano Salad
-                                                       Mixed</a></h2>
-                                             <ul class="item-rating">
-                                                  <li class="star-fill"><i class="fas fa-star"></i></li>
-                                                  <li class="star-fill"><i class="fas fa-star"></i></li>
-                                                  <li class="star-fill"><i class="fas fa-star"></i></li>
-                                                  <li class="star-fill"><i class="fas fa-star"></i></li>
-                                                  <li class="star-empty"><i class="fas fa-star"></i></li>
-                                                  <li><span>9<span> / 10</span></span> </li>
-                                             </ul>
-                                             <p>More off this less hello salamander lied porpoise much over tightly
-                                                  circa
-                                                  outside crud mightily rigorouse. </p>
-                                             <ul class="entry-meta">
-                                                  <li><a href="#"><i class="fas fa-clock"></i>15 Mins</a></li>
-                                                  <li><a href="#"><i class="fas fa-user"></i>by <span>John
-                                                                 Martin</span></a></li>
-                                                  <li><a href="#"><i class="fas fa-heart"></i><span>02</span> Likes</a>
-                                                  </li>
-                                             </ul>
-                                        </div>
-                                   </div>
-                              </div>
-                         </div>
-                    </div>
-                    <div class="owl-nav"><button type="button" role="presentation" class="owl-prev"><i
-                                   class="flaticon-back" aria-hidden="true"></i></button><button type="button"
-                              role="presentation" class="owl-next"><i class="flaticon-next"
-                                   aria-hidden="true"></i></button></div>
-                    <div class="owl-dots disabled"></div>
-               </div>
+        <div class="container">
+             <div class="rc-carousel nav-control-layout2 owl-carousel owl-loaded owl-drag" data-loop="true"
+                  data-items="1" data-margin="5" data-autoplay="true" data-autoplay-timeout="5000"
+                  data-smart-speed="700" data-dots="false" data-nav="true" data-nav-speed="false" data-r-x-small="1"
+                  data-r-x-small-nav="true" data-r-x-small-dots="false" data-r-x-medium="1" data-r-x-medium-nav="true"
+                  data-r-x-medium-dots="false" data-r-small="1" data-r-small-nav="true" data-r-small-dots="false"
+                  data-r-medium="1" data-r-medium-nav="true" data-r-medium-dots="false" data-r-large="1"
+                  data-r-large-nav="true" data-r-large-dots="false" data-r-extra-large="1"
+                  data-r-extra-large-nav="true" data-r-extra-large-dots="false">
+                  <div class="item">
+                      <div class="ranna-slider-content-layout1">
+                          <figure class="item-figure"><a href="single-recipe1.html"><img src="./asset/J2EE/home-page/slide1-2.jpg" alt="Product"></a></figure>
+                          <div class="item-content">
+                               <span class="sub-title">SALAD</span>
+                               <h2 class="item-title"><a href="single-recipe1.html">Italiano Salad
+                                         Mixed</a></h2>
+                               <ul class="item-rating">
+                                    <li class="star-fill"><i class="fas fa-star"></i></li>
+                                    <li class="star-fill"><i class="fas fa-star"></i></li>
+                                    <li class="star-fill"><i class="fas fa-star"></i></li>
+                                    <li class="star-fill"><i class="fas fa-star"></i></li>
+                                    <li class="star-empty"><i class="fas fa-star"></i></li>
+                                    <li><span>9<span> / 10</span></span> </li>
+                               </ul>
+                               <p>More off this less hello salamander lied porpoise much over tightly
+                                    circa
+                                    outside crud mightily rigorouse. </p>
+                               <ul class="entry-meta">
+                                    <li><a href="#"><i class="fas fa-clock"></i>15 Mins</a></li>
+                                    <li><a href="#"><i class="fas fa-user"></i>by <span>John
+                                                   Martin</span></a></li>
+                                    <li><a href="#"><i class="fas fa-heart"></i><span>02</span> Likes</a>
+                                    </li>
+                               </ul>
+                          </div>
+                     </div>
+                  </div>
+                  <div class="item">
+                      <div class="ranna-slider-content-layout1">
+                          <figure class="item-figure"><a href="single-recipe1.html"><img src="./asset/J2EE/home-page/slide1-2.jpg" alt="Product"></a></figure>
+                          <div class="item-content">
+                               <span class="sub-title">SALAD</span>
+                               <h2 class="item-title"><a href="single-recipe1.html">Italiano Salad
+                                         Mixed</a></h2>
+                               <ul class="item-rating">
+                                    <li class="star-fill"><i class="fas fa-star"></i></li>
+                                    <li class="star-fill"><i class="fas fa-star"></i></li>
+                                    <li class="star-fill"><i class="fas fa-star"></i></li>
+                                    <li class="star-fill"><i class="fas fa-star"></i></li>
+                                    <li class="star-empty"><i class="fas fa-star"></i></li>
+                                    <li><span>9<span> / 10</span></span> </li>
+                               </ul>
+                               <p>More off this less hello salamander lied porpoise much over tightly
+                                    circa
+                                    outside crud mightily rigorouse. </p>
+                               <ul class="entry-meta">
+                                    <li><a href="#"><i class="fas fa-clock"></i>15 Mins</a></li>
+                                    <li><a href="#"><i class="fas fa-user"></i>by <span>John
+                                                   Martin</span></a></li>
+                                    <li><a href="#"><i class="fas fa-heart"></i><span>02</span> Likes</a>
+                                    </li>
+                               </ul>
+                          </div>
+                     </div>
+                  </div>
+                  <div class="item">
+                      <div class="ranna-slider-content-layout1">
+                          <figure class="item-figure"><a href="single-recipe1.html"><img src="./asset/J2EE/home-page/slide1-2.jpg" alt="Product"></a></figure>
+                          <div class="item-content">
+                               <span class="sub-title">SALAD</span>
+                               <h2 class="item-title"><a href="single-recipe1.html">Italiano Salad
+                                         Mixed</a></h2>
+                               <ul class="item-rating">
+                                    <li class="star-fill"><i class="fas fa-star"></i></li>
+                                    <li class="star-fill"><i class="fas fa-star"></i></li>
+                                    <li class="star-fill"><i class="fas fa-star"></i></li>
+                                    <li class="star-fill"><i class="fas fa-star"></i></li>
+                                    <li class="star-empty"><i class="fas fa-star"></i></li>
+                                    <li><span>9<span> / 10</span></span> </li>
+                               </ul>
+                               <p>More off this less hello salamander lied porpoise much over tightly
+                                    circa
+                                    outside crud mightily rigorouse. </p>
+                               <ul class="entry-meta">
+                                    <li><a href="#"><i class="fas fa-clock"></i>15 Mins</a></li>
+                                    <li><a href="#"><i class="fas fa-user"></i>by <span>John
+                                                   Martin</span></a></li>
+                                    <li><a href="#"><i class="fas fa-heart"></i><span>02</span> Likes</a>
+                                    </li>
+                               </ul>
+                          </div>
+                     </div>
+                  </div>
+             </div>
 
-          </div>
+        </div>
 
-     </section>
+   </section>
 
      <!-- Trending Recipe Start Here -->
      <section class="padding-bottom-45">
