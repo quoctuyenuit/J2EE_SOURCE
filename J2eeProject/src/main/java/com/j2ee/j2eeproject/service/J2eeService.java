@@ -11,6 +11,7 @@ import org.javatuples.Pair;
 
 import com.j2ee.j2eeproject.common.AccountExists;
 import com.j2ee.j2eeproject.entity.ImageSample;
+import com.j2ee.j2eeproject.entity.Order;
 import com.j2ee.j2eeproject.entity.Product;
 import com.j2ee.j2eeproject.entity.User;
 import com.j2ee.j2eeproject.entity.UserType;
@@ -31,6 +32,10 @@ public interface J2eeService {
     List<ImageSample> searchImageFromProductId(Integer productId);
     
     Iterable<Product> getAllProduct();
+    
+    //---------------------------------------------------------------------
+    List<Order> searchOrderByUserId(String userId);
+    //---------------------------------------------------------------------
 
     Pair<User, AccountExists> loginWithGoogle(String code) throws ClientProtocolException, IOException;
 

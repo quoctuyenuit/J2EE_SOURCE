@@ -1,6 +1,9 @@
 package com.j2ee.j2eeproject.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
@@ -23,6 +26,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.j2ee.j2eeproject.common.AccountExists;
+import com.j2ee.j2eeproject.entity.Order;
 import com.j2ee.j2eeproject.entity.Product;
 import com.j2ee.j2eeproject.entity.User;
 import com.j2ee.j2eeproject.service.J2eeService;
@@ -64,21 +68,6 @@ public class J2eeProjectController {
 			session.setAttribute("user", user);
 			return "redirect:/home";
 		}
-	}
-
-	@GetMapping("/home")
-	public String home(HttpServletRequest request, Model model) {
-		Iterable<Product> products = this.j2eeService.getAllProduct();
-		HttpSession session = request.getSession();
-		User user = (User) session.getAttribute("user");
-		if (user == null) {
-			user = new User();
-		}
-
-		model.addAttribute("user", user);
-		model.addAttribute("products", products);
-
-		return "food-list";
 	}
 
 	@PostMapping(value = "/signup")
@@ -149,6 +138,30 @@ public class J2eeProjectController {
 			redirect.addFlashAttribute("error", e.getMessage());
 			return "redirect:/login/resetpassword?message=error";
 		}
+	}
+	
+	//=================================================================================
+	@GetMapping("/home")
+	public String home(Model model) {
+		return "redirect:/home/produ"
+				+ "cts";
+	}
+	
+	@GetMapping("/home/products")
+	public String showProducts(HttpSession session, Model model) {
+		User user = (User) session.getAttribute("user");
+		List<Order> listOrders = new ArrayList<Order>();
+		if (user != null) {
+			listOrders = j2eeService.searchOrderByUserId(user.getId());
+			
+		}
+
+		Iterable<Product> products = this.j2eeService.getAllProduct();
+		
+		model.addAttribute("listOrders", listOrders);
+		model.addAttribute("products", products);
+		model.addAttribute("user", user);
+		return "food-list";
 	}
 
 	@RequestMapping(value = "home/add-product-to-cart", method = RequestMethod.GET) 

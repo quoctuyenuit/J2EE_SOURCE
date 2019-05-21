@@ -44,8 +44,8 @@
 							<div class="row main-menu__item-circle justify-content-end align-items-center">
 								<i class="far fa-user"></i>
 								 
-								<a th:if="${user.id}" class="Login" href="#" th:text="${'Hi ' + user.name}"></a>
-								<a th:unless="${user.id}" class="Login" href="/login">Login</a>
+								<a th:if="${user}" class="Login" href="#" th:text="${'Hi ' + user.name}"></a>
+								<a th:unless="${user}" class="Login" href="/login">Login</a>
 							</div>
 						</div>
 					</div>
@@ -91,7 +91,7 @@
 								<!-- <hr style="width:20px; transform: rotate(90deg)" color="red" > -->
 								<div class="socredo-header__information-list--item">
 									<a href="#" title="Card"> <i class="fa fa-shopping-basket"
-										style="position: relative;"></i> <span th:text="${#lists.size(takenOrders)}"></span>
+										style="position: relative;"></i> <span th:text="${#lists.size(listOrders)}"></span>
 									</a>
 								</div>
 							</div>
@@ -106,7 +106,7 @@
 		<div class="container">
 			<div class="text-center" style="padding-top: 50px;">
 				<div class="footer-logo" style="margin-bottom: 50px;">
-					<a href="#"> <img src="images/logo-light.png" alt="footer-logo" />
+					<a href="#"> <img src="/images/logo-light.png" alt="footer-logo" />
 					</a>
 				</div>
 				<div class="footer-social-list" style="margin-bottom: 30px">
