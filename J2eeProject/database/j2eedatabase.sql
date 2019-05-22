@@ -2,7 +2,7 @@ DROP DATABASE IF EXISTS `j2ee`;
 CREATE DATABASE `j2ee`;
 USE `j2ee`;
 DROP TABLE IF EXISTS `j2ee`.`transaction`;
-DROP TABLE IF EXISTS `j2ee`.`order`;
+DROP TABLE IF EXISTS `j2ee`.`request_order`;
 DROP TABLE IF EXISTS `j2ee`.`user`;
 DROP TABLE IF EXISTS `j2ee`.`user_type`;
 DROP TABLE IF EXISTS `j2ee`.`image_sample`;
@@ -67,14 +67,14 @@ ALTER TABLE `catalog_group`
 ADD CONSTRAINT `PK_CATALOG_GROUP`
 PRIMARY KEY (`catalog_id`, `product_id`);
 
-CREATE TABLE `order`(
+CREATE TABLE `request_order`(
     `id` INT(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
     `user_id` VARCHAR(255) NOT NULL,
     `created` DATE
 );
 
-ALTER TABLE `order`
-ADD CONSTRAINT `FK_ORDER_USER`
+ALTER TABLE `request_order`
+ADD CONSTRAINT `FK_TAKENORDER_USER`
 FOREIGN KEY (`user_id`) REFERENCES `user`(`id`);
 
 CREATE TABLE `transaction`(
@@ -98,7 +98,7 @@ FOREIGN KEY (`payment_id`) REFERENCES `payment`(`id`);
 
 ALTER TABLE `transaction`
 ADD CONSTRAINT `FK_TRANSACTION_ORDER`
-FOREIGN KEY (`order_id`) REFERENCES `order`(`id`);
+FOREIGN KEY (`order_id`) REFERENCES `request_order`(`id`);
 
 CREATE TABLE `order_detail`(
     `product_id` INT(11) NOT NULL,
@@ -108,6 +108,15 @@ CREATE TABLE `order_detail`(
 ALTER TABLE `order_detail`
 ADD CONSTRAINT `PK_ORDER_DETAIL`
 PRIMARY KEY(`product_id`, `order_id`);
+
+ALTER TABLE `order_detail`
+ADD CONSTRAINT `FK_DETAIL_ORDER`
+FOREIGN KEY(`order_id`) REFERENCES `request_order`(`id`);
+
+ALTER TABLE `order_detail`
+ADD CONSTRAINT `FK_PRODUCT_ORDER`
+FOREIGN KEY(`product_id`) REFERENCES `PRODUCT`(`id`);
+
 
 LOCK TABLE `user_type` WRITE;
 DELETE FROM `user_type`;

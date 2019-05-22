@@ -3,6 +3,7 @@ package com.j2ee.j2eeproject.controller;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -26,7 +27,9 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.j2ee.j2eeproject.common.AccountExists;
-import com.j2ee.j2eeproject.entity.Order;
+import com.j2ee.j2eeproject.common.Common;
+import com.j2ee.j2eeproject.entity.TakenOrder;
+import com.j2ee.j2eeproject.entity.OrderPreparationEntity;
 import com.j2ee.j2eeproject.entity.Product;
 import com.j2ee.j2eeproject.entity.User;
 import com.j2ee.j2eeproject.service.J2eeService;
@@ -38,7 +41,7 @@ public class J2eeProjectController {
 	@Autowired
 	private J2eeService j2eeService;
 
-	@RequestMapping(value = {"/login" })
+	@RequestMapping(value = { "/login" })
 	public String login(HttpServletRequest request) {
 		HttpSession session = request.getSession();
 		User user = (User) session.getAttribute("user");
@@ -52,7 +55,7 @@ public class J2eeProjectController {
 	@RequestMapping("/login-google")
 	public String loginGoogle(HttpServletRequest request, Model model) throws ClientProtocolException, IOException {
 		String code = request.getParameter("code");
-		
+
 		if (code == null || code.isEmpty()) {
 			return "redirect:/login?google=error";
 		}
@@ -65,13 +68,14 @@ public class J2eeProjectController {
 		} else {
 			HttpSession session = request.getSession();
 			User user = this.j2eeService.searchUsers(loginResult.getValue0().getEmail());
-			session.setAttribute("user", user);
+			session.setAttribute(Common.Constaints.kUSER, user);
 			return "redirect:/home";
 		}
 	}
 
 	@PostMapping(value = "/signup")
-	public String signup(HttpServletRequest request, @Valid User user, BindingResult result, RedirectAttributes redirect, Model model) {
+	public String signup(HttpServletRequest request, @Valid User user, BindingResult result,
+			RedirectAttributes redirect, Model model) {
 		if (result.hasErrors()) {
 			return "signup";
 		}
@@ -79,12 +83,13 @@ public class J2eeProjectController {
 		j2eeService.saveUser(user);
 		model.addAttribute("user", user);
 		HttpSession session = request.getSession();
-		session.setAttribute("user", user);
+		session.setAttribute(Common.Constaints.kUSER, user);
 		return "redirect:/home";
 	}
 
 	@PostMapping(value = "/login-manually")
-	public String loginManually(HttpServletRequest request, @Valid User user, BindingResult result, RedirectAttributes redirect, Model model) {
+	public String loginManually(HttpServletRequest request, @Valid User user, BindingResult result,
+			RedirectAttributes redirect, Model model) {
 		try {
 			User validUser = j2eeService.login(user);
 			request.getSession().setAttribute("user", validUser);
@@ -139,38 +144,62 @@ public class J2eeProjectController {
 			return "redirect:/login/resetpassword?message=error";
 		}
 	}
-	
-	//=================================================================================
+
+	// =================================================================================
 	@GetMapping("/home")
-	public String home(Model model) {
-		return "redirect:/home/produ"
-				+ "cts";
+	public String home(HttpSession session, Model model) {
+		User user = (User) session.getAttribute(Common.Constaints.kUSER);
+		List<TakenOrder> listOrders = new ArrayList<TakenOrder>();
+		if (user != null) {
+			listOrders = j2eeService.searchOrderByUserId(user.getId());
+
+		}
+
+		model.addAttribute("listOrders", listOrders);
+		model.addAttribute("user", user);
+		return "home-page";
 	}
-	
+
 	@GetMapping("/home/products")
 	public String showProducts(HttpSession session, Model model) {
 		User user = (User) session.getAttribute("user");
-		List<Order> listOrders = new ArrayList<Order>();
-		if (user != null) {
-			listOrders = j2eeService.searchOrderByUserId(user.getId());
-			
-		}
-
-		Iterable<Product> products = this.j2eeService.getAllProduct();
-		
-		model.addAttribute("listOrders", listOrders);
-		model.addAttribute("products", products);
 		model.addAttribute("user", user);
+		
+		List<OrderPreparationEntity> listOrders = (List<OrderPreparationEntity>) session.getAttribute(Common.Constaints.kLIST_PRODUCTS);
+		if (listOrders == null) {
+			model.addAttribute("quantity", 0);
+		} else {
+			model.addAttribute("quantity", listOrders.size());
+		}
+		
+		Iterable<Product> products = this.j2eeService.getAllProduct();
+		model.addAttribute("products", products);
 		return "food-list";
 	}
 
-	@RequestMapping(value = "home/add-product-to-cart", method = RequestMethod.GET) 
+	@GetMapping("/home/products/detail")
+	public String showDetail(HttpServletRequest request, Model model) {
+		Integer productId = Integer.parseInt(request.getParameter("id"));
+		Optional<Product> product = this.j2eeService.findOneProduct(productId);
+
+		model.addAttribute("product", product.get());
+		return "food-detail";
+	}
+
+	@RequestMapping(value = "/home/products/add-product-to-cart", method = RequestMethod.GET)
 	public @ResponseBody String addCart(HttpServletRequest request) {
-		int number = 10;
+		Integer productId = Integer.parseInt(request.getParameter("productId"));
+		
+		HttpSession session = request.getSession();
+		
+		List<OrderPreparationEntity> listOrders = this.j2eeService.addToCart(productId, session);
+		
+		session.setAttribute(Common.Constaints.kLIST_PRODUCTS, listOrders);
+		
 		ObjectMapper mapper = new ObjectMapper();
 		String ajaxResponse = "";
 		try {
-			ajaxResponse = mapper.writeValueAsString(number);
+			ajaxResponse = mapper.writeValueAsString(listOrders.size());
 		} catch (JsonProcessingException e) {
 			e.printStackTrace();
 		}

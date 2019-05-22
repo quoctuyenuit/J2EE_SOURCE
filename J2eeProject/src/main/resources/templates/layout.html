@@ -34,18 +34,19 @@
 				<div class="row align-items-center">
 					<div class="col-lg-8 col-md-3 col-sm-4 col-4">
 						<div class="row main__menu-list">
-							<a href="#">Home</a> <a href="#">Category </a> <a href="#">Recipes
-							</a> <a href="#">Pages </a> <a href="#">Blog </a> <a href="#">Shop
-							</a> <a href="#">Contact </a>
+							<a href="#">Home</a> <a href="#">Category </a> <a
+								href="/home/products">Recipes </a> <a href="#">Pages </a> <a
+								href="#">Blog </a> <a href="#">Shop </a> <a href="#">Contact
+							</a>
 						</div>
 					</div>
 					<div class="col-lg-4 col-md-9 col-sm-8 col-8">
 						<div class="main-menu__item">
-							<div class="row main-menu__item-circle justify-content-end align-items-center">
-								<i class="far fa-user"></i>
-								 
-								<a th:if="${user}" class="Login" href="#" th:text="${'Hi ' + user.name}"></a>
-								<a th:unless="${user}" class="Login" href="/login">Login</a>
+							<div
+								class="row main-menu__item-circle justify-content-end align-items-center">
+								<i class="far fa-user"></i> <a th:if="${user}" class="Login"
+									href="#" th:text="${'Hi ' + user.name}"></a> <a
+									th:unless="${user}" class="Login" href="/login">Login</a>
 							</div>
 						</div>
 					</div>
@@ -90,8 +91,9 @@
 								</div>
 								<!-- <hr style="width:20px; transform: rotate(90deg)" color="red" > -->
 								<div class="socredo-header__information-list--item">
-									<a href="#" title="Card"> <i class="fa fa-shopping-basket"
-										style="position: relative;"></i> <span th:text="${#lists.size(listOrders)}"></span>
+									<a href="#" title="Card"> 
+									<i class="fa fa-shopping-basket" style="position: relative;"></i> 
+									<span th:text="${quantity}" id="ajax-response-quantity"></span> <!-- <span th:text="${#lists.size(listOrders)}"></span> -->
 									</a>
 								</div>
 							</div>
@@ -106,7 +108,8 @@
 		<div class="container">
 			<div class="text-center" style="padding-top: 50px;">
 				<div class="footer-logo" style="margin-bottom: 50px;">
-					<a href="#"> <img src="/images/logo-light.png" alt="footer-logo" />
+					<a href="#"> <img src="/images/logo-light.png"
+						alt="footer-logo" />
 					</a>
 				</div>
 				<div class="footer-social-list" style="margin-bottom: 30px">

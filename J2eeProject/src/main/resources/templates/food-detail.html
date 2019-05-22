@@ -8,7 +8,7 @@
 	src="/webjars/bootstrap/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="/webjars/jquery/jquery.min.js"></script>
 <link rel="stylesheet" href="/css/bootstrap.min.css"
-	th:href="@{css/bootstrap.min.css}" /></link>
+	th:href="@{/css/bootstrap.min.css}" /></link>
 <link rel="stylesheet" href="/css/flaticon.css"
 	th:href="@{/css/flaticon.css}" /></link>
 <link rel="stylesheet"
@@ -83,7 +83,7 @@
 							</div>
 						</div>
 						<div class="item-figure">
-							<img src="images/single-product1.jpg" alt="Product"></img>
+							<img th:src="@{'/images/food-list/' + ${product.imageSample}}" alt="Product" style="max-height: 185px; width: 100%"></img>
 						</div>
 						<div class="item-feature">
 							<ul>
@@ -138,7 +138,7 @@
 								convallis.</p>
 							<div class="direction-box-layout1">
 								<div class="item-figure">
-									<img src="images/direction1.jpg" alt="DIRECTIONS">
+									<img src="/images/direction1.jpg" alt="DIRECTIONS">
 								</div>
 								<div class="item-content">
 									<div class="serial-number">01 Thông Tin Sản Phẩm</div>
@@ -149,7 +149,7 @@
 							</div>
 							<div class="direction-box-layout1">
 								<div class="item-figure">
-									<img src="images/direction2.jpg" alt="DIRECTIONS">
+									<img src="/images/direction2.jpg" alt="DIRECTIONS">
 								</div>
 								<div class="item-content">
 									<div class="serial-number">02 Cách Dùng</div>
@@ -160,7 +160,7 @@
 							</div>
 							<div class="direction-box-layout1">
 								<div class="item-figure">
-									<img src="images/direction3.jpg" alt="DIRECTIONS">
+									<img src="/images/direction3.jpg" alt="DIRECTIONS">
 								</div>
 								<div class="item-content">
 									<div class="serial-number">03 Thời Gian Và Phí Vận Chuyển</div>
@@ -191,7 +191,7 @@
 							<ul>
 								<li class="reviews-single-item">
 									<div class="media media-none--xs">
-										<img src="images/comment1.jpg" alt="Comment"
+										<img src="/images/comment1.jpg" alt="Comment"
 											class="media-img-auto"></img>
 										<div class="media-body">
 											<h4 class="comment-title">Liza Zaman</h4>
@@ -219,7 +219,7 @@
 								</li>
 								<li class="reviews-single-item">
 									<div class="media media-none--xs">
-										<img src="images/comment2.jpg" alt="Comment"
+										<img src="/images/comment2.jpg" alt="Comment"
 											class="media-img-auto"></img>
 										<div class="media-body">
 											<h4 class="comment-title">John Martin</h4>
@@ -317,7 +317,7 @@
 							<ul class="block-list">
 								<li class="single-item">
 									<div class="item-img">
-										<a href="#"><img src="images/latest1.jpg" alt="Post"></a>
+										<a href="#"><img src="/images/latest1.jpg" alt="Post"></a>
 										<div class="count-number">1</div>
 									</div>
 									<div class="item-content">
@@ -333,7 +333,7 @@
 								</li>
 								<li class="single-item">
 									<div class="item-img">
-										<a href="#"><img src="images/latest2.jpg" alt="Post"></a>
+										<a href="#"><img src="/images/latest2.jpg" alt="Post"></a>
 										<div class="count-number">2</div>
 									</div>
 									<div class="item-content">
@@ -349,7 +349,7 @@
 								</li>
 								<li class="single-item">
 									<div class="item-img">
-										<a href="#"><img src="images/latest3.jpg" alt="Post"></a>
+										<a href="#"><img src="/images/latest3.jpg" alt="Post"></a>
 										<div class="count-number">3</div>
 									</div>
 									<div class="item-content">
@@ -365,7 +365,7 @@
 								</li>
 								<li class="single-item">
 									<div class="item-img">
-										<a href="#"><img src="images/latest4.jpg" alt="Post"></a>
+										<a href="#"><img src="/images/latest4.jpg" alt="Post"></a>
 										<div class="count-number">4</div>
 									</div>
 									<div class="item-content">

@@ -1,10 +1,12 @@
 package com.j2ee.j2eeproject.service;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.Random;
 
+import javax.servlet.http.HttpSession;
 import javax.validation.constraints.Email;
 
 import org.apache.http.client.ClientProtocolException;
@@ -16,7 +18,8 @@ import com.j2ee.j2eeproject.common.Common;
 import com.j2ee.j2eeproject.common.LocalizeStrings;
 import com.j2ee.j2eeproject.entity.GooglePojo;
 import com.j2ee.j2eeproject.entity.ImageSample;
-import com.j2ee.j2eeproject.entity.Order;
+import com.j2ee.j2eeproject.entity.OrderPreparationEntity;
+import com.j2ee.j2eeproject.entity.TakenOrder;
 import com.j2ee.j2eeproject.entity.Product;
 import com.j2ee.j2eeproject.entity.User;
 import com.j2ee.j2eeproject.entity.UserType;
@@ -48,7 +51,8 @@ public class J2eeServiceImpl implements J2eeService {
 	@Autowired
 	private ProductRepository productRepository;
 	
-	@Autowired OrderRepository orderRepository;
+	@Autowired 
+	private OrderRepository orderRepository;
 
 	@Autowired
 	private GoogleUtils googleUtils;
@@ -93,9 +97,36 @@ public class J2eeServiceImpl implements J2eeService {
 	}
 	
 	@Override
-	public List<Order> searchOrderByUserId(String userId) {
+	public Optional<Product> findOneProduct(Integer id) {
+		// TODO Auto-generated method stub
+		return productRepository.findById(id);
+	}
+	
+	@Override
+	public List<TakenOrder> searchOrderByUserId(String userId) {
 		// TODO Auto-generated method stub
 		return orderRepository.findByUserIdContaining(userId);
+	}
+	
+	@Override
+	public List<OrderPreparationEntity> addToCart(Integer productId, HttpSession session) {
+		// TODO Auto-generated method stub
+		@SuppressWarnings("unchecked")
+		List<OrderPreparationEntity> listOrders = (List<OrderPreparationEntity>) session.getAttribute(Common.Constaints.kLIST_PRODUCTS);
+		
+		if (listOrders == null) {
+			listOrders = new ArrayList<OrderPreparationEntity>();
+		} else {
+			for (OrderPreparationEntity order : listOrders) {
+				if (order.getProductId() == productId) {
+					order.setQuantity(order.getQuantity() + 1);
+					return listOrders;
+				}
+			}
+		}
+		
+		listOrders.add(new OrderPreparationEntity(productId, 1));
+		return listOrders;
 	}
 
 	// ----------------------------------------------------------------

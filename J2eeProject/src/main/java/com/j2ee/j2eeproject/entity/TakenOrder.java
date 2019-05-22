@@ -1,5 +1,7 @@
 package com.j2ee.j2eeproject.entity;
 
+import java.sql.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -9,20 +11,19 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
 
 @Entity
-@Table(name = "Catalog")
-public class Catalog {
-	
+@Table(name = "TakenOrder")
+public class TakenOrder {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
     private Integer id;
     
     @NotEmpty
-    @Column(name = "name", nullable = false)
-    private String name;
+    @Column(name = "user_id")
+    private String userId;
     
-    @Column(name = "parentId")
-    private Integer parentId;
+    @Column(name = "created")
+    private Date created;
 
 	public Integer getId() {
 		return id;
@@ -32,29 +33,30 @@ public class Catalog {
 		this.id = id;
 	}
 
-	public String getName() {
-		return name;
+	public String getUserId() {
+		return userId;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setUserId(String userId) {
+		this.userId = userId;
 	}
 
-	public Integer getParentId() {
-		return parentId;
+	public Date getCreated() {
+		return created;
 	}
 
-	public void setParentId(Integer parentId) {
-		this.parentId = parentId;
+	public void setCreated(Date created) {
+		this.created = created;
 	}
 
-	public Catalog(@NotEmpty String name, Integer parentId) {
+	public TakenOrder(@NotEmpty String userId, Date created) {
 		super();
-		this.name = name;
-		this.parentId = parentId;
+		this.userId = userId;
+		this.created = created;
 	}
 
-	public Catalog() {
+	public TakenOrder() {
 		super();
+		// TODO Auto-generated constructor stub
 	}
 }
