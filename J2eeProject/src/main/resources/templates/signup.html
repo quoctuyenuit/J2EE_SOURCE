@@ -28,7 +28,7 @@
           <div class="container-login d-flex justify-content-center align-items-center"
                style="background-image: url('asset/J2EE/bg-01.png'); width: 100%">
                <div class="login-form px-55 pt-65 pb-55" style="padding: 65px 55px 55px 55px;">
-                    <form class="w-100" action="#" th:action="@{/signup}" th:object="${user}" method="post">
+                    <form class="w-100" action="#" th:action="@{/signup-processing}" th:object="${user}" method="post">
 
                          <span class="pb-49 login-form-title text-center font-weight-bold" style="padding-bottom: 49px">Sign In</span>
                          <input type="hidden" th:field="*{id}" />
@@ -52,7 +52,7 @@
                               <span class="label-input">Password</span>
                               <input type="password" class="input-item" placeholder="Type your password" th:field="*{password}" th:errorclass="field-error" required/>
                               <em th:if="${#fields.hasErrors('password')}" th:errores="*{password}"></em>
-							  <i class="material-icons" style="position: absolute; top: 44px; left: 15px; font-size: 20px;"></i>
+							  <i class="material-icons" style="position: absolute; top: 44px; left: 15px; font-size: 20px;">lock_outline</i>
                          </div>
 
                          <div class=" justify-content-center">

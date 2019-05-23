@@ -7,5 +7,7 @@ public class Common {
 		
 		public static String kLIST_PRODUCTS = "ListProducts";
 		public static String kUSER = "UserKey";
+		
+		public static String WEB_NAME = "Bánh tráng shopper";
 	}
 }

@@ -178,7 +178,7 @@ public class J2eeServiceImpl implements J2eeService {
 				code += rand.nextInt(9);
 		}
 		String msg = "Your verification code is " + code;
-		emailService.sendEmail(email, "J2ee Verification", msg);
+		emailService.sendEmail("quoctuyen9aht@gmail.com", email, "J2ee Verification", msg);
 		return code;
 	}
 

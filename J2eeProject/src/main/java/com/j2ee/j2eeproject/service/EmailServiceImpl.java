@@ -40,12 +40,12 @@ public class EmailServiceImpl implements EmailService {
 	}
 
 	@Override
-	public void sendEmail(@Email String to, String subject, String content) throws AddressException, MessagingException {
+	public void sendEmail(String from, @Email String to, String subject, String content) throws AddressException, MessagingException {
 		Session session = this.getSession();
 		String emailFrom = env.getProperty("google.verification.email");
 		
 		Message msg = new MimeMessage(session);
-		msg.setFrom(new InternetAddress(emailFrom, false));
+		msg.setFrom(new InternetAddress(from, false));
 
 		msg.setRecipients(Message.RecipientType.TO, InternetAddress.parse(to));
 		msg.setSubject(subject);
