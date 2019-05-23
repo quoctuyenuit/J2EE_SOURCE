@@ -69,7 +69,7 @@ public class J2eeProjectController {
 		Optional<Product> product = this.j2eeService.findOneProduct(productId);
 
 		model.addAttribute("product", product.get());
-		return "food-detail";
+		return "product-detail";
 	}
 
 	@RequestMapping(value = "/home/products/add-product-to-cart", method = RequestMethod.GET)

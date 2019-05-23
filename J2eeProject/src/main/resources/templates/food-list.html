@@ -90,7 +90,7 @@
 					<div class="col-4" th:each="product, iterStat : ${products}">
 
 						<li class="product-item"><a class="product-item--image"
-							th:href="@{'/home/recipes/detail?id=' + ${product.id}}"> <img
+							th:href="@{'/home/product/detail?id=' + ${product.id}}"> <img
 								th:src="@{${'/images/food-list/' + product.imageSample}}"
 								style="max-height: 185px; width: 100%" />
 						</a>
