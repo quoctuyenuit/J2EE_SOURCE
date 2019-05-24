@@ -130,14 +130,15 @@
                                         conubia nostra, per inceptos himenaeos.</div>
                                    <div class="product-form">
                                         <div class="quantity sh-increase-numbers">
-                                             <span class="sh-increase-numbers--down"> <i class="fas fa-arrow-down"></i>
-                                             </span> <input type="text" id="quantity_5cda77810d1d3"
-                                                  class="sh-quantity-number" step="1" min="0" max="" placeholder="1">
-                                             <span class="sh-increase-numbers--up">
+                                             <span class="sh-increase-numbers--down"> <i class="fas fa-arrow-down" onclick="descreaseQuantity()"></i>
+                                             </span> 
+                                             <input type="text" value = 1 id="ajax-quantity"
+                                                  class="sh-quantity-number" step="1" min="0" max="">
+                                             <span class="sh-increase-numbers--up" onclick="increaseQuantity()">
                                                   <i class="fas fa-arrow-up"></i>
                                              </span>
                                         </div>
-                                        <button type="submit" class="add-to-cart row">
+                                        <button type="submit" class="add-to-cart row" th:onclick="'addToCart(\'' + ${product.id} + '\')'">
                                              <i class="fa fa-shopping-basket" style="position: relative;"></i>
                                              <p>Add to cart</p>
                                         </button>
@@ -354,14 +355,7 @@
          });
        }
      </script>
-
-     <!-- Optional JavaScript -->
-     <script
-       src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
-     <script
-       src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"
-       integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS"
-       crossorigin="anonymous"></script>
+     
      <!--Related Product End Here-->
      <nav th:replace="layout :: footer"></nav>
 </body>
