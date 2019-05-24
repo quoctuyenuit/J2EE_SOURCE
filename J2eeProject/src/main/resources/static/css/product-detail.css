@@ -305,3 +305,21 @@ body {
      top: -2px;
      right: 0;
  }
+
+ .slider-for .resize{
+    width: 530px;
+    height: 572px;
+    image-rendering: pixelated;
+}
+.slider-nav .resize{
+    width: 176px;
+    height: 189px;
+}
+.slick-prev::before{
+    color: #ff4a52;
+    content: '\2039';
+}
+.slick-next::before{
+    color: #ff4a52;
+    content: '\203A';
+}
