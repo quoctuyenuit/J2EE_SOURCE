@@ -24,14 +24,16 @@ import com.j2ee.j2eeproject.service.J2eeService;
 public class J2eeProjectController {
 	@Autowired
 	private J2eeService j2eeService;
+
 	// =================================================================================
 	@GetMapping("/home")
 	public String home(HttpSession session, Model model) {
 		User user = (User) session.getAttribute(Common.Constaints.kUSER);
 		model.addAttribute("user", user);
-		
+
 		@SuppressWarnings("unchecked")
-		List<OrderPreparationEntity> listOrders = (List<OrderPreparationEntity>) session.getAttribute(Common.Constaints.kLIST_PRODUCTS);
+		List<OrderPreparationEntity> listOrders = (List<OrderPreparationEntity>) session
+				.getAttribute(Common.Constaints.kLIST_PRODUCTS);
 		if (listOrders == null) {
 			model.addAttribute("quantity", 0);
 		} else {
@@ -44,20 +46,21 @@ public class J2eeProjectController {
 	public String showProducts(HttpSession session, Model model) {
 		User user = (User) session.getAttribute(Common.Constaints.kUSER);
 		model.addAttribute("user", user);
-		
+
 		@SuppressWarnings("unchecked")
-		List<OrderPreparationEntity> listOrders = (List<OrderPreparationEntity>) session.getAttribute(Common.Constaints.kLIST_PRODUCTS);
+		List<OrderPreparationEntity> listOrders = (List<OrderPreparationEntity>) session
+				.getAttribute(Common.Constaints.kLIST_PRODUCTS);
 		if (listOrders == null) {
 			model.addAttribute("quantity", 0);
 		} else {
 			model.addAttribute("quantity", listOrders.size());
 		}
-		
+
 		Iterable<Product> products = this.j2eeService.getAllProduct();
 		model.addAttribute("products", products);
 		return "food-list";
 	}
-	
+
 	@GetMapping("/home/contact")
 	public String contact(Model model) {
 		return "contact";
@@ -69,27 +72,7 @@ public class J2eeProjectController {
 		Optional<Product> product = this.j2eeService.findOneProduct(productId);
 
 		model.addAttribute("product", product.get());
+
 		return "product-detail";
-	}
-
-	@RequestMapping(value = "/home/products/add-product-to-cart", method = RequestMethod.GET)
-	public @ResponseBody String addCart(HttpServletRequest request) {
-		Integer productId = Integer.parseInt(request.getParameter("productId"));
-		
-		HttpSession session = request.getSession();
-		
-		List<OrderPreparationEntity> listOrders = this.j2eeService.addToCart(productId, session);
-		
-		session.setAttribute(Common.Constaints.kLIST_PRODUCTS, listOrders);
-		
-		ObjectMapper mapper = new ObjectMapper();
-		String ajaxResponse = "";
-		try {
-			ajaxResponse = mapper.writeValueAsString(listOrders.size());
-		} catch (JsonProcessingException e) {
-			e.printStackTrace();
-		}
-
-		return ajaxResponse;
 	}
 }

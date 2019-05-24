@@ -39,7 +39,7 @@ public interface J2eeService {
 	// ---------------------------------------------------------------------
 	List<TakenOrder> searchOrderByUserId(String userId);
 	// ---------------------------------------------------------------------
-	List<OrderPreparationEntity> addToCart(Integer productId, HttpSession session);
+	List<OrderPreparationEntity> addToCart(Integer productId, Integer quantity, HttpSession session);
 	// ---------------------------------------------------------------------
 	Pair<User, AccountExists> loginWithGoogle(String code) throws ClientProtocolException, IOException;
 

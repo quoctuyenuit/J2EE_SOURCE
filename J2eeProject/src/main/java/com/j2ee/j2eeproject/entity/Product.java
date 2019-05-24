@@ -1,7 +1,6 @@
 package com.j2ee.j2eeproject.entity;
 
 import javax.persistence.Column;
-import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -23,7 +22,7 @@ public class Product {
 
 	@NotEmpty
 	@Column(name = "price", nullable = false)
-	private Float price;
+	private Integer price;
 
 	@Column(name = "discount")
 	private Float discount;
@@ -31,6 +30,9 @@ public class Product {
 	@Column(name = "image_sample")
 	private String imageSample;
 
+	@Column(name = "description")
+	private String description;
+	
 	public String getImageSample() {
 		return imageSample;
 	}
@@ -55,11 +57,11 @@ public class Product {
 		this.name = name;
 	}
 
-	public Float getPrice() {
+	public Integer getPrice() {
 		return price;
 	}
 
-	public void setPrice(Float price) {
+	public void setPrice(Integer price) {
 		this.price = price;
 	}
 
@@ -71,11 +73,22 @@ public class Product {
 		this.discount = discount;
 	}
 
-	public Product(@NotEmpty String name, @NotEmpty Float price, Float discount) {
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	public Product(@NotEmpty String name, @NotEmpty Integer price, Float discount, String imageSample,
+			String description) {
 		super();
 		this.name = name;
 		this.price = price;
 		this.discount = discount;
+		this.imageSample = imageSample;
+		this.description = description;
 	}
 
 	public Product() {

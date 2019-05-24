@@ -10,7 +10,7 @@ FIELDS TERMINATED BY ','
 ENCLOSED BY '"'
 LINES TERMINATED BY '\n'
 IGNORE 1 ROWS
-(`name`, `price`, `discount`, `image_sample`);
+(`name`, `price`, `description`, `image_sample`, `discount`);
 UNLOCK TABLES;
 
 LOCK TABLE `j2ee`.`image_sample` WRITE;

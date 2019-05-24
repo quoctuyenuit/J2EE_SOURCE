@@ -39,9 +39,10 @@ CREATE TABLE `image_sample`(
 CREATE TABLE `product`(
     `id` INT(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
     `name` NVARCHAR(255) NOT NULL UNIQUE,
-    `price` FLOAT,
+    `price` INT,
     `discount` FLOAT DEFAULT 0,
-    `image_sample` VARCHAR(255)
+    `image_sample` VARCHAR(255),
+    `description` NVARCHAR(520)
 );
 
 ALTER TABLE `image_sample`

@@ -109,7 +109,7 @@ public class J2eeServiceImpl implements J2eeService {
 	}
 	
 	@Override
-	public List<OrderPreparationEntity> addToCart(Integer productId, HttpSession session) {
+	public List<OrderPreparationEntity> addToCart(Integer productId, Integer quantity, HttpSession session) {
 		// TODO Auto-generated method stub
 		@SuppressWarnings("unchecked")
 		List<OrderPreparationEntity> listOrders = (List<OrderPreparationEntity>) session.getAttribute(Common.Constaints.kLIST_PRODUCTS);
@@ -119,13 +119,13 @@ public class J2eeServiceImpl implements J2eeService {
 		} else {
 			for (OrderPreparationEntity order : listOrders) {
 				if (order.getProductId() == productId) {
-					order.setQuantity(order.getQuantity() + 1);
+					order.setQuantity(order.getQuantity() + quantity);
 					return listOrders;
 				}
 			}
 		}
 		
-		listOrders.add(new OrderPreparationEntity(productId, 1));
+		listOrders.add(new OrderPreparationEntity(productId, quantity));
 		return listOrders;
 	}
 
