@@ -9,11 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.j2ee.j2eeproject.common.Common;
 import com.j2ee.j2eeproject.entity.OrderPreparationEntity;
 import com.j2ee.j2eeproject.entity.Product;
@@ -68,6 +63,19 @@ public class J2eeProjectController {
 
 	@GetMapping("/home/products/detail")
 	public String showDetail(HttpServletRequest request, Model model) {
+		HttpSession session = request.getSession();
+		User user = (User) session.getAttribute(Common.Constaints.kUSER);
+		model.addAttribute("user", user);
+
+		@SuppressWarnings("unchecked")
+		List<OrderPreparationEntity> listOrders = (List<OrderPreparationEntity>) session
+				.getAttribute(Common.Constaints.kLIST_PRODUCTS);
+		if (listOrders == null) {
+			model.addAttribute("quantity", 0);
+		} else {
+			model.addAttribute("quantity", listOrders.size());
+		}
+		
 		Integer productId = Integer.parseInt(request.getParameter("id"));
 		Optional<Product> product = this.j2eeService.findOneProduct(productId);
 
