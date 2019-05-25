@@ -9,8 +9,8 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
 
 @Entity
-@Table(name = "ImageSample")
-public class ImageSample {
+@Table(name = "product_image")
+public class ProductImage {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id", nullable = false)
@@ -20,7 +20,7 @@ public class ImageSample {
 	@Column(name = "name", nullable = false)
 	private String name;
 	
-	@Column(name = "productId")
+	@Column(name = "product_id")
 	private Integer productId;
 
 	public Integer getId() {
@@ -47,13 +47,13 @@ public class ImageSample {
 		this.productId = productId;
 	}
 	
-	public ImageSample(@NotEmpty String name, Integer productId) {
+	public ProductImage(@NotEmpty String name, Integer productId) {
 		super();
 		this.name = name;
 		this.productId = productId;
 	}
 
-	public ImageSample() {
+	public ProductImage() {
 		super();
 	}
 }

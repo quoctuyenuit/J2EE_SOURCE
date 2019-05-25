@@ -60,7 +60,7 @@
                <div class="row ">
                     <div class="col-12">
                          <div class="breadcrumbs-area">
-                              <h1>Your recipes</h1>
+                              <h1>Order</h1>
                               <ul>
                                    <li><a href="#">Home</a></li>
                                    <li>Page Detail</li>
@@ -78,37 +78,24 @@
                <div id="content">
                     <div class="row">
                          <!--Product Content Right-->
-                         <div class="sh-woo-layout-left col-md-6">
-                              <div class="slider slider-for">
-                                   <div><img src="/images/home-page/product/product12.jpg" alt="" class="resize">
-                                   </div>
-                                   <div><img src="/images/home-page/product/product13.jpg" alt="" class="resize">
-                                   </div>
-                                   <div><img src="/images/home-page/product/product11.jpg" alt="" class="resize">
-                                   </div>
-                                   <div><img src="/images/home-page/product/product12.jpg" alt="" class="resize">
-                                   </div>
-                                   <div><img src="/images/home-page/product/product12.jpg" alt="" class="resize">
-                                   </div>
-                              </div>
-                              <div class="slider slider-nav pt-3">
-                                   <div><img src="/images/home-page/product/product12.jpg" alt="" class="resize">
-                                   </div>
-                                   <div><img src="/images/home-page/product/product13.jpg" alt="" class="resize">
-                                   </div>
-                                   <div><img src="/images/home-page/product/product11.jpg" alt="" class="resize">
-                                   </div>
-                                   <div><img src="/images/home-page/product/product12.jpg" alt="" class="resize">
-                                   </div>
-                                   <div><img src="/images/home-page/product/product12.jpg" alt="" class="resize">
-                                   </div>
-                              </div>
+                         <div class="sh-woo-layout-left col-md-4">
+                         	  <th:block th:if=${product.listImages}>
+	                              <div class="slider slider-for">
+	                                   <div th:each="image, i : ${product.listImages}">
+	                                   <img th:src="@{'/images/food-list/' + ${image}}" alt="" class="resize">
+	                                   </div>
+	                              </div>
+	                              <div class="slider slider-nav pt-3">
+	                                   <div th:each="image, i : ${product.listImages}">
+	                                   	<img th:src="@{'/images/food-list/' + ${image}}" alt="" class="resize">
+	                                   </div>
+	                              </div>
+                              </th:block>
                          </div>
                          <!--Product Content Right-->
-                         <div class="sh-woo-layout-right col-md-6">
+                         <div class="sh-woo-layout-right col-md-8">
                               <div class="summary entry-summary">
-                                   <h1 class="product_title entry-title">Pumpkin Cheesecake
-                                        With GingersnapCrust</h1>
+                                   <h1 class="product_title entry-title" th:text="${product.name}">Product name</h1>
                                    <div class="product-rating">
                                         <div class="star-rating text-center">
                                              <span class="fa fa-star checked"></span> <span
@@ -117,17 +104,10 @@
                                                   class="fa fa-star checked"></span> <span class="fa fa-star"></span>
                                         </div>
                                    </div>
-                                   <p class="price">$12.00</p>
+                                   <p class="price" th:text="${product.price + ' VND'}"></p>
                                    <div class="woo-seperator-line"></div>
-                                   <div class="woo-short-description">Proin pellentesque,
-                                        tellus non interdum mollis, risus velit consectetur lorem, eget
-                                        commodo turpis orci non massa. Etiam vitae elit eget leo
-                                        pulvinar consectetur. Praesent pretium magna id sollicitudin
-                                        rutrum. Vestibulum eros enim, venenatis at rutrum quis,
-                                        sollicitudin vulputate diam. Proin interdum id nibh in
-                                        efficitur. Etiam sollicitudin eget justo vitae lacinia. Nam ut
-                                        eros elit. Class aptent taciti sociosqu ad litora torquent per
-                                        conubia nostra, per inceptos himenaeos.</div>
+                                   <div class="woo-short-description" th:text="${product.description}"></div>
+                                   
                                    <div class="product-form">
                                         <div class="quantity sh-increase-numbers">
                                              <span class="sh-increase-numbers--down" onclick="descreaseQuantity()"> <i class="fas fa-arrow-down"></i>
@@ -146,13 +126,13 @@
 
 
                               </div>
-                              <div class="product-reviews">
+                              <!-- <div class="product-reviews">
                                    <ul class="tabs wc-tabs">
                                         <li class="description_tab"><a href="#">Review (1)</a></li>
                                    </ul>
 
-                              </div>
-                              <div class="comment">
+                              </div> -->
+                              <!-- <div class="comment">
                                    <p>
                                         1 review for <span>Pumpkin Cheesecake With
                                              GingersnapCrust</span>
@@ -222,7 +202,7 @@
                                              </p>
                                         </div>
                                    </div>
-                              </div>
+                              </div> -->
                          </div>
                     </div>
                </div>

@@ -12,17 +12,17 @@ import javax.validation.constraints.Email;
 import org.apache.http.client.ClientProtocolException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import com.j2ee.j2eeproject.common.AccountExists;
 import com.j2ee.j2eeproject.common.Common;
 import com.j2ee.j2eeproject.common.LocalizeStrings;
 import com.j2ee.j2eeproject.entity.OrderPreparationEntity;
+import com.j2ee.j2eeproject.entity.ProductEntity;
 import com.j2ee.j2eeproject.entity.pojo.GooglePojo;
-import com.j2ee.j2eeproject.entity.pojo.ImageSample;
+import com.j2ee.j2eeproject.entity.pojo.ProductImage;
 import com.j2ee.j2eeproject.entity.pojo.Product;
 import com.j2ee.j2eeproject.entity.pojo.User;
 import com.j2ee.j2eeproject.entity.pojo.UserType;
-import com.j2ee.j2eeproject.repository.ImageSampleRepository;
+import com.j2ee.j2eeproject.repository.ProductImageRepository;
 import com.j2ee.j2eeproject.repository.ProductRepository;
 import com.j2ee.j2eeproject.repository.UserRepository;
 import com.j2ee.j2eeproject.repository.UserTypeRepository;
@@ -30,6 +30,7 @@ import com.j2ee.j2eeproject.untils.GoogleUtils;
 import com.j2ee.j2eeproject.validation.EmailExistsException;
 import com.j2ee.j2eeproject.validation.LoginException;
 import com.j2ee.j2eeproject.validation.ResetPasswordException;
+import java.util.stream.*;
 
 @Service
 public class J2eeServiceImpl implements J2eeService {
@@ -44,7 +45,7 @@ public class J2eeServiceImpl implements J2eeService {
 	private EmailService emailService;
 
 	@Autowired
-	private ImageSampleRepository imageSampleRepository;
+	private ProductImageRepository productImageRepository;
 
 	@Autowired
 	private ProductRepository productRepository;
@@ -82,8 +83,8 @@ public class J2eeServiceImpl implements J2eeService {
 	}
 
 	@Override
-	public List<ImageSample> searchImageFromProductId(Integer productId) {
-		return imageSampleRepository.findByProductIdContaining(productId);
+	public List<ProductImage> searchImageFromProductId(Integer productId) {
+		return productImageRepository.findByProductId(productId);
 	}
 
 	@Override
@@ -92,9 +93,16 @@ public class J2eeServiceImpl implements J2eeService {
 	}
 	
 	@Override
-	public Optional<Product> findOneProduct(Integer id) {
+	public ProductEntity findOneProduct(Integer id) {
 		// TODO Auto-generated method stub
-		return productRepository.findById(id);
+		Product productPojo =  productRepository.findById(id).get();
+		ProductEntity entity = new ProductEntity(productPojo.getId(), productPojo.getName(), productPojo.getPrice(), productPojo.getDiscount(), productPojo.getDescription());
+		List<String> listProductImages = productImageRepository.findByProductId(productPojo.getId()).stream().map(image -> {
+			return image.getName();
+		}).collect(Collectors.toCollection(ArrayList::new));
+		listProductImages.add(productPojo.getImageSample());
+		entity.setListImages(listProductImages);
+		return entity;
 	}
 	
 	@Override

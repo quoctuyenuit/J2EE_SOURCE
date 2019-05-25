@@ -1,8 +1,6 @@
 package com.j2ee.j2eeproject.controller;
 
 import java.util.List;
-import java.util.Optional;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import com.j2ee.j2eeproject.common.Common;
 import com.j2ee.j2eeproject.entity.OrderPreparationEntity;
+import com.j2ee.j2eeproject.entity.ProductEntity;
 import com.j2ee.j2eeproject.entity.pojo.Product;
 import com.j2ee.j2eeproject.entity.pojo.User;
 import com.j2ee.j2eeproject.service.J2eeService;
@@ -77,9 +76,9 @@ public class J2eeProjectController {
 		}
 		
 		Integer productId = Integer.parseInt(request.getParameter("id"));
-		Optional<Product> product = this.j2eeService.findOneProduct(productId);
+		ProductEntity product = this.j2eeService.findOneProduct(productId);
 
-		model.addAttribute("product", product.get());
+		model.addAttribute("product", product);
 
 		return "product-detail";
 	}

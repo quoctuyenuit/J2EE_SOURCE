@@ -307,13 +307,13 @@ body {
  }
 
  .slider-for .resize{
-    width: 530px;
-    height: 572px;
+    width: 400px;
+    height: 400px;
     image-rendering: pixelated;
 }
 .slider-nav .resize{
-    width: 176px;
-    height: 189px;
+    width: 110px;
+    height: 110px;
 }
 .slick-prev::before{
     color: #ff4a52;

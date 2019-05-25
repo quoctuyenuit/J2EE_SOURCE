@@ -12,7 +12,8 @@ import org.javatuples.Pair;
 
 import com.j2ee.j2eeproject.common.AccountExists;
 import com.j2ee.j2eeproject.entity.OrderPreparationEntity;
-import com.j2ee.j2eeproject.entity.pojo.ImageSample;
+import com.j2ee.j2eeproject.entity.ProductEntity;
+import com.j2ee.j2eeproject.entity.pojo.ProductImage;
 import com.j2ee.j2eeproject.entity.pojo.Product;
 import com.j2ee.j2eeproject.entity.pojo.User;
 import com.j2ee.j2eeproject.entity.pojo.UserType;
@@ -29,11 +30,11 @@ public interface J2eeService {
 
 	UserType searchUserTypes(String name);
 
-	List<ImageSample> searchImageFromProductId(Integer productId);
+	List<ProductImage> searchImageFromProductId(Integer productId);
 
 	Iterable<Product> getAllProduct();
 
-	Optional<Product> findOneProduct(Integer id);
+	ProductEntity findOneProduct(Integer id);
 
 	// ---------------------------------------------------------------------
 	List<OrderPreparationEntity> addToCart(Integer productId, Integer quantity, HttpSession session);
