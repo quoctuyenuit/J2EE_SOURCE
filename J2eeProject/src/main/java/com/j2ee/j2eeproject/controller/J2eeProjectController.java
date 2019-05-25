@@ -11,8 +11,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import com.j2ee.j2eeproject.common.Common;
 import com.j2ee.j2eeproject.entity.OrderPreparationEntity;
-import com.j2ee.j2eeproject.entity.Product;
-import com.j2ee.j2eeproject.entity.User;
+import com.j2ee.j2eeproject.entity.pojo.Product;
+import com.j2ee.j2eeproject.entity.pojo.User;
 import com.j2ee.j2eeproject.service.J2eeService;
 
 @Controller

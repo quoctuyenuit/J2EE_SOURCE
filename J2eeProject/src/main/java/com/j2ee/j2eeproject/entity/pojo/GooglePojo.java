@@ -1,4 +1,4 @@
-package com.j2ee.j2eeproject.entity;
+package com.j2ee.j2eeproject.entity.pojo;
 
 public class GooglePojo {
 	private String id;

@@ -11,12 +11,11 @@ import org.apache.http.client.ClientProtocolException;
 import org.javatuples.Pair;
 
 import com.j2ee.j2eeproject.common.AccountExists;
-import com.j2ee.j2eeproject.entity.ImageSample;
 import com.j2ee.j2eeproject.entity.OrderPreparationEntity;
-import com.j2ee.j2eeproject.entity.TakenOrder;
-import com.j2ee.j2eeproject.entity.Product;
-import com.j2ee.j2eeproject.entity.User;
-import com.j2ee.j2eeproject.entity.UserType;
+import com.j2ee.j2eeproject.entity.pojo.ImageSample;
+import com.j2ee.j2eeproject.entity.pojo.Product;
+import com.j2ee.j2eeproject.entity.pojo.User;
+import com.j2ee.j2eeproject.entity.pojo.UserType;
 import com.j2ee.j2eeproject.validation.LoginException;
 import com.j2ee.j2eeproject.validation.ResetPasswordException;
 
@@ -36,8 +35,6 @@ public interface J2eeService {
 
 	Optional<Product> findOneProduct(Integer id);
 
-	// ---------------------------------------------------------------------
-	List<TakenOrder> searchOrderByUserId(String userId);
 	// ---------------------------------------------------------------------
 	List<OrderPreparationEntity> addToCart(Integer productId, Integer quantity, HttpSession session);
 	// ---------------------------------------------------------------------

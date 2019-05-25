@@ -17,7 +17,7 @@ import org.springframework.stereotype.Component;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.j2ee.j2eeproject.entity.GooglePojo;
+import com.j2ee.j2eeproject.entity.pojo.GooglePojo;
 
 @Component
 public class GoogleUtils {

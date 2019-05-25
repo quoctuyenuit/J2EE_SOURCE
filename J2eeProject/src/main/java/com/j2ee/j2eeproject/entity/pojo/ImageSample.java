@@ -1,4 +1,4 @@
-package com.j2ee.j2eeproject.entity;
+package com.j2ee.j2eeproject.entity.pojo;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;

@@ -5,7 +5,7 @@ DROP TABLE IF EXISTS `j2ee`.`transaction`;
 DROP TABLE IF EXISTS `j2ee`.`request_order`;
 DROP TABLE IF EXISTS `j2ee`.`user`;
 DROP TABLE IF EXISTS `j2ee`.`user_type`;
-DROP TABLE IF EXISTS `j2ee`.`image_sample`;
+DROP TABLE IF EXISTS `j2ee`.`product_image`;
 DROP TABLE IF EXISTS `j2ee`.`product`;
 DROP TABLE IF EXISTS `j2ee`.`catalog`;
 DROP TABLE IF EXISTS `j2ee`.`catalog_group`;
@@ -30,10 +30,10 @@ ALTER TABLE `user`
 ADD CONSTRAINT `FK_USER_USERTYPE`
 FOREIGN KEY(`type_id`) REFERENCES `user_type`(`id`);
 
-CREATE TABLE `image_sample`(
+CREATE TABLE `product_image`(
     `id` INT(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    `name` VARCHAR(255) NOT NULL UNIQUE,
-    `product_id` INT(11) NOT NULL UNIQUE
+    `name` VARCHAR(255) NOT NULL,
+    `product_id` INT(11) NOT NULL
 );
 
 CREATE TABLE `product`(
@@ -45,7 +45,7 @@ CREATE TABLE `product`(
     `description` NVARCHAR(520)
 );
 
-ALTER TABLE `image_sample`
+ALTER TABLE `product_image`
 ADD CONSTRAINT `FK_IMAGE_PRODUCT`
 FOREIGN KEY (`product_id`) REFERENCES `product`(`id`);
 

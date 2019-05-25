@@ -21,7 +21,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.j2ee.j2eeproject.common.AccountExists;
 import com.j2ee.j2eeproject.common.Common;
-import com.j2ee.j2eeproject.entity.User;
+import com.j2ee.j2eeproject.entity.pojo.User;
 import com.j2ee.j2eeproject.service.J2eeService;
 import com.j2ee.j2eeproject.validation.LoginException;
 import com.j2ee.j2eeproject.validation.ResetPasswordException;

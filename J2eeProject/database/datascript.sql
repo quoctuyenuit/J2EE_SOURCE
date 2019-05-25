@@ -13,9 +13,9 @@ IGNORE 1 ROWS
 (`name`, `price`, `description`, `image_sample`, `discount`);
 UNLOCK TABLES;
 
-LOCK TABLE `j2ee`.`image_sample` WRITE;
-LOAD DATA LOCAL INFILE 'image_sample.csv'
-INTO TABLE `j2ee`.`image_sample`
+LOCK TABLE `j2ee`.`product_image` WRITE;
+LOAD DATA LOCAL INFILE 'product_image.csv'
+INTO TABLE `j2ee`.`product_image`
 FIELDS TERMINATED BY ','
 ENCLOSED BY '"'
 LINES TERMINATED BY '\n'
