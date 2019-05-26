@@ -102,4 +102,9 @@ public class OrderController {
 
 		return ajaxResponse;
 	}
+	
+	@GetMapping("/home/products/my-cart")
+	public String myCart(HttpSession session) {
+		return "shopping-cart";
+	}
 }
