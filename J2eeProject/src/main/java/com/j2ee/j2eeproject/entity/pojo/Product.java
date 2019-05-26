@@ -27,6 +27,9 @@ public class Product {
 	@Column(name = "discount")
 	private Float discount;
 	
+	@Column(name = "catalog_id")
+	private Integer catalogId;
+	
 	@Column(name = "image_sample")
 	private String imageSample;
 
@@ -81,12 +84,21 @@ public class Product {
 		this.description = description;
 	}
 
-	public Product(@NotEmpty String name, @NotEmpty Integer price, Float discount, String imageSample,
+	public Integer getCatalogId() {
+		return catalogId;
+	}
+
+	public void setCatalogId(Integer catalogId) {
+		this.catalogId = catalogId;
+	}
+
+	public Product(@NotEmpty String name, @NotEmpty Integer price, Float discount, Integer catalogId,String imageSample,
 			String description) {
 		super();
 		this.name = name;
 		this.price = price;
 		this.discount = discount;
+		this.catalogId = catalogId;
 		this.imageSample = imageSample;
 		this.description = description;
 	}

@@ -8,7 +8,6 @@ DROP TABLE IF EXISTS `j2ee`.`user_type`;
 DROP TABLE IF EXISTS `j2ee`.`product_image`;
 DROP TABLE IF EXISTS `j2ee`.`product`;
 DROP TABLE IF EXISTS `j2ee`.`catalog`;
-DROP TABLE IF EXISTS `j2ee`.`catalog_group`;
 DROP TABLE IF EXISTS `j2ee`.`payment`;
 DROP TABLE IF EXISTS `j2ee`.`order_detail`;
 
@@ -42,6 +41,7 @@ CREATE TABLE `product`(
     `price` INT,
     `discount` FLOAT DEFAULT 0,
     `image_sample` VARCHAR(255),
+    `catalog_id` INT(11) NOT NULL,
     `description` NVARCHAR(520)
 );
 
@@ -51,22 +51,8 @@ FOREIGN KEY (`product_id`) REFERENCES `product`(`id`);
 
 CREATE TABLE `catalog`(
     `id` INT(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    `name` NVARCHAR(255),
-    `parent_id` INT(11) DEFAULT NULL
+    `name` NVARCHAR(255)
 );
-
-ALTER TABLE `catalog`
-ADD CONSTRAINT `FK_CATALOG_CATALOG`
-FOREIGN KEY (`parent_id`) REFERENCES `catalog`(`id`);
-
-CREATE TABLE `catalog_group`(
-    `catalog_id` INT(11) NOT NULL,
-    `product_id` INT(11) NOT NULL
-);
-
-ALTER TABLE `catalog_group`
-ADD CONSTRAINT `PK_CATALOG_GROUP`
-PRIMARY KEY (`catalog_id`, `product_id`);
 
 CREATE TABLE `request_order`(
     `id` INT(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,

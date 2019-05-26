@@ -93,10 +93,16 @@ public class J2eeServiceImpl implements J2eeService {
 	}
 	
 	@Override
+	public Iterable<Product> selectTopProductByCatalogId(int limitNumber, int catalogId) {
+		// TODO Auto-generated method stub
+		return productRepository.selectTopProductByCatalogId(limitNumber, catalogId);
+	}
+	
+	@Override
 	public ProductEntity findOneProduct(Integer id) {
 		// TODO Auto-generated method stub
 		Product productPojo =  productRepository.findById(id).get();
-		ProductEntity entity = new ProductEntity(productPojo.getId(), productPojo.getName(), productPojo.getPrice(), productPojo.getDiscount(), productPojo.getDescription());
+		ProductEntity entity = new ProductEntity(productPojo.getId(), productPojo.getName(), productPojo.getPrice(), productPojo.getDiscount(), productPojo.getCatalogId(), productPojo.getDescription());
 		List<String> listProductImages = productImageRepository.findByProductId(productPojo.getId()).stream().map(image -> {
 			return image.getName();
 		}).collect(Collectors.toCollection(ArrayList::new));

@@ -33,6 +33,8 @@ public interface J2eeService {
 	List<ProductImage> searchImageFromProductId(Integer productId);
 
 	Iterable<Product> getAllProduct();
+	
+	Iterable<Product> selectTopProductByCatalogId(int limitNumber, int catalogId);
 
 	ProductEntity findOneProduct(Integer id);
 

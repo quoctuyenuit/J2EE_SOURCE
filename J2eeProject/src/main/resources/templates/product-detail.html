@@ -87,7 +87,7 @@
 	                              </div>
 	                              <div class="slider slider-nav pt-3">
 	                                   <div th:each="image, i : ${product.listImages}">
-	                                   	<img th:src="@{'/images/food-list/' + ${image}}" alt="" class="resize">
+	                                   <img th:src="@{'/images/food-list/' + ${image}}" alt="" class="resize">
 	                                   </div>
 	                              </div>
                               </th:block>
@@ -104,7 +104,17 @@
                                                   class="fa fa-star checked"></span> <span class="fa fa-star"></span>
                                         </div>
                                    </div>
+                                   
+                                   <th:block th:if="${product.discount == 0}">
                                    <p class="price" th:text="${product.price + ' VND'}"></p>
+                                   </th:block>
+                                   
+                                   <th:block th:unless="${product.discount == 0}">
+                                   <p class="price" th:text="${product.price * product.discount + ' VND'}"></p>
+                                   </th:block>
+                                   
+                                   
+                                   
                                    <div class="woo-seperator-line"></div>
                                    <div class="woo-short-description" th:text="${product.description}"></div>
                                    
@@ -123,86 +133,8 @@
                                              <p>Add to cart</p>
                                         </button>
                                    </div>
-
-
+                                   
                               </div>
-                              <!-- <div class="product-reviews">
-                                   <ul class="tabs wc-tabs">
-                                        <li class="description_tab"><a href="#">Review (1)</a></li>
-                                   </ul>
-
-                              </div> -->
-                              <!-- <div class="comment">
-                                   <p>
-                                        1 review for <span>Pumpkin Cheesecake With
-                                             GingersnapCrust</span>
-                                   </p>
-                                   <ol class="comment-list">
-                                        <li>
-                                             <div class="comment_container row">
-                                                  <img src="https://secure.gravatar.com/avatar/8ca3fe8440883023010924dd86cb3218?s=60&d=mm&r=g"
-                                                       height="60" width="60" alt="">
-                                                  <div class="comment-text px-3">
-                                                       <p class="meta">
-                                                            <strong>John Wick</strong> <span>-</span> <span
-                                                                 class="review-date">January 28,2019</span>
-                                                       </p>
-                                                       <div class="description row px-3">
-                                                            <p>Nice one, love it!</p>
-                                                            <div class="star-rating text-center">
-                                                                 <span class="fa fa-star checked"></span> <span
-                                                                      class="fa fa-star checked"></span> <span
-                                                                      class="fa fa-star checked"></span> <span
-                                                                      class="fa fa-star checked"></span> <span
-                                                                      class="fa fa-star"></span>
-                                                            </div>
-                                                       </div>
-                                                  </div>
-                                             </div>
-                                        </li>
-                                   </ol>
-                                   <div class="woo-seperator-line"></div>
-                                   <div class="review-form-wrapper">
-                                        <div class="comment-respond">
-                                             <span class="comment-reply-title">Add a review</span>
-                                             <div class="comment-notes row">
-                                                  <p>Your email address will not published. Required fields
-                                                       are marked</p>
-                                                  <i class="far fa-check-circle" style="color: #47c9e5"></i>
-                                             </div>
-                                             <div class="comment-form-rating">
-                                                  <div class="star-rating text-center">
-                                                       <span class="fa fa-star"></span> <span
-                                                            class="fa fa-star "></span>
-                                                       <span class="fa fa-star "></span> <span
-                                                            class="fa fa-star "></span>
-                                                       <span class="fa fa-star"></span>
-                                                  </div>
-                                             </div>
-                                             <p class="comment-form-cmt pt-4">
-                                                  <label for="comment"> Your reviews <i class="far fa-check-circle"
-                                                            style="color: #47c9e5"></i>
-                                                  </label>
-                                                  <textarea id="comment" name="comment" cols="45" rows="8" required=""
-                                                       style="height: 110px"></textarea>
-                                             </p>
-                                             <p class="comment-form-cmt pt-4">
-                                                  <label for="comment"> Name <i class="far fa-check-circle"
-                                                            style="color: #47c9e5"></i>
-                                                  </label>
-                                                  <textarea id="comment" name="comment" cols="45" rows="8" required=""
-                                                       style="height: 50px"></textarea>
-                                             </p>
-                                             <p class="comment-form-cmt pt-4">
-                                                  <label for="comment"> Email <i class="far fa-check-circle"
-                                                            style="color: #47c9e5"></i>
-                                                  </label>
-                                                  <textarea id="comment" name="comment" cols="45" rows="8" required=""
-                                                       style="height: 50px"></textarea>
-                                             </p>
-                                        </div>
-                                   </div>
-                              </div> -->
                          </div>
                     </div>
                </div>
@@ -215,57 +147,24 @@
           <div class="container">
                <h2>Related Products</h2>
                <ul class="related-product-list row">
-                    <li><a href="#"> <img src="/images/home-page/product/product13.jpg" alt="" width="300" height="300">
-                         </a>
+                    <li th:each="product, i : ${relatedProducts}">
+	                     <a th:href="@{'/home/products/detail?id=' + ${product.id}}">
+	                     	 <img th:src="@{'/images/food-list/' + ${product.imageSample}}" alt="" width="300" height="300">
+	                     </a>
                          <div class="related-product-content">
-                              <a href="#">
-                                   <p>Pumpkin Cheesecake With GingersnapCrust</p>
+                         <a th:href="@{'/home/products/detail?id=' + ${product.id}}">
+                                   <p th:text="${product.name}">Pumpkin Cheesecake With GingersnapCrust</p>
                                    <div class="star-rating">
                                         <span class="fa fa-star checked"></span> <span
                                              class="fa fa-star checked"></span> <span class="fa fa-star checked"></span>
                                         <span class="fa fa-star checked"></span> <span
                                              class="fa fa-star checked"></span>
                                    </div>
-                                   <p class="price">$25.99</p>
-                              </a> <a href="#" class="button product_type_simple add_to_cart_button "> ADD
-                                   TO CART <i class="fa fa-shopping-basket"></i>
-                              </a>
+                                   <p class="price" th:text="${product.price + ' VND'}">$$</p>
+                           </a>
                          </div>
                     </li>
-                    <li><a href="#"> <img src="/images/home-page/product/product12.jpg" alt="" width="300" height="300">
-                         </a>
-                         <div class="related-product-content">
-                              <a href="#">
-                                   <p>Pumpkin Cheesecake With GingersnapCrust</p>
-                                   <div class="star-rating">
-                                        <span class="fa fa-star checked"></span> <span
-                                             class="fa fa-star checked"></span> <span class="fa fa-star checked"></span>
-                                        <span class="fa fa-star checked"></span> <span
-                                             class="fa fa-star checked"></span>
-                                   </div>
-                                   <p class="price">$25.99</p>
-                              </a> <a href="#" class="button product_type_simple add_to_cart_button "> ADD
-                                   TO CART <i class="fa fa-shopping-basket"></i>
-                              </a>
-                         </div>
-                    </li>
-                    <li><a href="#"> <img src="/images/home-page/product/product10.jpg" alt="" width="300" height="300">
-                         </a>
-                         <div class="related-product-content">
-                              <a href="#">
-                                   <p>Pumpkin Cheesecake With GingersnapCrust</p>
-                                   <div class="star-rating">
-                                        <span class="fa fa-star checked"></span> <span
-                                             class="fa fa-star checked"></span> <span class="fa fa-star checked"></span>
-                                        <span class="fa fa-star checked"></span> <span
-                                             class="fa fa-star checked"></span>
-                                   </div>
-                                   <p class="price">$25.99</p>
-                              </a> <a href="#" class="button product_type_simple add_to_cart_button "> ADD
-                                   TO CART <i class="fa fa-shopping-basket"></i>
-                              </a>
-                         </div>
-                    </li>
+                    
                </ul>
           </div>
      </div>

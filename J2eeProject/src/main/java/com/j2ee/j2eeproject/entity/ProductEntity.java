@@ -10,6 +10,7 @@ public class ProductEntity {
 	private Integer price;
 	private Float discount;
 	private String description;
+	private Integer catalogId;
 	private List<String> listImages;
 	public Integer getId() {
 		return id;
@@ -47,12 +48,19 @@ public class ProductEntity {
 	public void setListImages(List<String> listImages) {
 		this.listImages = listImages;
 	}
-	public ProductEntity(Integer id, String name, Integer price, Float discount, String description) {
+	public Integer getCatalogId() {
+		return catalogId;
+	}
+	public void setCatalogId(Integer catalogId) {
+		this.catalogId = catalogId;
+	}
+	public ProductEntity(Integer id, String name, Integer price, Float discount, Integer catalogId, String description) {
 		super();
 		this.id = id;
 		this.name = name;
 		this.price = price;
 		this.discount = discount;
+		this.catalogId = catalogId;
 		this.description = description;
 	}
 	public ProductEntity() {

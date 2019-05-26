@@ -10,7 +10,7 @@ FIELDS TERMINATED BY ','
 ENCLOSED BY '"'
 LINES TERMINATED BY '\n'
 IGNORE 1 ROWS
-(`name`, `price`, `description`, `image_sample`, `discount`);
+(`name`, `price`, `description`, `image_sample`, `discount`, `catalog_id`);
 UNLOCK TABLES;
 
 LOCK TABLE `j2ee`.`product_image` WRITE;
@@ -21,6 +21,16 @@ ENCLOSED BY '"'
 LINES TERMINATED BY '\n'
 IGNORE 1 ROWS
 (`name`, `product_id`);
+UNLOCK TABLES;
+
+LOCK TABLE `j2ee`.`catalog` WRITE;
+LOAD DATA LOCAL INFILE 'catalog.csv'
+INTO TABLE `j2ee`.`catalog`
+FIELDS TERMINATED BY ','
+ENCLOSED BY '"'
+LINES TERMINATED BY '\n'
+IGNORE 1 ROWS
+(`name`);
 UNLOCK TABLES;
 
  /*select product.id, image_sample.name from product, image_sample, product_image where product.id = product_image.product_id and image_sample.id = product_image.image_id;*/

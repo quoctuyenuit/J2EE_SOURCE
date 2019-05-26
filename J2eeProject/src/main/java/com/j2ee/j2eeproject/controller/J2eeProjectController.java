@@ -77,8 +77,10 @@ public class J2eeProjectController {
 		
 		Integer productId = Integer.parseInt(request.getParameter("id"));
 		ProductEntity product = this.j2eeService.findOneProduct(productId);
-
+		Iterable<Product> relatedProducts = this.j2eeService.selectTopProductByCatalogId(3, product.getCatalogId());
+		
 		model.addAttribute("product", product);
+		model.addAttribute("relatedProducts", relatedProducts);
 
 		return "product-detail";
 	}
