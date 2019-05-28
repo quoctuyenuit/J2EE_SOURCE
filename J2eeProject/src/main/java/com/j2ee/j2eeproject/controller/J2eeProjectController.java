@@ -52,7 +52,7 @@ public class J2eeProjectController {
 
 		Iterable<Product> products = this.j2eeService.getAllProduct();
 		model.addAttribute("products", products);
-		return "food-list";
+		return "products-list";
 	}
 
 	@GetMapping("/home/contact")

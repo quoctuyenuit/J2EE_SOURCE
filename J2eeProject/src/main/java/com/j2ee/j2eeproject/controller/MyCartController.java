@@ -1,9 +1,6 @@
 package com.j2ee.j2eeproject.controller;
 
-import java.text.DecimalFormat;
 import java.util.List;
-import java.util.Locale;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -27,16 +24,13 @@ public class MyCartController {
 		private String totalPrice;
 		private String subtotal;
 		private String totalListPrice;
-		private final String unit = " đ";
 
 		public String getTotalPrice() {
 			return totalPrice;
 		}
 
 		public void setTotalPrice(Integer totalPrice) {
-			DecimalFormat BE_DF = (DecimalFormat) DecimalFormat.getNumberInstance(Locale.GERMAN);
-
-			this.totalPrice = BE_DF.format(totalPrice) + unit;
+			this.totalPrice = Common.formatMoney(totalPrice);
 		}
 
 		public Integer getQuantity() {
@@ -48,9 +42,7 @@ public class MyCartController {
 		}
 
 		public void setTotalListPrice(Integer totalListPrice) {
-			DecimalFormat BE_DF = (DecimalFormat) DecimalFormat.getNumberInstance(Locale.GERMAN);
-
-			this.totalListPrice = BE_DF.format(totalListPrice) + unit;
+			this.totalListPrice = Common.formatMoney(totalListPrice);
 		}
 
 		public String getSubtotal() {
@@ -58,9 +50,7 @@ public class MyCartController {
 		}
 
 		public void setSubtotal(Integer subtotal) {
-			DecimalFormat BE_DF = (DecimalFormat) DecimalFormat.getNumberInstance(Locale.GERMAN);
-
-			this.subtotal = BE_DF.format(subtotal) + unit;
+			this.subtotal = Common.formatMoney(subtotal);
 		}
 		
 		public ProductPrice(Integer quantity, Integer totalPrice, Integer subtotal, Integer totalListPrice) {

@@ -100,7 +100,7 @@
 									<a th:href="@{'/home/products/detail?id=' + ${product.id}}">
 										<h2 th:text="${product.name}"></h2>
 										<div class="item-type"></div>
-									</a> <span class="item-price" th:text="${product.price + ' VND'}"></span>
+									</a> <span class="item-price" th:text="${#numbers.formatDecimal(product.price,0,'POINT',0,'COMMA')+' đ'}"></span>
 									<span class="item-basket" th:onclick="'addToCart(\'' + ${product.id} + '\')'"> <i
 										class="fas fa-shopping-cart"></i>
 									</span>

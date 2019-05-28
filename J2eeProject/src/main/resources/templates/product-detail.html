@@ -111,7 +111,10 @@
                                    </th:block>
                                    
                                    <th:block th:unless="${product.discount == 0}">
-                                   <p class="price" th:text="${#numbers.formatDecimal(product.price * (1 - product.discount),0,'POINT',0,'COMMA')+'đ'}"></p>
+                                   <span class="price" th:text="${#numbers.formatDecimal(product.price * (1 - product.discount),0,'POINT',0,'COMMA')+'đ'}"></span>
+                                   
+                                   <span class="price-discount" th:text="${#numbers.formatDecimal(product.price,0,'POINT',0,'COMMA')+'đ'}"></span>
+                                   
                                    </th:block>
                                    
                                    

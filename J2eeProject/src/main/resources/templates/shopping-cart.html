@@ -78,7 +78,7 @@
 	                                   <a href="#" th:text="${order.name}"></a>
 	                              </td>
 	                              <td class="product-price">
-	                                   <span th:text="${#numbers.formatDecimal(order.price,0,'POINT',0,'COMMA')+'đ'}"></span>
+	                                   <span th:text="${#numbers.formatDecimal(order.price,0,'POINT',0,'COMMA')+' đ'}"></span>
 	                              </td>
 	                              <td class="product-quantity">
 	                                   <div class="quantity sh-increase-numbers row justify-content-center">
@@ -126,9 +126,7 @@
                          </tbody>
                     </table>
                     <div class="wc-proceed-to-checkout">
-                         <a href="/my-cart/checkout-processing"
-                              class="checkout-button button alt wc-forward">
-                              Checkout</a>
+                         <a href="/my-cart/checkout-processing" class="checkout-button button alt wc-forward">Checkout</a>
                     </div>
                </div>
           </div>

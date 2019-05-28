@@ -32,8 +32,6 @@ import com.j2ee.j2eeproject.validation.EmailExistsException;
 import com.j2ee.j2eeproject.validation.LoginException;
 import com.j2ee.j2eeproject.validation.ResetPasswordException;
 
-import javassist.expr.NewArray;
-
 import java.util.stream.*;
 
 @Service
