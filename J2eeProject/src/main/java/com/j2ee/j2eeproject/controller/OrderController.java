@@ -7,6 +7,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -16,6 +17,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.j2ee.j2eeproject.common.Common;
 import com.j2ee.j2eeproject.entity.OrderPreparationEntity;
+import com.j2ee.j2eeproject.entity.ProductOrderedEntity;
 import com.j2ee.j2eeproject.service.J2eeService;
 
 @Controller
@@ -44,7 +46,7 @@ public class OrderController {
 		return ajaxResponse;
 	}
 
-	@GetMapping("/home/products/detail/descrease-quantity")
+	@GetMapping(value = {"/detail/descrease-quantity"})
 	public @ResponseBody String descreaseQuantity(HttpServletRequest request) {
 		String quantityString = request.getParameter("quantity");
 		Integer quantity = Integer.parseInt(quantityString);
@@ -62,7 +64,7 @@ public class OrderController {
 		return ajaxResponse;
 	}
 
-	@GetMapping("/home/products/detail/increase-quantity")
+	@GetMapping( value = {"/detail/increase-quantity"})
 	public @ResponseBody String increaseQuantity(HttpServletRequest request) {
 		String quantityString = request.getParameter("quantity");
 		Integer quantity = Integer.parseInt(quantityString);
@@ -79,6 +81,7 @@ public class OrderController {
 
 		return ajaxResponse;
 	}
+	
 
 	@GetMapping("/home/products/detail/add-product-to-cart")
 	public @ResponseBody String addToCartInDetail(HttpServletRequest request) {
@@ -103,8 +106,14 @@ public class OrderController {
 		return ajaxResponse;
 	}
 	
-	@GetMapping("/home/products/my-cart")
-	public String myCart(HttpSession session) {
+	@GetMapping("/home/my-cart")
+	public String myCart(HttpSession session, Model model) {
+		@SuppressWarnings("unchecked")
+		List<OrderPreparationEntity> listOrders = (List<OrderPreparationEntity>) session.getAttribute(Common.Constaints.kLIST_PRODUCTS);
+		Iterable<ProductOrderedEntity> listOrderdEntities = this.j2eeService.getListOrdered(listOrders);
+		model.addAttribute("orders", listOrderdEntities);
 		return "shopping-cart";
 	}
+	
+	
 }

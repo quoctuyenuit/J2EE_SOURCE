@@ -17,6 +17,7 @@ import com.j2ee.j2eeproject.common.Common;
 import com.j2ee.j2eeproject.common.LocalizeStrings;
 import com.j2ee.j2eeproject.entity.OrderPreparationEntity;
 import com.j2ee.j2eeproject.entity.ProductEntity;
+import com.j2ee.j2eeproject.entity.ProductOrderedEntity;
 import com.j2ee.j2eeproject.entity.pojo.GooglePojo;
 import com.j2ee.j2eeproject.entity.pojo.ProductImage;
 import com.j2ee.j2eeproject.entity.pojo.Product;
@@ -30,6 +31,9 @@ import com.j2ee.j2eeproject.untils.GoogleUtils;
 import com.j2ee.j2eeproject.validation.EmailExistsException;
 import com.j2ee.j2eeproject.validation.LoginException;
 import com.j2ee.j2eeproject.validation.ResetPasswordException;
+
+import javassist.expr.NewArray;
+
 import java.util.stream.*;
 
 @Service
@@ -205,6 +209,24 @@ public class J2eeServiceImpl implements J2eeService {
 		}
 
 		throw new ResetPasswordException(LocalizeStrings.getInstance().email_is_not_exists);
+	}
+
+	@Override
+	public Iterable<ProductOrderedEntity> getListOrdered(List<OrderPreparationEntity> listOrders) {
+		if (listOrders == null) 
+		{
+			return new ArrayList<ProductOrderedEntity>();
+		}
+		return listOrders.stream().map(order -> {
+			Integer quantity = order.getQuantity();
+			Product product = this.productRepository.findById(order.getProductId()).get();
+			if (product != null)
+			{
+				return new ProductOrderedEntity(product.getId(), product.getName(), product.getPrice(), quantity, product.getImageSample());
+			} else {
+				return new ProductOrderedEntity();
+			}
+		}).collect(Collectors.toCollection(ArrayList::new));
 	}
 
 }
