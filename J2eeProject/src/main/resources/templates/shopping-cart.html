@@ -97,7 +97,9 @@
 	                                   <span th:text="${#numbers.formatDecimal(order.price * order.quantity,0,'POINT',0,'COMMA')+' đ'}" th:id="${'total-price' + order.id}">$15.99</span>
 	                              </td>
 	                              <td class="product-remove">
-	                                   <a th:href="@{'/my-cart/delete?productId=' + ${order.id}}" onclick="return deleteCart()">x</a>
+	                              	<a th:href="@{'/my-cart/delete?productId=' + ${order.id}}" class="text-danger product-remove" onclick="return deleteCart()">
+										<i class="fa fa-trash"></i>
+									</a>
 	                              </td>
 	                         </tr>
 	                    </tbody>
