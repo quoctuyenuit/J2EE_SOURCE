@@ -32,6 +32,9 @@ public class Product {
 	
 	@Column(name = "image_sample")
 	private String imageSample;
+	
+	@Column(name = "rating")
+	private Integer rating;
 
 	@Column(name = "description")
 	private String description;
@@ -92,8 +95,16 @@ public class Product {
 		this.catalogId = catalogId;
 	}
 
+	public Integer getRating() {
+		return rating;
+	}
+
+	public void setRating(Integer rating) {
+		this.rating = rating;
+	}
+
 	public Product(@NotEmpty String name, @NotEmpty Integer price, Float discount, Integer catalogId,String imageSample,
-			String description) {
+			String description, Integer rating) {
 		super();
 		this.name = name;
 		this.price = price;
@@ -101,6 +112,7 @@ public class Product {
 		this.catalogId = catalogId;
 		this.imageSample = imageSample;
 		this.description = description;
+		this.rating = rating;
 	}
 
 	public Product() {

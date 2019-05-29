@@ -24,5 +24,21 @@ public class ProductRepositoryImpl implements ProductRepositoryCustom {
         query.setParameter(2, limitNumber);
         return query.getResultList();
 	}
+	
+	@Override
+	public List<Product> selectLatestProduct(int limitedNumber) {
+		Query query = entityManager.createNativeQuery("SELECT * FROM PRODUCT ORDER BY CREATED_DATE DESC LIMIT ?;", Product.class);
+        query.setParameter(1, limitedNumber);
+    
+        return query.getResultList();
+	}
+	
+	@Override
+	public List<Product> selectTopRating(int limitedNumber) {
+		Query query = entityManager.createNativeQuery("SELECT * FROM PRODUCT ORDER BY RATING DESC LIMIT ?;", Product.class);
+        query.setParameter(1, limitedNumber);
+    
+        return query.getResultList();
+	}
 
 }

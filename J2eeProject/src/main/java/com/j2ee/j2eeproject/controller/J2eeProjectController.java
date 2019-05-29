@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+
+import com.google.common.collect.Lists;
 import com.j2ee.j2eeproject.common.Common;
 import com.j2ee.j2eeproject.entity.OrderPreparationEntity;
 import com.j2ee.j2eeproject.entity.ProductEntity;
@@ -33,6 +35,13 @@ public class J2eeProjectController {
 		} else {
 			model.addAttribute("quantity", listOrders.size());
 		}
+		
+		
+		List<Product> listTopRatingProduct = Lists.newArrayList(j2eeService.getTopRatingProduct(3));
+		List<Product> listLatestProduct = Lists.newArrayList(j2eeService.getListLatestProduct(5));
+		model.addAttribute("latestProduct", listLatestProduct.get(0));
+		model.addAttribute("ratingProducts", listTopRatingProduct);
+		
 		return "home-page";
 	}
 
@@ -40,7 +49,7 @@ public class J2eeProjectController {
 	public String showProducts(HttpSession session, Model model) {
 		User user = (User) session.getAttribute(Common.Constaints.kUSER);
 		model.addAttribute("user", user);
-
+		
 		@SuppressWarnings("unchecked")
 		List<OrderPreparationEntity> listOrders = (List<OrderPreparationEntity>) session
 				.getAttribute(Common.Constaints.kLIST_PRODUCTS);

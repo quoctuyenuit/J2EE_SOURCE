@@ -101,6 +101,17 @@ public class J2eeServiceImpl implements J2eeService {
 	}
 	
 	@Override
+	public Iterable<Product> getListLatestProduct(int limitedNumber) {
+		// TODO Auto-generated method stub
+		return productRepository.selectLatestProduct(limitedNumber);
+	}
+	
+	@Override
+	public Iterable<Product> getTopRatingProduct(int limitedNumber) {
+		return productRepository.selectTopRating(limitedNumber);
+	}
+	
+	@Override
 	public ProductEntity findOneProduct(Integer id) {
 		// TODO Auto-generated method stub
 		Product productPojo =  productRepository.findById(id).get();

@@ -40,10 +40,14 @@ public interface J2eeService {
 	ProductEntity findOneProduct(Integer id);
 	
 	Iterable<ProductOrderedEntity> getListOrdered(List<OrderPreparationEntity> listOrders);
+	
+	Iterable<Product> getListLatestProduct(int limitedNumber);
+	
+	Iterable<Product> getTopRatingProduct(int limitedNumber);
 
-	// ---------------------------------------------------------------------
+	//-------------------------------------------------------------------------------------------------------------------
 	List<OrderPreparationEntity> addToCart(Integer productId, Integer quantity, HttpSession session);
-	// ---------------------------------------------------------------------
+	//-------------------------------------------------------------------------------------------------------------------
 	Pair<User, AccountExists> loginWithGoogle(String code) throws ClientProtocolException, IOException;
 
 	User login(User user) throws LoginException;

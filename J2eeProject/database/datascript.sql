@@ -10,7 +10,8 @@ FIELDS TERMINATED BY ','
 ENCLOSED BY '"'
 LINES TERMINATED BY '\n'
 IGNORE 1 ROWS
-(`name`, `price`, `description`, `image_sample`, `discount`, `catalog_id`);
+(`name`, `price`, `description`, `image_sample`, `discount`, `catalog_id`, `created_date`, `rating`);
+-- SET `created_date`= CURDATE();
 UNLOCK TABLES;
 
 LOCK TABLE `j2ee`.`product_image` WRITE;

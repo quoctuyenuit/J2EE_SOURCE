@@ -48,6 +48,8 @@ CREATE TABLE `product`(
     `discount` FLOAT DEFAULT 0,
     `image_sample` VARCHAR(255),
     `catalog_id` INT(11) NOT NULL,
+    `created_date` DATE,
+    `rating` INT(1),
     `description` NVARCHAR(520)
 );
 
