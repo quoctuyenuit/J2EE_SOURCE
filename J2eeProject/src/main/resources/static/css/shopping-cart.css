@@ -128,3 +128,34 @@ table, tr{
 th{
      padding: 20px
 }
+
+/*----------EMPTY SHOPPING CART-------------*/
+.empty-cart__content{
+     color: #e5e5e5;
+     font-weight: bold;
+}
+
+.empty-cart__content span{
+     font-size: 56px;
+    line-height: 56px;
+}
+
+.empty-cart__content div{
+     font-size: 110px;
+     text-transform: uppercase;
+     line-height: 100px;
+}
+
+.empty-cart__btn{
+     padding-top: 30px;
+}
+
+.empty-cart__btn button{
+     min-width: 200px;
+     height: 50px;
+     border-radius: 30px;
+     background-color: #f94951;
+     border: none;
+     color: #fff;
+     font-weight: 600;
+}

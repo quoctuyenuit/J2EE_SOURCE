@@ -48,9 +48,21 @@
      <div class="row">
      
      	<th:block th:if="${#lists.isEmpty(orders)}">
-     		<div>
-     		<a href="/home/products"> Tiếp tục mua hàng</a>
-     		</div>
+     		 <!--Empry Cart-->
+					 <div class="contaiter">
+						<div class="empty-cart" style="margin-top: 150px">
+							<div class="empty-cart__img text-center pt-5">
+								<img src="images/cart-empty.png" alt="">
+								<div class="empty-cart__content">
+										<span>Your cart is</span>
+										<div>Currently empty</div>
+								</div>
+								<div class="empty-cart__btn">
+										<button>Tiếp tục mua hàng</button>
+								</div>
+							</div>    
+						</div>
+					</div>
      	</th:block>
      
      	<th:block th:unless="${#lists.isEmpty(orders)}">
