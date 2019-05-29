@@ -24,41 +24,44 @@
 </head>
 
 <body>
-<div class="inner-banner bg-common">
-     <div class="container">
-          <!-- Banner-->
-          <div class="row ">
-               <div class="col-12">
-                    <div class="breadcrumbs-area">
-                         <h1>Search your recipes</h1>
-                         <ul>
-                              <li>
-                                   <a href="#">Home</a>
-                              </li>
-                              <li>All Recipes</li>
-                         </ul>
-                    </div>
-               </div>
-          </div>
-     </div>
-</div>
-
+<th:block th:unless="${#lists.isEmpty(orders)}">
+	<div class="inner-banner bg-common">
+	     <div class="container">
+	          <!-- Banner-->
+	          <div class="row ">
+	               <div class="col-12">
+	                    <div class="breadcrumbs-area">
+	                         <h1>Search your recipes</h1>
+	                         <ul>
+	                              <li>
+	                                   <a href="#">Home</a>
+	                              </li>
+	                              <li>All Recipes</li>
+	                         </ul>
+	                    </div>
+	               </div>
+	          </div>
+	     </div>
+	</div>
+</th:block>
 <!--List item in cart and payment-->
 <div class="container">
-     <div class="row">
+     <div>
      
      	<th:block th:if="${#lists.isEmpty(orders)}">
      		 <!--Empry Cart-->
 					 <div class="contaiter">
-						<div class="empty-cart" style="margin-top: 150px">
+						<div class="empty-cart" style="margin-top: 70px">
 							<div class="empty-cart__img text-center pt-5">
-								<img src="images/cart-empty.png" alt="">
+								<img src="/images/cart-empty.png" alt="">
 								<div class="empty-cart__content">
 										<span>Your cart is</span>
 										<div>Currently empty</div>
 								</div>
 								<div class="empty-cart__btn">
+										<a href="/home/products">
 										<button>Tiếp tục mua hàng</button>
+										</a>
 								</div>
 							</div>    
 						</div>
