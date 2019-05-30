@@ -1,0 +1,205 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+     <!-- Required meta tags -->
+     <meta charset="utf-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+
+     <!-- Bootstrap CSS -->
+     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+     <link integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css">
+     <link integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf"
+          crossorigin="anonymous" />
+     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css"
+          integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
+     <link href="https://fonts.googleapis.com/css?family=Lora" rel="stylesheet">
+     <link rel="stylesheet" href="/css/header.css" />
+     <link rel="stylesheet" href="/css/food-list.css" />
+     <link rel="stylesheet" href="/css/checkout.css" />
+     <script src="/js/food-list.js"></script>
+     <title>Hello, world!</title>
+</head>
+
+<body>
+     <nav th:replace="layout :: header"></nav>
+
+     <div class="inner-banner bg-common">
+          <div class="container">
+               <!-- Banner-->
+               <div class="row ">
+                    <div class="col-12">
+                         <div class="breadcrumbs-area">
+                              <h1>Search your recipes</h1>
+                              <ul>
+                                   <li><a href="#">Home</a></li>
+                                   <li>All Recipes</li>
+                              </ul>
+                         </div>
+                    </div>
+               </div>
+          </div>
+     </div>
+
+     <!--CHECKOUT SECTION START HERE-->
+     <div class="container">
+          <div class="form-checkout row" style="padding: 100px 0 100px 0;">
+               <div class="col-6 form-checkout__infomation px-5">
+                    <div class="form-checkout__infomation__heading" style="padding-bottom: 20px">
+                              <span>Thông tin vận chuyển</span>
+                    </div>
+                    <form>
+                         <div class="form-row">
+                              <div class="form-group col-md-6">
+                                   <label for="inputEmail4">Họ
+                                             <abbr class="required" title="required">*</abbr>
+                                   </label>
+                                   <input type="email" class="form-control" id="inputEmail4">
+                              </div>
+                              <div class="form-group col-md-6">
+                                   <label for="inputPassword4">Tên
+                                             <abbr class="required" title="required">*</abbr>
+                                   </label>
+                                   <input type="password" class="form-control" id="inputPassword4">
+                              </div>
+                         </div>
+                         <div class="form-group">
+                              <label for="inputAddress">Số điện thoại
+                                        <abbr class="required" title="required">*</abbr>
+                              </label>
+                              <input type="text" class="form-control" id="inputAddress">
+                         </div>
+                         <div class="form-group">
+                              <label for="inputAddress">Địa chỉ
+                                        <abbr class="required" title="required">*</abbr>
+                              </label>
+                              <input type="text" class="form-control" id="inputAddress">
+                         </div>
+                         <div class="form-group">
+                              <label for="inputAddress2">Phường, xã
+                                        <abbr class="required" title="required">*</abbr>
+                              </label>
+                              <input type="text" class="form-control" id="inputAddress2">
+                         </div>
+                         <div class="form-group">
+                              <label for="inputAddress2">Quận, huyện
+                                        <abbr class="required" title="required">*</abbr>
+                              </label>
+                              <input type="text" class="form-control" id="inputAddress2">
+                         </div>
+                         <div class="form-group">
+                                   <label for="inputAddress2">Thành phố
+                                             <abbr class="required" title="required">*</abbr>
+                                   </label>
+                                   <input type="text" class="form-control" id="inputAddress2">
+                         </div>
+                    </form>
+               </div>
+               <div class="col-6 form-checkout__product" style="background-color: #f7f4ed">
+                    <div class="text-center form-checkout__product__heading">
+                         <span>Thông tin giỏ hàng</span>
+                    </div>
+                    <div class="order-detail" style="padding: 20px">
+                         <div class="order-review" style="background-color: #fff">
+                              <table class="shop_table woocommerce-checkout-review-order-table">
+                                   <tbody>
+                                        <tr class="cart_item">
+                                             <td class="product-thumbnail">
+                                                  <a href="#"><img
+                                                            src="/images/home-page/product/latest1.jpg" /></a>
+                                             </td>
+                                             <td class="product-name">
+                                                  Chips with Sour Cream <strong class="product-quantity">x 1</strong>
+                                             </td>
+                                             <td class="product-total">
+                                                  <span class="price">
+                                                       <span class="woocommerce-Price-amount amount"><span
+                                                                 class="woocommerce-Price-currencySymbol"></span>18 600</span>
+                                                  </span>
+                                             </td>
+                                        </tr>
+                                        <tr class="cart_item">
+                                             <td class="product-thumbnail">
+                                                  <a href="#"><img
+                                                            src="/images/J2EE/home-page/product/latest1.jpg" /></a>
+                                             </td>
+                                             <td class="product-name">
+                                                  Grilled Meat with Fruits <strong class="product-quantity">x 1</strong>
+                                             </td>
+                                             <td class="product-total">
+                                                  <span class="price">
+                                                       <span class="woocommerce-Price-amount amount"><span
+                                                                 class="woocommerce-Price-currencySymbol"></span>18 600</span>
+                                                  </span>
+                                             </td>
+                                        </tr>
+                                   </tbody>
+                                   <tfoot>
+                                        <tr class="cart-subtotal">
+                                             <th>Tổng phụ</th>
+                                             <td colspan="2"><span class="woocommerce-Price-amount amount"><span
+                                                            class="woocommerce-Price-currencySymbol"></span>37 200</span>
+                                             </td>
+                                        </tr>
+                                        <tr class="shipping">
+                                             <th>Vận chuyển</th>
+                                             <td colspan="2" data-title="Shipping">
+                                                  <p>Enter your full address to see shipping costs.</p>
+
+                                             </td>
+                                        </tr>
+                                        <tr class="order-total">
+                                             <th colspan="2">Tổng cộng</th>
+                                             <td style="border:none"><strong><span class="woocommerce-Price-amount amount"><span
+                                                                 class="woocommerce-Price-currencySymbol"></span>37 200</span></strong>
+                                             </td>
+                                        </tr>
+                                   </tfoot>
+                              </table>
+                              <div style="padding: 1em">
+                                   <input type="submit" class="button alt  cl-btn btn-style-square btn-hover-darker btn-font-custom" name="woocommerce_checkout_place_order" id="place_order" value="Đặt hàng" data-value="Đặt hàng">
+                              </div>
+                         </div>
+                    </div>
+               </div>
+          </div>
+     </div>
+
+     <!--CHECKOUT SECTION END HERE-->
+
+
+     <!-- Optional JavaScript -->
+     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"
+          integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous">
+     </script>
+     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+
+
+     <!-- 	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+		integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+		crossorigin="anonymous">
+		
+	</script>
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+		integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+		crossorigin="anonymous">
+		
+	</script> -->
+
+     <script src="js/popper.min.js"></script>
+     <script src="js/bootstrap.min.js"></script>
+     <script src="js/vue/vue.js"></script>
+     <script src="js/vue/component.js"></script>
+     <script src="js/data.js"></script>
+     <script src="js/wow.min.js"></script>
+
+     <nav th:replace="layout :: footer"></nav>
+
+</body>
+
+</html>
