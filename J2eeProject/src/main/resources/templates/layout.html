@@ -45,7 +45,7 @@
 							<div
 								class="row main-menu__item-circle justify-content-end align-items-center">
 								<i class="far fa-user"></i> <a th:if="${user}" class="Login"
-									href="#" th:text="${'Hi ' + user.name}"></a> <a
+									href="#" th:text="${'Hi ' + user.firstName}"></a> <a
 									th:unless="${user}" class="Login" href="/login">Login</a>
 							</div>
 						</div>

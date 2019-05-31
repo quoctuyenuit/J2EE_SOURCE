@@ -151,8 +151,11 @@ public class J2eeServiceImpl implements J2eeService {
 
 		UserType userType = this.searchUserTypes(Common.Constaints.USER_PERMISSION);
 		User user = new User(googlePojo.getId(), userType.getId());
+		
 		user.setEmail(googlePojo.getEmail());
 		user.setName(googlePojo.getName());
+		user.setLastName(googlePojo.getFamily_name());
+		user.setFirstName(googlePojo.getGiven_name());
 
 		return new org.javatuples.Pair<User, AccountExists>(user, accountExists);
 

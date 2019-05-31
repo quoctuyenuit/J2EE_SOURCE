@@ -76,7 +76,11 @@ public class LoginController {
 		if (result.hasErrors()) {
 			return "signup";
 		}
-
+		
+		if (user.getName() == null) {
+			user.setName(user.getLastName() + " " + user.getFirstName());
+		}
+		
 		j2eeService.saveUser(user);
 		model.addAttribute("user", user);
 		HttpSession session = request.getSession();

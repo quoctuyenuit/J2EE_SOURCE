@@ -20,9 +20,14 @@ public class User {
 	 @Column(name = "type_id", nullable = false)
 	 private Integer type_id;
 
-	 @NotEmpty
-	 @Column(name = "name", nullable = false)
+	 @Column(name = "name")
 	 private String name;
+	 
+	 @Column(name = "first_name")
+	 private String firstName;
+	 
+	 @Column(name = "last_name")
+	 private String lastName;
 
 	 @NotEmpty
 	 @Email
@@ -35,6 +40,15 @@ public class User {
 
 	 @Column(name = "address")
 	 private String address;
+	 
+	 @Column(name = "wards")
+	 private String wards;
+	 
+	 @Column(name = "district")
+	 private String district;
+	 
+	 @Column(name = "province")
+	 private String province;
 	
 	public String getId() {
 		return id;
@@ -93,18 +107,62 @@ public class User {
 	public void setAddress(String address) {
 		this.address = address;
 	}
+
+	public String getFirstName() {
+		return firstName;
+	}
+
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
+	}
+
+	public String getLastName() {
+		return lastName;
+	}
+
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
+	}
+
+	public String getWards() {
+		return wards;
+	}
+
+	public void setWards(String wards) {
+		this.wards = wards;
+	}
+
+	public String getDistrict() {
+		return district;
+	}
+
+	public void setDistrict(String district) {
+		this.district = district;
+	}
+
+	public String getProvince() {
+		return province;
+	}
+
+	public void setProvince(String province) {
+		this.province = province;
+	}
 	
-	
-	public User(@NotNull Integer type_id, @NotEmpty String name, @NotEmpty @Email String email,
-			@NotEmpty String password, String address) {
+	public User(@NotNull Integer type_id, @NotEmpty String name, String firstName, String lastName,
+			@NotEmpty @Email String email, @NotEmpty String password, String address, String wards, String district,
+			String province) {
 		super();
 		this.type_id = type_id;
 		this.name = name;
+		this.firstName = firstName;
+		this.lastName = lastName;
 		this.email = email;
 		this.password = password;
 		this.address = address;
+		this.wards = wards;
+		this.district = district;
+		this.province = province;
 	}
-
 
 	public User(String id, @NotNull Integer type_id) {
 		super();

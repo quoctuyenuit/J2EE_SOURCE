@@ -19,10 +19,15 @@ CREATE TABLE `user_type`(
 CREATE TABLE `user`(
     `id` VARCHAR(255) NOT NULL PRIMARY KEY,
     `type_id` INT(11) NOT NULL,
-    `name` NVARCHAR(50) NOT NULL,
+    `first_name` NVARCHAR(50) NOT NULL,
+    `last_name` NVARCHAR(50),
+    `name` NVARCHAR(50),
     `email` CHAR(50) NOT NULL UNIQUE,
     `password` VARCHAR(255) NOT NULL,
-    `address` NVARCHAR(255) DEFAULT NULL
+    `address` NVARCHAR(255) DEFAULT NULL,
+    `wards` NVARCHAR(255) DEFAULT NULL,
+    `district` NVARCHAR(255) DEFAULT NULL,
+    `province` NVARCHAR(255) DEFAULT NULL
 );
 
 ALTER TABLE `user`
