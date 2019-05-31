@@ -152,6 +152,6 @@ public class MyCartController {
 	
 	@GetMapping("/my-cart/checkout-processing")
 	public String checkoutProcessing() {
-		return "redirect:/home/my-cart";
+		return "checkout";
 	}
 }
