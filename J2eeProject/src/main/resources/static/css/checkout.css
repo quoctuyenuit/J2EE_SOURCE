@@ -11,10 +11,6 @@
      transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
 }
 
-/* .form-group label{
-     font-weight: bold;
-} */
-
 .form-group input{
      border: none; 
      border-bottom: 1px solid #e3e3e3
@@ -30,14 +26,34 @@
      border: 0;
  }
 
-table.shop_table td {
-     padding: 30px;
-     vertical-align: middle;
-     border-bottom-width: 1px;
-     border-bottom-style: solid;
-     text-align: center;
-     background: #fff;
+ tbody{
+     height: 400px;
+     overflow-y: auto;
+     width: 100%
 }
+thead,tbody,tr,td,th{
+    display:block;
+  }
+  
+table.shop_table td {
+    padding: 7px;
+    vertical-align: middle;
+    background: #fff;
+}
+
+tr{
+     border-bottom: 1px solid #e3e3e3;
+     border: none;
+}
+
+.product-name{
+     min-width: 250px;
+}
+
+.woocommerce-checkout-review-order-table tfoot td:last-child {
+     text-align: right !important;
+     width: 100% !important;
+ }
 
 table.shop_table {
      margin: 0 -1px 24px 0;
