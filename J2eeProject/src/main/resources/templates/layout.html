@@ -46,7 +46,11 @@
 								class="row main-menu__item-circle justify-content-end align-items-center">
 								<i class="far fa-user"></i> <a th:if="${user}" class="Login"
 									href="#" th:text="${'Hi ' + user.firstName}"></a> <a
-									th:unless="${user}" class="Login" href="/login">Login</a>
+									th:unless="${user}" class="Login" href="/login" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Login</a>
+									<div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+										<a class="dropdown-item" href="#">Giỏ hàng của tôi</a>
+										<a class="dropdown-item" href="#">Đăng xuất</a>
+									</div>
 							</div>
 						</div>
 					</div>

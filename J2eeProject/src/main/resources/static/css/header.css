@@ -2,7 +2,17 @@ body {
      width: 100%;
      font-family: 'Lora', serif;
 }
-
+.dropdown-menu{
+     position: absolute;
+    will-change: transform;
+    top: -2px !important;
+    left: -18px !important;
+    transform: translate3d(231px, 56px, 0px);
+    background-color: #111;
+}
+.dropdown-item:hover{
+     color: #111 !important;
+}
 .main-menu {
      background: #111;
      width: 100%;
