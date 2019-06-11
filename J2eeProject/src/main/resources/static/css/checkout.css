@@ -124,3 +124,8 @@ table.shop_table tr.order-total th {
      font-weight: bold;
      padding-top: 20px;
  }
+ 
+ .product-image {
+     width: 120px;
+    height: 100px;
+ }

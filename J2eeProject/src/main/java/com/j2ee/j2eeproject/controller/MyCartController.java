@@ -6,6 +6,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -15,6 +16,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.j2ee.j2eeproject.common.Common;
 import com.j2ee.j2eeproject.entity.OrderPreparationEntity;
 import com.j2ee.j2eeproject.entity.ProductOrderedEntity;
+import com.j2ee.j2eeproject.entity.pojo.User;
 import com.j2ee.j2eeproject.service.J2eeService;
 
 @Controller
@@ -151,7 +153,14 @@ public class MyCartController {
 	}
 	
 	@GetMapping("/my-cart/checkout-processing")
-	public String checkoutProcessing() {
+	public String checkoutProcessing(HttpSession session, Model model) {
+		User user = (User) session.getAttribute(Common.Constaints.kUSER);
+		model.addAttribute("user", user);
+		
+		List<OrderPreparationEntity> listOrders = (List<OrderPreparationEntity>) session.getAttribute(Common.Constaints.kLIST_PRODUCTS);
+		Iterable<ProductOrderedEntity> listOrderdEntities = this.service.getListOrdered(listOrders);
+		model.addAttribute("products", listOrderdEntities);
+		model.addAttribute("shippingCharge", 10000);
 		return "checkout";
 	}
 }

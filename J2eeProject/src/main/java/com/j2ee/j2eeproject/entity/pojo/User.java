@@ -34,6 +34,9 @@ public class User {
 	 @Column(name = "email", nullable = false)
 	 private String email;
 	 
+	 @Column(name = "phone")
+	 private String phone;
+	 
 	 @NotEmpty
 	 @Column(name = "password", nullable = false)
 	 private String password;
@@ -148,7 +151,15 @@ public class User {
 		this.province = province;
 	}
 	
-	public User(@NotNull Integer type_id, @NotEmpty String name, String firstName, String lastName,
+	public String getPhone() {
+		return phone;
+	}
+
+	public void setPhone(String phone) {
+		this.phone = phone;
+	}
+
+	public User(@NotNull Integer type_id, @NotEmpty String name, String firstName, String lastName, String phone, 
 			@NotEmpty @Email String email, @NotEmpty String password, String address, String wards, String district,
 			String province) {
 		super();
@@ -157,6 +168,7 @@ public class User {
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.email = email;
+		this.phone = phone;
 		this.password = password;
 		this.address = address;
 		this.wards = wards;

@@ -51,50 +51,53 @@
                     <div class="form-checkout__infomation__heading" style="padding-bottom: 20px">
                               <span>Thông tin vận chuyển</span>
                     </div>
-                    <form>
+                    <form th:object="${user}">
+                    	 <input type="hidden" th:field="*{id}" />
+                         <input type="hidden" th:field="*{type_id}" />
+                         <input type="hidden" th:field="*{email}" />
+                         <input type="hidden" th:field="*{name}" />
+                         
                          <div class="form-row">
                               <div class="form-group col-md-6">
-                                   <label for="inputEmail4">Họ
-                                             <abbr class="required" title="required">*</abbr>
+                                   <label for="inputEmail4">Họ <abbr class="required" title="required">*</abbr>
                                    </label>
-                                   <input type="email" class="form-control" id="inputEmail4">
+                                   <input type="text" class="form-control" id="inputLastName" th:field="*{firstName}">
                               </div>
                               <div class="form-group col-md-6">
-                                   <label for="inputPassword4">Tên
-                                             <abbr class="required" title="required">*</abbr>
+                                   <label for="inputEmail4">Tên <abbr class="required" title="required">*</abbr>
                                    </label>
-                                   <input type="password" class="form-control" id="inputPassword4">
+                                   <input type="text" class="form-control" id="inputLastName" th:field="*{lastName}">
                               </div>
                          </div>
                          <div class="form-group">
                               <label for="inputAddress">Số điện thoại
                                         <abbr class="required" title="required">*</abbr>
                               </label>
-                              <input type="text" class="form-control" id="inputAddress">
+                              <input type="text" class="form-control" id="inputPhone" th:field="*{phone}">
                          </div>
                          <div class="form-group">
                               <label for="inputAddress">Địa chỉ
                                         <abbr class="required" title="required">*</abbr>
                               </label>
-                              <input type="text" class="form-control" id="inputAddress">
+                              <input type="text" class="form-control" id="inputAddress" th:field="*{address}">
                          </div>
                          <div class="form-group">
                               <label for="inputAddress2">Phường, xã
                                         <abbr class="required" title="required">*</abbr>
                               </label>
-                              <input type="text" class="form-control" id="inputAddress2">
+                              <input type="text" class="form-control" id="inputWards" th:field="*{wards}">
                          </div>
                          <div class="form-group">
                               <label for="inputAddress2">Quận, huyện
                                         <abbr class="required" title="required">*</abbr>
                               </label>
-                              <input type="text" class="form-control" id="inputAddress2">
+                              <input type="text" class="form-control" id="inputDistrict" th:field="*{district}">
                          </div>
                          <div class="form-group">
-                                   <label for="inputAddress2">Thành phố
+                                   <label for="inputAddress2">Tỉnh, Thành phố
                                              <abbr class="required" title="required">*</abbr>
                                    </label>
-                                   <input type="text" class="form-control" id="inputAddress2">
+                                   <input type="text" class="form-control" id="inputProvince" th:field="*{province}">
                          </div>
                     </form>
                </div>
@@ -106,55 +109,36 @@
                          <div class="order-review" style="background-color: #fff">
                               <table class="shop_table woocommerce-checkout-review-order-table">
                                    <tbody>
-                                        <tr class="cart_item">
+                                        <tr class="cart_item" th:each="product, iter : ${products}">
                                              <td class="product-thumbnail">
-                                                  <a href="#"><img
-                                                            src="/images/home-page/product/latest1.jpg" /></a>
+                                                  <a href="#"><img class="product-image" th:src="@{'/images/food-list/' + ${product.imageSample}}" /></a>
                                              </td>
-                                             <td class="product-name">
-                                                  Chips with Sour Cream <strong class="product-quantity">x 1</strong>
+                                             <td class="product-name" th:text="${product.name + ' x' + product.quantity}">
                                              </td>
                                              <td class="product-total">
-                                                  <span class="price">
-                                                       <span class="woocommerce-Price-amount amount"><span
-                                                                 class="woocommerce-Price-currencySymbol"></span>18 600</span>
-                                                  </span>
-                                             </td>
-                                        </tr>
-                                        <tr class="cart_item">
-                                             <td class="product-thumbnail">
-                                                  <a href="#"><img
-                                                            src="/images/J2EE/home-page/product/latest1.jpg" /></a>
-                                             </td>
-                                             <td class="product-name">
-                                                  Grilled Meat with Fruits <strong class="product-quantity">x 1</strong>
-                                             </td>
-                                             <td class="product-total">
-                                                  <span class="price">
-                                                       <span class="woocommerce-Price-amount amount"><span
-                                                                 class="woocommerce-Price-currencySymbol"></span>18 600</span>
-                                                  </span>
+                                                  <span class="price" th:text="${#numbers.formatDecimal(product.price * product.quantity,0,'POINT',0,'COMMA')+' đ'}"></span>
                                              </td>
                                         </tr>
                                    </tbody>
                                    <tfoot>
                                         <tr class="cart-subtotal">
                                              <th>Tổng phụ</th>
-                                             <td colspan="2"><span class="woocommerce-Price-amount amount"><span
-                                                            class="woocommerce-Price-currencySymbol"></span>37 200</span>
+                                             <td colspan="2">
+                                             <span class="woocommerce-Price-amount amount" th:text="${#numbers.formatDecimal(#aggregates.sum(products.![price * quantity]) , 0,'POINT',0,'COMMA')+' đ'}">
+                                             </span>
                                              </td>
                                         </tr>
                                         <tr class="shipping">
                                              <th>Vận chuyển</th>
-                                             <td colspan="2" data-title="Shipping">
-                                                  <p>Enter your full address to see shipping costs.</p>
+                                             <td colspan="2" data-title="Shipping" th:text="${#numbers.formatDecimal(shippingCharge,0,'POINT',0,'COMMA')+' đ'}">
+                                                 <!--  <p>10.000 đ</p> -->
 
                                              </td>
                                         </tr>
                                         <tr class="order-total">
                                              <th colspan="2">Tổng cộng</th>
-                                             <td style="border:none"><strong><span class="woocommerce-Price-amount amount"><span
-                                                                 class="woocommerce-Price-currencySymbol"></span>37 200</span></strong>
+                                             <td style="border:none">
+                                             <strong><span class="woocommerce-Price-amount amount" th:text="${#numbers.formatDecimal(shippingCharge + #aggregates.sum(products.![price * quantity]),0,'POINT',0,'COMMA')+' đ'}"></span></strong>
                                              </td>
                                         </tr>
                                    </tfoot>

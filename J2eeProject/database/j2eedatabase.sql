@@ -23,6 +23,7 @@ CREATE TABLE `user`(
     `last_name` NVARCHAR(50),
     `name` NVARCHAR(50),
     `email` CHAR(50) NOT NULL UNIQUE,
+    `phone` VARCHAR(12) UNIQUE,
     `password` VARCHAR(255) NOT NULL,
     `address` NVARCHAR(255) DEFAULT NULL,
     `wards` NVARCHAR(255) DEFAULT NULL,
