@@ -18,11 +18,13 @@ import com.j2ee.j2eeproject.common.LocalizeStrings;
 import com.j2ee.j2eeproject.entity.OrderPreparationEntity;
 import com.j2ee.j2eeproject.entity.ProductEntity;
 import com.j2ee.j2eeproject.entity.ProductOrderedEntity;
+import com.j2ee.j2eeproject.entity.pojo.Catalog;
 import com.j2ee.j2eeproject.entity.pojo.GooglePojo;
 import com.j2ee.j2eeproject.entity.pojo.ProductImage;
 import com.j2ee.j2eeproject.entity.pojo.Product;
 import com.j2ee.j2eeproject.entity.pojo.User;
 import com.j2ee.j2eeproject.entity.pojo.UserType;
+import com.j2ee.j2eeproject.repository.CatalogRepository;
 import com.j2ee.j2eeproject.repository.ProductImageRepository;
 import com.j2ee.j2eeproject.repository.ProductRepository;
 import com.j2ee.j2eeproject.repository.UserRepository;
@@ -52,6 +54,9 @@ public class J2eeServiceImpl implements J2eeService {
 	@Autowired
 	private ProductRepository productRepository;
 
+	@Autowired
+	private CatalogRepository catalogRepository;
+	
 	@Autowired
 	private GoogleUtils googleUtils;
 
@@ -92,6 +97,12 @@ public class J2eeServiceImpl implements J2eeService {
 	@Override
 	public Iterable<Product> getAllProduct() {
 		return productRepository.findAll();
+	}
+	
+	@Override
+	public Iterable<Product> getProductByCatalogId(int id) {
+		// TODO Auto-generated method stub
+		return productRepository.selectByCatalogId(id);
 	}
 	
 	@Override
@@ -239,6 +250,12 @@ public class J2eeServiceImpl implements J2eeService {
 				return new ProductOrderedEntity();
 			}
 		}).collect(Collectors.toCollection(ArrayList::new));
+	}
+
+	@Override
+	public Iterable<Catalog> getCatalogs() {
+		// TODO Auto-generated method stub
+		return catalogRepository.findAll();
 	}
 
 }

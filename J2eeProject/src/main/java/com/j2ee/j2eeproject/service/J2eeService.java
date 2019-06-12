@@ -15,6 +15,7 @@ import com.j2ee.j2eeproject.entity.OrderPreparationEntity;
 import com.j2ee.j2eeproject.entity.ProductEntity;
 import com.j2ee.j2eeproject.entity.ProductOrderedEntity;
 import com.j2ee.j2eeproject.entity.pojo.ProductImage;
+import com.j2ee.j2eeproject.entity.pojo.Catalog;
 import com.j2ee.j2eeproject.entity.pojo.Product;
 import com.j2ee.j2eeproject.entity.pojo.User;
 import com.j2ee.j2eeproject.entity.pojo.UserType;
@@ -39,12 +40,15 @@ public interface J2eeService {
 
 	ProductEntity findOneProduct(Integer id);
 	
+	Iterable<Product> getProductByCatalogId(int id);
+	
 	Iterable<ProductOrderedEntity> getListOrdered(List<OrderPreparationEntity> listOrders);
 	
 	Iterable<Product> getListLatestProduct(int limitedNumber);
 	
 	Iterable<Product> getTopRatingProduct(int limitedNumber);
 
+	Iterable<Catalog> getCatalogs();
 	//-------------------------------------------------------------------------------------------------------------------
 	List<OrderPreparationEntity> addToCart(Integer productId, Integer quantity, HttpSession session);
 	//-------------------------------------------------------------------------------------------------------------------

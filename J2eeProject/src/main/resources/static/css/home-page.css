@@ -1171,7 +1171,6 @@ transition: all 0.3s ease-out;
 15. Footer Css
 =========================================================================*/
 footer {
-  padding: 10rem 0;
   background-color: #111111;
   text-align: center;
   color: #989898;
@@ -4842,6 +4841,13 @@ footer.ranna-bg-dark {
 .single-recipe-layout2 .leave-review .leave-form-box input.form-control:-ms-input-placeholder,
 .single-recipe-layout2 .leave-review .leave-form-box textarea.form-control:-ms-input-placeholder {
   color: #646464;
+}
+
+.short-line {
+	overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
 }
 
 /*=======================================================================

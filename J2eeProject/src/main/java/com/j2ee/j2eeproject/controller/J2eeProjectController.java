@@ -12,6 +12,7 @@ import com.google.common.collect.Lists;
 import com.j2ee.j2eeproject.common.Common;
 import com.j2ee.j2eeproject.entity.OrderPreparationEntity;
 import com.j2ee.j2eeproject.entity.ProductEntity;
+import com.j2ee.j2eeproject.entity.pojo.Catalog;
 import com.j2ee.j2eeproject.entity.pojo.Product;
 import com.j2ee.j2eeproject.entity.pojo.User;
 import com.j2ee.j2eeproject.service.J2eeService;
@@ -37,10 +38,13 @@ public class J2eeProjectController {
 		}
 		
 		
-		List<Product> listTopRatingProduct = Lists.newArrayList(j2eeService.getTopRatingProduct(3));
-		List<Product> listLatestProduct = Lists.newArrayList(j2eeService.getListLatestProduct(5));
+		List<Product> listTopRatingProduct = Lists.newArrayList(j2eeService.getTopRatingProduct(6));
+		List<Product> listLatestProduct = Lists.newArrayList(j2eeService.getListLatestProduct(3));
+		Iterable<Catalog> catalogs = j2eeService.getCatalogs();
 		model.addAttribute("latestProduct", listLatestProduct.get(0));
 		model.addAttribute("ratingProducts", listTopRatingProduct);
+		model.addAttribute("hotestProducts", listLatestProduct);
+		model.addAttribute("catalogs", catalogs);
 		
 		return "home-page";
 	}

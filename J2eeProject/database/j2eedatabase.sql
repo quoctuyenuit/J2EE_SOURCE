@@ -41,6 +41,11 @@ CREATE TABLE `product_image`(
     `product_id` INT(11) NOT NULL
 );
 
+CREATE TABLE `catalog`(
+    `id` INT(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    `name` NVARCHAR(255)
+);
+
 CREATE TABLE `product`(
     `id` INT(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
     `name` NVARCHAR(255) NOT NULL UNIQUE,
@@ -53,14 +58,15 @@ CREATE TABLE `product`(
     `description` NVARCHAR(520)
 );
 
+ALTER TABLE `product`
+ADD CONSTRAINT `FK_PRODUCT_CATALOG`
+FOREIGN KEY(`catalog_id`) REFERENCES `catalog`(`id`);
+
 ALTER TABLE `product_image`
 ADD CONSTRAINT `FK_IMAGE_PRODUCT`
 FOREIGN KEY (`product_id`) REFERENCES `product`(`id`);
 
-CREATE TABLE `catalog`(
-    `id` INT(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    `name` NVARCHAR(255)
-);
+
 
 CREATE TABLE `request_order`(
     `id` INT(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,

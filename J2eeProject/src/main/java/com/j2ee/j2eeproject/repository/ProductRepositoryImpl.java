@@ -41,4 +41,12 @@ public class ProductRepositoryImpl implements ProductRepositoryCustom {
         return query.getResultList();
 	}
 
+	@Override
+	public Iterable<Product> selectByCatalogId(int id) {
+		Query query = entityManager.createNativeQuery("SELECT *FROM PRODUCT WHERE CATALOG_ID = ?;", Product.class);
+        query.setParameter(1, id);
+    
+        return query.getResultList();
+	}
+
 }

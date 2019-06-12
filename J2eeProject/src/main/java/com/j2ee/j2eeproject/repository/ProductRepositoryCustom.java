@@ -8,4 +8,5 @@ public interface ProductRepositoryCustom {
 	List<Product> selectTopProductByCatalogId(int limitNumber, int catalog_id);
 	List<Product> selectLatestProduct(int limitedNumber);
 	List<Product> selectTopRating(int limitedNumber);
+	Iterable<Product> selectByCatalogId(int id);
 }
