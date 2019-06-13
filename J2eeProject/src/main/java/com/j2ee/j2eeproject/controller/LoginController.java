@@ -7,7 +7,6 @@ import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.apache.http.client.ClientProtocolException;
-import org.javatuples.Pair;
 import org.javatuples.Triplet;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -56,15 +55,17 @@ public class LoginController {
 		}
 
 		Triplet<UserDetails, User, AccountExists> loginResult = this.j2eeService.loginWithGoogle(code);
-		request.getSession().setAttribute(Common.Constaints.kUSER, loginResult.getValue0());
+		User newUser = loginResult.getValue1();
 		UserDetails userDetail = loginResult.getValue0();
-		UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(userDetail, null,
-				userDetail.getAuthorities());
+		AccountExists isExists = loginResult.getValue2();
 		
+		request.getSession().setAttribute(Common.Constaints.kUSER, newUser);
+		
+		UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(userDetail, null, userDetail.getAuthorities());
 		authentication.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
 		SecurityContextHolder.getContext().setAuthentication(authentication);
 		
-		if (loginResult.getValue2() == AccountExists.NotExists) {
+		if (isExists == AccountExists.NotExists) {
 			return "redirect:/signup";
 		} else {
 			HttpSession session = request.getSession();

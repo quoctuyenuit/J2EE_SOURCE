@@ -3,11 +3,15 @@ package com.j2ee.j2eeproject.controller;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import javax.validation.Valid;
 
+import org.jboss.logging.Param;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.client.MultipartBodyBuilder.PublisherEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -16,6 +20,8 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.j2ee.j2eeproject.common.Common;
 import com.j2ee.j2eeproject.entity.OrderPreparationEntity;
 import com.j2ee.j2eeproject.entity.ProductOrderedEntity;
+import com.j2ee.j2eeproject.entity.pojo.OrderDetail;
+import com.j2ee.j2eeproject.entity.pojo.RequestOrder;
 import com.j2ee.j2eeproject.entity.pojo.User;
 import com.j2ee.j2eeproject.service.J2eeService;
 
@@ -155,6 +161,16 @@ public class MyCartController {
 	@GetMapping("/my-cart/checkout-processing")
 	public String checkoutProcessing(HttpSession session, Model model) {
 		User user = (User) session.getAttribute(Common.Constaints.kUSER);
+		if (user == null) {
+			return "redirect:/login";
+		} else {
+			return "redirect:/my-cart/checkout";	
+		}
+	}
+	
+	@RequestMapping(value = "/my-cart/checkout")
+	public String checkout(HttpSession session, Model model) {
+		User user = (User) session.getAttribute(Common.Constaints.kUSER);
 		model.addAttribute("user", user);
 		
 		List<OrderPreparationEntity> listOrders = (List<OrderPreparationEntity>) session.getAttribute(Common.Constaints.kLIST_PRODUCTS);
@@ -162,5 +178,19 @@ public class MyCartController {
 		model.addAttribute("products", listOrderdEntities);
 		model.addAttribute("shippingCharge", 10000);
 		return "checkout";
+	}
+	
+	@GetMapping("/checkout-action")
+	public String checkoutAction(HttpServletRequest request, @Valid User user, HttpSession session) {
+		List<OrderPreparationEntity> listOrders = (List<OrderPreparationEntity>) session.getAttribute(Common.Constaints.kLIST_PRODUCTS);
+		this.service.saveUser(user);
+		int id = this.service.saveOrder(user.getId());
+		listOrders.forEach(product -> {
+			OrderDetail orderDetail = new OrderDetail();
+			OrderDetail.PrimaryKey pKey  = new OrderDetail.PrimaryKey(product.getProductId(), id);
+			orderDetail.setPk(pKey);
+			this.service.saveOrderDetail(orderDetail);
+		});
+		return "redirect:/home";
 	}
 }

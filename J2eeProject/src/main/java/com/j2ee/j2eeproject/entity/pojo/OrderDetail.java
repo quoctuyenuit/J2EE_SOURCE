@@ -15,6 +15,14 @@ public class OrderDetail {
 	@EmbeddedId
 	private PrimaryKey pk;
 	
+	public PrimaryKey getPk() {
+		return pk;
+	}
+
+	public void setPk(PrimaryKey pk) {
+		this.pk = pk;
+	}
+
 	@Embeddable
 	public static class PrimaryKey implements Serializable {
 		private static final long serialVersionUID = 1L;

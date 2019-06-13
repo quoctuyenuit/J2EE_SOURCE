@@ -17,7 +17,9 @@ import com.j2ee.j2eeproject.entity.OrderPreparationEntity;
 import com.j2ee.j2eeproject.entity.ProductEntity;
 import com.j2ee.j2eeproject.entity.ProductOrderedEntity;
 import com.j2ee.j2eeproject.entity.pojo.ProductImage;
+import com.j2ee.j2eeproject.entity.pojo.RequestOrder;
 import com.j2ee.j2eeproject.entity.pojo.Catalog;
+import com.j2ee.j2eeproject.entity.pojo.OrderDetail;
 import com.j2ee.j2eeproject.entity.pojo.Product;
 import com.j2ee.j2eeproject.entity.pojo.User;
 import com.j2ee.j2eeproject.entity.pojo.UserType;
@@ -51,6 +53,10 @@ public interface J2eeService {
 	Iterable<Product> getTopRatingProduct(int limitedNumber);
 
 	Iterable<Catalog> getCatalogs();
+	
+	int saveOrder(String userId);
+	
+	void saveOrderDetail(OrderDetail detail);
 	//-------------------------------------------------------------------------------------------------------------------
 	List<OrderPreparationEntity> addToCart(Integer productId, Integer quantity, HttpSession session);
 	// ---------------------------------------------------------------------
@@ -62,4 +68,6 @@ public interface J2eeService {
 
 	String resetPassword(String email, String verifyCodeSent, String verifyCode, String password, String passwordAgain)
 			throws ResetPasswordException;
+
+	
 }

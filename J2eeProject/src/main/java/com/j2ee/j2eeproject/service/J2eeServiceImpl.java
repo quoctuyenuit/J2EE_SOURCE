@@ -24,13 +24,17 @@ import com.j2ee.j2eeproject.entity.ProductEntity;
 import com.j2ee.j2eeproject.entity.ProductOrderedEntity;
 import com.j2ee.j2eeproject.entity.pojo.Catalog;
 import com.j2ee.j2eeproject.entity.pojo.GooglePojo;
+import com.j2ee.j2eeproject.entity.pojo.OrderDetail;
 import com.j2ee.j2eeproject.entity.pojo.ProductImage;
+import com.j2ee.j2eeproject.entity.pojo.RequestOrder;
 import com.j2ee.j2eeproject.entity.pojo.Product;
 import com.j2ee.j2eeproject.entity.pojo.User;
 import com.j2ee.j2eeproject.entity.pojo.UserType;
 import com.j2ee.j2eeproject.repository.CatalogRepository;
+import com.j2ee.j2eeproject.repository.OrderDetailRepository;
 import com.j2ee.j2eeproject.repository.ProductImageRepository;
 import com.j2ee.j2eeproject.repository.ProductRepository;
+import com.j2ee.j2eeproject.repository.RequestOrderRepository;
 import com.j2ee.j2eeproject.repository.UserRepository;
 import com.j2ee.j2eeproject.repository.UserTypeRepository;
 import com.j2ee.j2eeproject.untils.GoogleUtils;
@@ -60,6 +64,12 @@ public class J2eeServiceImpl implements J2eeService {
 
 	@Autowired
 	private CatalogRepository catalogRepository;
+	
+	@Autowired
+	private RequestOrderRepository requestOrderRepository;
+	
+	@Autowired
+	private OrderDetailRepository orderDetailRepository;
 	
 	@Autowired
 	private GoogleUtils googleUtils;
@@ -124,6 +134,18 @@ public class J2eeServiceImpl implements J2eeService {
 	@Override
 	public Iterable<Product> getTopRatingProduct(int limitedNumber) {
 		return productRepository.selectTopRating(limitedNumber);
+	}
+	
+	@Override
+	public int saveOrder(String userId) {
+		// TODO Auto-generated method stub
+		return this.requestOrderRepository.saveRequestOrder(userId);
+	}
+	
+	@Override
+	public void saveOrderDetail(OrderDetail detail) {
+		// TODO Auto-generated method stub
+		this.orderDetailRepository.save(detail);
 	}
 	
 	@Override

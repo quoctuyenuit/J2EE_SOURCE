@@ -21,6 +21,7 @@
      <link rel="stylesheet" href="/css/food-list.css" />
      <link rel="stylesheet" href="/css/checkout.css" />
      <script src="/js/food-list.js"></script>
+     <script src="/js/checkout.js"></script>
      <title>Hello, world!</title>
 </head>
 
@@ -33,11 +34,7 @@
                <div class="row ">
                     <div class="col-12">
                          <div class="breadcrumbs-area">
-                              <h1>Search your recipes</h1>
-                              <ul>
-                                   <li><a href="#">Home</a></li>
-                                   <li>All Recipes</li>
-                              </ul>
+                              <h1>Checkout your cart</h1>
                          </div>
                     </div>
                </div>
@@ -48,25 +45,27 @@
      <div class="container">
           <div class="form-checkout row" style="padding: 100px 0 100px 0;">
                <div class="col-6 form-checkout__infomation px-5">
+               
                     <div class="form-checkout__infomation__heading" style="padding-bottom: 20px">
                               <span>Thông tin vận chuyển</span>
                     </div>
                     <form th:object="${user}">
-                    	 <input type="hidden" th:field="*{id}" />
-                         <input type="hidden" th:field="*{type_id}" />
-                         <input type="hidden" th:field="*{email}" />
-                         <input type="hidden" th:field="*{name}" />
+                    	 <input type="hidden" th:field="*{id}" id="userId"/>
+                         <input type="hidden" th:field="*{type_id}" id="typeId" />
+                         <input type="hidden" th:field="*{email}" id="email"/>
+                         <input type="hidden" th:field="*{name}"/>
+                         <input type="hidden" th:field="*{password}" id="password"/>
 
                          <div class="form-row">
                               <div class="form-group col-md-6">
                                    <label for="inputEmail4">Họ <abbr class="required" title="required">*</abbr>
                                    </label>
-                                   <input type="text" class="form-control" id="inputLastName" th:field="*{firstName}">
+                                   <input type="text" class="form-control" id="lastName" th:field="*{firstName}">
                               </div>
                               <div class="form-group col-md-6">
                                    <label for="inputEmail4">Tên <abbr class="required" title="required">*</abbr>
                                    </label>
-                                   <input type="text" class="form-control" id="inputLastName" th:field="*{lastName}">
+                                   <input type="text" class="form-control" id="firstName" th:field="*{lastName}">
                               </div>
                          </div>
                          <div class="form-group">
@@ -144,7 +143,9 @@
                                    </tfoot>
                               </table>
                               <div style="padding: 1em">
-                                   <input type="submit" class="button alt  cl-btn btn-style-square btn-hover-darker btn-font-custom" name="woocommerce_checkout_place_order" id="place_order" value="Đặt hàng">
+                                   <input type="submit" 
+                                   class="button alt  cl-btn btn-style-square btn-hover-darker btn-font-custom" 
+                                    id="place_order" value="Đặt hàng" th:attr="onclick=|checkout()|">
                               </div>
                          </div>
                     </div>
