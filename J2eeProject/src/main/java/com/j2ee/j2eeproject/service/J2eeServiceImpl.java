@@ -11,6 +11,10 @@ import javax.validation.constraints.Email;
 
 import org.apache.http.client.ClientProtocolException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
 import org.springframework.stereotype.Service;
 import com.j2ee.j2eeproject.common.AccountExists;
 import com.j2ee.j2eeproject.common.Common;
@@ -161,10 +165,14 @@ public class J2eeServiceImpl implements J2eeService {
 	// ----------------------------------------------------------------
 
 	@Override
-	public org.javatuples.Pair<User, AccountExists> loginWithGoogle(String code) throws ClientProtocolException, IOException {
+	public org.javatuples.Triplet<UserDetails, User, AccountExists> loginWithGoogle(String code) throws ClientProtocolException, IOException {
 
 		String accessToken = googleUtils.getToken(code);
 		GooglePojo googlePojo = googleUtils.getUserInfo(accessToken);
+		
+		
+		UserDetails userDetail = googleUtils.buildUser(googlePojo);
+		
 
 		AccountExists accountExists = AccountExists.NotExists;
 		if (this.searchUsers(googlePojo.getEmail()) != null) {
@@ -179,7 +187,7 @@ public class J2eeServiceImpl implements J2eeService {
 		user.setLastName(googlePojo.getFamily_name());
 		user.setFirstName(googlePojo.getGiven_name());
 
-		return new org.javatuples.Pair<User, AccountExists>(user, accountExists);
+		return new org.javatuples.Triplet<UserDetails, User, AccountExists>(userDetail, user, accountExists);
 
 	}
 

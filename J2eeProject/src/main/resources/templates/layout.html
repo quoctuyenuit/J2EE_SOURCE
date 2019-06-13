@@ -41,15 +41,23 @@
 					</div>
 					<div class="col-lg-4 col-md-9 col-sm-8 col-8">
 						<div class="main-menu__item">
-							<div
-								class="row main-menu__item-circle justify-content-end align-items-center">
-								<i class="far fa-user"></i> <a th:if="${user}" class="Login"
-									href="#" th:text="${'Hi ' + user.firstName}"></a> <a
-									th:unless="${user}" class="Login" href="/login" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Login</a>
-									<div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-										<a class="dropdown-item" href="#">Giỏ hàng của tôi</a>
-										<a class="dropdown-item" href="#">Đăng xuất</a>
-									</div>
+							<div class="row main-menu__item-circle justify-content-end align-items-center">
+								<i class="far fa-user"></i> 
+								<a th:if="${user}" class="Login" href="#" th:text="${'Hi ' + user.firstName}" role="button"
+									id="dropdownMenuLink" data-toggle="dropdown"
+									aria-haspopup="true" aria-expanded="false"></a>
+								
+								
+								<a th:unless="${user}" class="Login" href="/login" >Login</a>
+
+								<div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+									<a class="dropdown-item" style="font-size: 15px" href="/home/my-cart">Giỏ hàng của tôi</a> 
+									<form th:action="@{/j_spring_security_logout}"  method="post">
+										<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+										<input type="submit" class="dropdown-item" style="color: white; padding: 16px; font-size: 15px" value="Đăng xuất" />
+									</form>	
+								</div>
+								
 							</div>
 						</div>
 					</div>

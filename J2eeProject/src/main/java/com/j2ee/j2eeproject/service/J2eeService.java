@@ -9,6 +9,8 @@ import javax.validation.constraints.Email;
 
 import org.apache.http.client.ClientProtocolException;
 import org.javatuples.Pair;
+import org.javatuples.Triplet;
+import org.springframework.security.core.userdetails.UserDetails;
 
 import com.j2ee.j2eeproject.common.AccountExists;
 import com.j2ee.j2eeproject.entity.OrderPreparationEntity;
@@ -35,24 +37,24 @@ public interface J2eeService {
 	List<ProductImage> searchImageFromProductId(Integer productId);
 
 	Iterable<Product> getAllProduct();
-	
+
 	Iterable<Product> selectTopProductByCatalogId(int limitNumber, int catalogId);
 
 	ProductEntity findOneProduct(Integer id);
-	
+
 	Iterable<Product> getProductByCatalogId(int id);
-	
+
 	Iterable<ProductOrderedEntity> getListOrdered(List<OrderPreparationEntity> listOrders);
-	
+
 	Iterable<Product> getListLatestProduct(int limitedNumber);
-	
+
 	Iterable<Product> getTopRatingProduct(int limitedNumber);
 
 	Iterable<Catalog> getCatalogs();
 	//-------------------------------------------------------------------------------------------------------------------
 	List<OrderPreparationEntity> addToCart(Integer productId, Integer quantity, HttpSession session);
-	//-------------------------------------------------------------------------------------------------------------------
-	Pair<User, AccountExists> loginWithGoogle(String code) throws ClientProtocolException, IOException;
+	// ---------------------------------------------------------------------
+	Triplet<UserDetails, User, AccountExists> loginWithGoogle(String code) throws ClientProtocolException, IOException;
 
 	User login(User user) throws LoginException;
 

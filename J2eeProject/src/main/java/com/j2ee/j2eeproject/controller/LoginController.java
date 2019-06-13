@@ -8,7 +8,12 @@ import javax.validation.Valid;
 
 import org.apache.http.client.ClientProtocolException;
 import org.javatuples.Pair;
+import org.javatuples.Triplet;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -50,14 +55,20 @@ public class LoginController {
 			return "redirect:/login?google=error";
 		}
 
-		Pair<User, AccountExists> loginResult = this.j2eeService.loginWithGoogle(code);
+		Triplet<UserDetails, User, AccountExists> loginResult = this.j2eeService.loginWithGoogle(code);
 		request.getSession().setAttribute(Common.Constaints.kUSER, loginResult.getValue0());
-
-		if (loginResult.getValue1() == AccountExists.NotExists) {
+		UserDetails userDetail = loginResult.getValue0();
+		UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(userDetail, null,
+				userDetail.getAuthorities());
+		
+		authentication.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
+		SecurityContextHolder.getContext().setAuthentication(authentication);
+		
+		if (loginResult.getValue2() == AccountExists.NotExists) {
 			return "redirect:/signup";
 		} else {
 			HttpSession session = request.getSession();
-			User user = this.j2eeService.searchUsers(loginResult.getValue0().getEmail());
+			User user = this.j2eeService.searchUsers(loginResult.getValue1().getEmail());
 			session.setAttribute(Common.Constaints.kUSER, user);
 			return "redirect:/home";
 		}
