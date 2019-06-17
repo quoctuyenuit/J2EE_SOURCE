@@ -35,6 +35,7 @@ function checkout() {
 		timeout : 100000,
 		success : function(data) {
 			debugger
+			window.location.href="/home/checkout-successful";
 //			console.log("SUCCESS: ", data);
 //			$("#ajax-quantity-cart").html(data);
 		},

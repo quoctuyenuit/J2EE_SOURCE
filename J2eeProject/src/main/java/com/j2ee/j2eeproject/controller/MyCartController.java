@@ -181,7 +181,7 @@ public class MyCartController {
 	}
 	
 	@GetMapping("/checkout-action")
-	public String checkoutAction(HttpServletRequest request, @Valid User user, HttpSession session) {
+	public @ResponseBody String checkoutAction(HttpServletRequest request, @Valid User user, HttpSession session) {
 		List<OrderPreparationEntity> listOrders = (List<OrderPreparationEntity>) session.getAttribute(Common.Constaints.kLIST_PRODUCTS);
 		this.service.saveUser(user);
 		int id = this.service.saveOrder(user.getId());
@@ -191,6 +191,21 @@ public class MyCartController {
 			orderDetail.setPk(pKey);
 			this.service.saveOrderDetail(orderDetail);
 		});
-		return "redirect:/home";
+		ObjectMapper mapper = new ObjectMapper();
+		String ajaxResponse = "";
+		try {
+			ajaxResponse = mapper.writeValueAsString(id);
+		} catch (JsonProcessingException e) {
+			e.printStackTrace();
+		}
+		
+		session.setAttribute(Common.Constaints.kLIST_PRODUCTS, null);
+
+		return ajaxResponse;
+	}
+	
+	@GetMapping("/home/checkout-successful")
+	public String checkoutSuccess() {
+		return "success-payment";
 	}
 }
