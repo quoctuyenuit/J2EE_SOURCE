@@ -31,7 +31,7 @@
 <link rel="stylesheet" href="/css/home-page.css" />
 <link rel="stylesheet" href="/css/food-list.css" />
 <script src="/js/food-list.js"></script>
-<title>Hello, world!</title>
+<title>Danh mục sản phẩm</title>
 </head>
 
 <body>
@@ -43,11 +43,7 @@
 			<div class="row ">
 				<div class="col-12">
 					<div class="breadcrumbs-area">
-						<h1>Search your recipes</h1>
-						<ul>
-							<li><a href="#">Home</a></li>
-							<li>All Recipes</li>
-						</ul>
+						<h1>Danh mục sản phẩm</h1>
 					</div>
 				</div>
 			</div>
@@ -59,22 +55,32 @@
 		<div class="search-bar">
 			<div
 				class="row justify-content-center align-items-center text-center">
-				<div class="input-group mb-3" style="width: 55%">
+				<form class="input-group mb-3" style="width: 55%"  th:action="@{/product/search}">
 					<input
 						class="form-control font-italic text--up-fs-14 text--light pl-30 py-15"
-						type="text" placeholder="Searching"
+						type="text" placeholder="Tìm kiếm ..."
 						aria-label="Saisissez ici votre question"
 						aria-describedby="button-addon2"
-						style="background-color: #f6f7f9; position: relative; height: 45px; width: 300px; border: none; border-top-right-radius: 50px; border-bottom-right-radius: 50px" />
+						name="term"
+						style="background-color: #f6f7f9; position: relative; height: 45px; width: 300px; border: none; border-top-right-radius: 50px;border-bottom-right-radius: 50px;border-top-left-radius: 50px; border-bottom-left-radius: 50px; font-size: 15px" />
 					<div class="input-group-append">
 						<div class="px-sm-7 d-none d-lg-block undefinedundefined"
-							style="position: absolute; top: 0; right: -7px">
-							<a href="#" title="Search" class="btn btn-pink"> <span
-								class="arrow-text">Search</span>
-							</a>
+							style="position: absolute; top: 0;">
+							<button type="submit"  class="btn btn-pink" style="font-size: 15px;">
+							<i class="fa fa-search"></i> Tìm kiếm
+							</button>
 						</div>
 					</div>
-				</div>
+
+					<!-- <form class="form-inline" action="#" th:action="@{/product/search}"
+						method="get">
+						<input class="form-control mr-sm-2" type="search" name="term"
+							placeholder="Search by name ..." />
+						<button class="btn btn-primary" type="submit">
+							
+						</button>
+					</form> -->
+				</form>
 			</div>
 		</div>
 	</div>
@@ -113,7 +119,8 @@
 			</ul>
 
 		</div>
-		<div class="list-pager" style="margin: 20px 425px">
+		
+		<!-- <div class="list-pager" style="margin: 20px 425px">
                <nav aria-label="Page navigation example">
                     <ul class="pagination">
                          <li class="page-item">
@@ -136,7 +143,7 @@
                          </li>
                     </ul>
                </nav>
-          </div>
+          </div> -->
 	</div>
 
 	

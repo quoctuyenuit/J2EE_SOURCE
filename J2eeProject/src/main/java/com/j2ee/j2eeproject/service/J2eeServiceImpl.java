@@ -114,6 +114,12 @@ public class J2eeServiceImpl implements J2eeService {
 	}
 	
 	@Override
+	public Iterable<Product> getProductByName(String name) {
+		// TODO Auto-generated method stub
+		return productRepository.findByNameContaining(name);
+	}
+	
+	@Override
 	public Iterable<Product> getProductByCatalogId(int id) {
 		// TODO Auto-generated method stub
 		return productRepository.selectByCatalogId(id);

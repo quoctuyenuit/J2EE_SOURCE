@@ -20,7 +20,7 @@
       <link rel="stylesheet" href="/css/shopping-cart.css"/>
       <link rel="stylesheet" href="/css/food-list.css"/>
      <script src="/js/shopping-cart.js"></script>
-	<title>Shopping cart</title>
+	<title>Giỏ hàng của tôi</title>
 </head>
 
 <body>
@@ -31,13 +31,7 @@
 	          <div class="row ">
 	               <div class="col-12">
 	                    <div class="breadcrumbs-area">
-	                         <h1>Search your recipes</h1>
-	                         <ul>
-	                              <li>
-	                                   <a href="#">Home</a>
-	                              </li>
-	                              <li>All Recipes</li>
-	                         </ul>
+	                         <h1>Giỏ hàng của tôi</h1>
 	                    </div>
 	               </div>
 	          </div>
@@ -74,10 +68,10 @@
 	                    <thead>
 	                         <tr>
 	                              <th class="product-thumbnail">&nbsp;</th>
-	                              <th class="product-name">Product</th>
-	                              <th class="product-price">Price</th>
-	                              <th class="product-quantity">Quantity</th>
-	                              <th class="product-subtotal">Total</th>
+	                              <th class="product-name">Sản phẩm</th>
+	                              <th class="product-price">Giá</th>
+	                              <th class="product-quantity">Số lượng</th>
+	                              <th class="product-subtotal">Tổng</th>
 	                              <th class="product-remove">&nbsp;</th>
 	                         </tr>
 	                    </thead>
@@ -123,17 +117,17 @@
 
           <div class="cart-collaterals">
                <div class="cart_totals ">
-                    <h2>Cart totals</h2>
+                    
                     <table cellspacing="0" class="shop_table shop_table_responsive">
                          <tbody>
                               <tr class="cart-subtotal">
-                                   <th>Subtotal</th>
+                                   <th>Tạm tính</th>
                                    <td data-title="Subtotal">
                                    <span class="woocommerce-Price-amount amount" th:text="${#numbers.formatDecimal(#aggregates.sum(orders.![price * quantity]) , 0,'POINT',0,'COMMA')+' đ'}"  th:id="subtotal">$15.99</span>
                                    </td>
                               </tr>
                               <tr class="order-total">
-                                   <th>Total</th>
+                                   <th>Tổng:</th>
                                    <td data-title="Total">
                                    <strong>
                                    <span class="woocommerce-Price-amount amount" th:text="${#numbers.formatDecimal(#aggregates.sum(orders.![price * quantity]) , 0,'POINT',0,'COMMA')+' đ'}"  th:id="total-list">$15.99</span>
@@ -143,7 +137,7 @@
                          </tbody>
                     </table>
                     <div class="wc-proceed-to-checkout">
-                         <a href="/my-cart/checkout-processing" class="checkout-button button alt wc-forward">Checkout</a>
+                         <a href="/my-cart/checkout-processing" class="checkout-button button alt wc-forward" style="top: 15px; right: 23px">Thanh toán</a>
                     </div>
                </div>
           </div>

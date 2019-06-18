@@ -6,7 +6,9 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.google.common.collect.Lists;
 import com.j2ee.j2eeproject.common.Common;
@@ -96,5 +98,24 @@ public class J2eeProjectController {
 		model.addAttribute("relatedProducts", relatedProducts);
 
 		return "product-detail";
+	}
+	
+	@GetMapping("/product/search")
+	public String search(@RequestParam("term") String term, Model model, HttpSession session) {
+		User user = (User) session.getAttribute(Common.Constaints.kUSER);
+		model.addAttribute("user", user);
+		
+		@SuppressWarnings("unchecked")
+		List<OrderPreparationEntity> listOrders = (List<OrderPreparationEntity>) session
+				.getAttribute(Common.Constaints.kLIST_PRODUCTS);
+		if (listOrders == null) {
+			model.addAttribute("quantity", 0);
+		} else {
+			model.addAttribute("quantity", listOrders.size());
+		}
+
+		Iterable<Product> products = this.j2eeService.getProductByName(term);
+		model.addAttribute("products", products);
+		return "products-list";
 	}
 }
