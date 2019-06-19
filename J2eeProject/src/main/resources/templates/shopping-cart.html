@@ -130,7 +130,7 @@
                                    <th>Tổng:</th>
                                    <td data-title="Total">
                                    <strong>
-                                   <span class="woocommerce-Price-amount amount" th:text="${#numbers.formatDecimal(#aggregates.sum(orders.![price * quantity]) , 0,'POINT',0,'COMMA')+' đ'}"  th:id="total-list">$15.99</span>
+                                   <span class="woocommerce-Price-amount amount" th:text="${#numbers.formatDecimal(#aggregates.sum(orders.![price * quantity * (1 - discount)]) , 0,'POINT',0,'COMMA')+' đ'}"  th:id="total-list">$15.99</span>
                                    </strong>
                                    </td>
                               </tr>

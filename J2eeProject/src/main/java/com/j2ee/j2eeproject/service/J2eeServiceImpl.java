@@ -281,7 +281,7 @@ public class J2eeServiceImpl implements J2eeService {
 			Product product = this.productRepository.findById(order.getProductId()).get();
 			if (product != null)
 			{
-				return new ProductOrderedEntity(product.getId(), product.getName(), product.getPrice(), quantity, product.getImageSample());
+				return new ProductOrderedEntity(product.getId(), product.getName(), product.getPrice(), quantity, product.getImageSample(), product.getDiscount());
 			} else {
 				return new ProductOrderedEntity();
 			}

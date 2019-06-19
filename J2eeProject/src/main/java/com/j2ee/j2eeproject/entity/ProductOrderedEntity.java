@@ -6,6 +6,7 @@ public class ProductOrderedEntity {
 	private Integer price;
 	private Integer quantity;
 	private String imageSample;
+	private Float discount;
 	
 	public Integer getId() {
 		return id;
@@ -37,14 +38,20 @@ public class ProductOrderedEntity {
 	public void setImageSample(String imageSample) {
 		this.imageSample = imageSample;
 	}
-	
-	public ProductOrderedEntity(Integer id, String name, Integer price, Integer quantity, String imageSample) {
+	public Float getDiscount() {
+		return discount;
+	}
+	public void setDiscount(Float discount) {
+		this.discount = discount;
+	}
+	public ProductOrderedEntity(Integer id, String name, Integer price, Integer quantity, String imageSample, Float discount) {
 		super();
 		this.id = id;
 		this.name = name;
 		this.price = price;
 		this.quantity = quantity;
 		this.imageSample = imageSample;
+		this.discount = discount;
 	}
 	public ProductOrderedEntity() {
 		super();
