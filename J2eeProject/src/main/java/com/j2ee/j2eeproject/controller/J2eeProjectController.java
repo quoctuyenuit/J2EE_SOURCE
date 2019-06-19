@@ -24,33 +24,6 @@ public class J2eeProjectController {
 	@Autowired
 	private J2eeService j2eeService;
 
-	// =================================================================================
-	@GetMapping("/home")
-	public String home(HttpSession session, Model model) {
-		User user = (User) session.getAttribute(Common.Constaints.kUSER);
-		model.addAttribute("user", user);
-
-		@SuppressWarnings("unchecked")
-		List<OrderPreparationEntity> listOrders = (List<OrderPreparationEntity>) session
-				.getAttribute(Common.Constaints.kLIST_PRODUCTS);
-		if (listOrders == null) {
-			model.addAttribute("quantity", 0);
-		} else {
-			model.addAttribute("quantity", listOrders.size());
-		}
-		
-		
-		List<Product> listTopRatingProduct = Lists.newArrayList(j2eeService.getTopRatingProduct(6));
-		List<Product> listLatestProduct = Lists.newArrayList(j2eeService.getListLatestProduct(3));
-		Iterable<Catalog> catalogs = j2eeService.getCatalogs();
-		model.addAttribute("latestProduct", listLatestProduct.get(0));
-		model.addAttribute("ratingProducts", listTopRatingProduct);
-		model.addAttribute("hotestProducts", listLatestProduct);
-		model.addAttribute("catalogs", catalogs);
-		
-		return "home-page";
-	}
-
 	@GetMapping("/home/products")
 	public String showProducts(HttpSession session, Model model) {
 		User user = (User) session.getAttribute(Common.Constaints.kUSER);
